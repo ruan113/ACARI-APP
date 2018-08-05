@@ -6,6 +6,7 @@
 package view;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,8 +24,13 @@ public class principalView extends javax.swing.JFrame {
      * Creates new form principalView
      */
     public principalView() {
+        this.setUndecorated(true);
+        this.setAlwaysOnTop(true);
+        this.setResizable(false);
+        this.setVisible(true);
+        
         initComponents();
-        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
         
         BufferedImage img = null;
         try {
@@ -36,8 +42,18 @@ public class principalView extends javax.swing.JFrame {
         Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         logoLabel.setIcon(imageIcon);
+        
+        setFullScreen();
     }
 
+    public void setFullScreen(){
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xsize = (int) tk.getScreenSize().getWidth();
+        int ysize = (int) tk.getScreenSize().getHeight();
+        this.setSize(xsize,ysize);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,9 +91,49 @@ public class principalView extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         venderPanel = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jLabel16 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel19 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jButton16 = new javax.swing.JButton();
         relatoriosPanel = new javax.swing.JPanel();
         associadosPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         empresasPanel = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
         logoLabel = new javax.swing.JLabel();
         menuButtonsPanel = new javax.swing.JPanel();
@@ -91,7 +147,6 @@ public class principalView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 255));
-        setPreferredSize(new java.awt.Dimension(1300, 600));
 
         infoPanel.setBackground(new java.awt.Color(204, 255, 204));
         infoPanel.setLayout(new java.awt.CardLayout());
@@ -283,16 +338,164 @@ public class principalView extends javax.swing.JFrame {
 
         infoPanel.add(comprarPanel, "card2");
 
-        javax.swing.GroupLayout venderPanelLayout = new javax.swing.GroupLayout(venderPanel);
-        venderPanel.setLayout(venderPanelLayout);
-        venderPanelLayout.setHorizontalGroup(
-            venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1140, Short.MAX_VALUE)
-        );
-        venderPanelLayout.setVerticalGroup(
-            venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+        venderPanel.setBackground(new java.awt.Color(204, 204, 204));
+        venderPanel.setLayout(null);
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Informações do Item");
+        venderPanel.add(jLabel15);
+        jLabel15.setBounds(0, 0, 790, 40);
+
+        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jTextArea2.setRows(5);
+        jTextArea2.setText("AOSKDADMADPSASDPLASD\nAPSDKMADSM\nlaksdmmnkad\nlkansdkadmçlasmas\n\napçskdmpçkasdmpçasdmkçasd\nasd\nad\nsaçdmklsçkadmsaçkdms\nad\nadslakmnsdklmadskads\nads\nadskasmndsklmads");
+        jScrollPane4.setViewportView(jTextArea2);
+
+        venderPanel.add(jScrollPane4);
+        jScrollPane4.setBounds(800, 50, 320, 390);
+
+        jLabel16.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Informações da Venda");
+        venderPanel.add(jLabel16);
+        jLabel16.setBounds(791, 0, 350, 40);
+
+        jButton12.setBackground(new java.awt.Color(156, 36, 33));
+        jButton12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(51, 51, 51));
+        jButton12.setText("Cancelar");
+        venderPanel.add(jButton12);
+        jButton12.setBounds(800, 520, 320, 30);
+
+        jButton13.setBackground(new java.awt.Color(1, 103, 204));
+        jButton13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton13.setForeground(new java.awt.Color(51, 51, 51));
+        jButton13.setText("Confirmar");
+        venderPanel.add(jButton13);
+        jButton13.setBounds(800, 480, 320, 30);
+        venderPanel.add(jSeparator5);
+        jSeparator5.setBounds(0, 40, 1140, 20);
+
+        jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Total a Receber: R$0000,00");
+        venderPanel.add(jLabel17);
+        jLabel17.setBounds(800, 440, 320, 40);
+
+        jLabel18.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("Empresa");
+        venderPanel.add(jLabel18);
+        jLabel18.setBounds(70, 70, 340, 30);
+
+        jComboBox3.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jComboBox3.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Raul Seixas dos Santos da Silva", "Flora Guenzburguer Baumann Somogyi", "Item 3", "Item 4" }));
+        venderPanel.add(jComboBox3);
+        jComboBox3.setBounds(70, 100, 340, 30);
+
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        venderPanel.add(jSeparator6);
+        jSeparator6.setBounds(790, 0, 70, 610);
+
+        jLabel19.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Preço Por Kilo (em Reais):");
+        venderPanel.add(jLabel19);
+        jLabel19.setBounds(70, 310, 300, 30);
+
+        jComboBox4.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jComboBox4.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor de Geladeira", "Item 2", "Item 3", "Item 4" }));
+        venderPanel.add(jComboBox4);
+        jComboBox4.setBounds(490, 100, 230, 30);
+
+        jLabel20.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Material");
+        venderPanel.add(jLabel20);
+        jLabel20.setBounds(490, 70, 230, 30);
+
+        jTextField6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField6.setText("00,00");
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+        venderPanel.add(jTextField6);
+        jTextField6.setBounds(380, 310, 80, 30);
+
+        jLabel21.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("Quantidade (em Kilos):");
+        venderPanel.add(jLabel21);
+        jLabel21.setBounds(70, 250, 270, 30);
+
+        jTextField7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField7.setText("00000");
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
+        venderPanel.add(jTextField7);
+        jTextField7.setBounds(340, 250, 80, 30);
+
+        jButton14.setBackground(new java.awt.Color(51, 153, 0));
+        jButton14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton14.setForeground(new java.awt.Color(33, 57, 8));
+        jButton14.setText("Cadastrar Novo Material");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        venderPanel.add(jButton14);
+        jButton14.setBounds(480, 140, 250, 40);
+
+        jButton15.setBackground(new java.awt.Color(51, 153, 0));
+        jButton15.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton15.setForeground(new java.awt.Color(33, 57, 8));
+        jButton15.setText("Adicionar Item");
+        venderPanel.add(jButton15);
+        jButton15.setBounds(70, 470, 320, 70);
+
+        jLabel22.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setText("Preço Total (em Reais):");
+        venderPanel.add(jLabel22);
+        jLabel22.setBounds(70, 370, 270, 30);
+
+        jTextField8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField8.setText("0000,00");
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
+        venderPanel.add(jTextField8);
+        jTextField8.setBounds(350, 370, 110, 30);
+
+        jButton16.setBackground(new java.awt.Color(51, 153, 0));
+        jButton16.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton16.setForeground(new java.awt.Color(33, 57, 8));
+        jButton16.setText("Cadastrar Nova Empresa");
+        venderPanel.add(jButton16);
+        jButton16.setBounds(70, 140, 340, 40);
 
         infoPanel.add(venderPanel, "card2");
 
@@ -309,29 +512,163 @@ public class principalView extends javax.swing.JFrame {
 
         infoPanel.add(relatoriosPanel, "card2");
 
-        javax.swing.GroupLayout associadosPanelLayout = new javax.swing.GroupLayout(associadosPanel);
-        associadosPanel.setLayout(associadosPanelLayout);
-        associadosPanelLayout.setHorizontalGroup(
-            associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1140, Short.MAX_VALUE)
-        );
-        associadosPanelLayout.setVerticalGroup(
-            associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+        associadosPanel.setBackground(new java.awt.Color(204, 204, 204));
+        associadosPanel.setLayout(null);
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Lista de Associados");
+        associadosPanel.add(jLabel11);
+        jLabel11.setBounds(0, 6, 1140, 35);
+        associadosPanel.add(jSeparator3);
+        jSeparator3.setBounds(0, 47, 1140, 19);
+
+        jButton6.setBackground(new java.awt.Color(156, 36, 33));
+        jButton6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(56, 22, 20));
+        jButton6.setText("Excluir Associado");
+        associadosPanel.add(jButton6);
+        jButton6.setBounds(740, 60, 270, 40);
+
+        jButton7.setBackground(new java.awt.Color(51, 153, 0));
+        jButton7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(33, 57, 8));
+        jButton7.setText("Cadastrar Novo Associado");
+        associadosPanel.add(jButton7);
+        jButton7.setBounds(120, 60, 270, 40);
+
+        jButton8.setBackground(new java.awt.Color(204, 204, 0));
+        jButton8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(51, 51, 0));
+        jButton8.setText("Editar Associado");
+        associadosPanel.add(jButton8);
+        jButton8.setBounds(430, 60, 270, 40);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nome", "CPF", "RG", "Rua", "Número", "Complemento", "Bairro", "Cidade", "UF"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("CPF");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("RG");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Rua");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("Número");
+            jTable1.getColumnModel().getColumn(5).setHeaderValue("Complemento");
+            jTable1.getColumnModel().getColumn(6).setHeaderValue("Bairro");
+            jTable1.getColumnModel().getColumn(7).setHeaderValue("Cidade");
+            jTable1.getColumnModel().getColumn(8).setHeaderValue("UF");
+        }
+
+        associadosPanel.add(jScrollPane2);
+        jScrollPane2.setBounds(13, 120, 1110, 430);
+        associadosPanel.add(jTextField4);
+        jTextField4.setBounds(190, 570, 410, 30);
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Pesquisa por Nome:");
+        associadosPanel.add(jLabel12);
+        jLabel12.setBounds(10, 570, 200, 30);
 
         infoPanel.add(associadosPanel, "card2");
 
-        javax.swing.GroupLayout empresasPanelLayout = new javax.swing.GroupLayout(empresasPanel);
-        empresasPanel.setLayout(empresasPanelLayout);
-        empresasPanelLayout.setHorizontalGroup(
-            empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1140, Short.MAX_VALUE)
-        );
-        empresasPanelLayout.setVerticalGroup(
-            empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+        empresasPanel.setBackground(new java.awt.Color(204, 204, 204));
+        empresasPanel.setLayout(null);
+
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Lista de Empresas");
+        empresasPanel.add(jLabel13);
+        jLabel13.setBounds(0, 6, 1140, 35);
+        empresasPanel.add(jSeparator4);
+        jSeparator4.setBounds(0, 47, 1140, 19);
+
+        jButton9.setBackground(new java.awt.Color(156, 36, 33));
+        jButton9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(56, 22, 20));
+        jButton9.setText("Excluir Empresa");
+        empresasPanel.add(jButton9);
+        jButton9.setBounds(740, 60, 270, 40);
+
+        jButton10.setBackground(new java.awt.Color(51, 153, 0));
+        jButton10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(33, 57, 8));
+        jButton10.setText("Cadastrar Nova Empresa");
+        empresasPanel.add(jButton10);
+        jButton10.setBounds(120, 60, 270, 40);
+
+        jButton11.setBackground(new java.awt.Color(204, 204, 0));
+        jButton11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton11.setForeground(new java.awt.Color(51, 51, 0));
+        jButton11.setText("Editar Empresa");
+        empresasPanel.add(jButton11);
+        jButton11.setBounds(430, 60, 270, 40);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nome", "CNPJ"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable2);
+
+        empresasPanel.add(jScrollPane3);
+        jScrollPane3.setBounds(13, 120, 1110, 430);
+        empresasPanel.add(jTextField5);
+        jTextField5.setBounds(190, 570, 410, 30);
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Pesquisa por Nome:");
+        empresasPanel.add(jLabel14);
+        jLabel14.setBounds(10, 570, 200, 30);
 
         infoPanel.add(empresasPanel, "card2");
 
@@ -366,6 +703,11 @@ public class principalView extends javax.swing.JFrame {
         venderButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         venderButton.setForeground(new java.awt.Color(0, 0, 0));
         venderButton.setText("Vender");
+        venderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                venderButtonActionPerformed(evt);
+            }
+        });
         menuButtonsPanel.add(venderButton);
 
         relatoriosButton.setBackground(new java.awt.Color(50, 144, 55));
@@ -378,12 +720,22 @@ public class principalView extends javax.swing.JFrame {
         associadosButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         associadosButton.setForeground(new java.awt.Color(0, 0, 0));
         associadosButton.setText("Associados");
+        associadosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                associadosButtonActionPerformed(evt);
+            }
+        });
         menuButtonsPanel.add(associadosButton);
 
         empresasButton.setBackground(new java.awt.Color(50, 144, 55));
         empresasButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         empresasButton.setForeground(new java.awt.Color(0, 0, 0));
         empresasButton.setText("Empresas");
+        empresasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empresasButtonActionPerformed(evt);
+            }
+        });
         menuButtonsPanel.add(empresasButton);
 
         sairButton.setBackground(new java.awt.Color(50, 144, 55));
@@ -465,6 +817,43 @@ public class principalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void associadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associadosButtonActionPerformed
+        infoPanel.removeAll();
+        infoPanel.add(associadosPanel);
+        infoPanel.repaint();
+        infoPanel.revalidate();
+    }//GEN-LAST:event_associadosButtonActionPerformed
+
+    private void empresasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empresasButtonActionPerformed
+        infoPanel.removeAll();
+        infoPanel.add(empresasPanel);
+        infoPanel.repaint();
+        infoPanel.revalidate();
+    }//GEN-LAST:event_empresasButtonActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void venderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderButtonActionPerformed
+        infoPanel.removeAll();
+        infoPanel.add(venderPanel);
+        infoPanel.repaint();
+        infoPanel.revalidate();
+    }//GEN-LAST:event_venderButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -509,15 +898,40 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JPanel empresasPanel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -526,12 +940,27 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JPanel menuButtonsPanel;
     private javax.swing.JPanel menuPanel;
