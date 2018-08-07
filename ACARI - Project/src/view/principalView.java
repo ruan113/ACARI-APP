@@ -7,30 +7,27 @@ package view;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Bento
- */
 public class principalView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form principalView
-     */
+    private boolean onFullScreen = false;
+    private int xsizeAux;
+    private int ysizeAux;
+
     public principalView() {
-        this.setUndecorated(true);
-        this.setAlwaysOnTop(true);
-        this.setResizable(false);
-        this.setVisible(true);
-        
+
         initComponents();
-        //this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         
         BufferedImage img = null;
         try {
@@ -39,21 +36,40 @@ public class principalView extends javax.swing.JFrame {
             e.printStackTrace();
         }
         Image dimg = img.getScaledInstance(logoLabel.getWidth(), logoLabel.getHeight(),
-        Image.SCALE_SMOOTH);
+                Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         logoLabel.setIcon(imageIcon);
-        
-        setFullScreen();
+
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                if (JOptionPane.showConfirmDialog(null, "Tem certeza que quer sair?") == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                } else {
+                    repaint();
+                }
+            }
+        });
+
     }
 
-    public void setFullScreen(){
-        
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        int xsize = (int) tk.getScreenSize().getWidth();
-        int ysize = (int) tk.getScreenSize().getHeight();
-        this.setSize(xsize,ysize);
+    public boolean closeWindow() {
+        int i = JOptionPane.showConfirmDialog(null, "Tem certeza que quer sair?");
+        if (i == 0) {
+            return true;//cierra aplicacion
+        }
+        return false;
     }
-    
+
+    public void setFullScreen() {
+        if (!onFullScreen) {
+            this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+            onFullScreen = true;
+        } else {
+            this.setExtendedState(JFrame.NORMAL);
+            onFullScreen = false;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,49 +86,49 @@ public class principalView extends javax.swing.JFrame {
         comprarPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        infoCompraTextArea = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancelarCompraButton = new javax.swing.JButton();
+        confirmarCompraButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
+        totalAPagarLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        associadoComboBox = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        materialCompraComboBox = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        precoItemCompraTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        quantidadeItemCompraTextField = new javax.swing.JTextField();
+        cadastrarNovoMaterialButton1 = new javax.swing.JButton();
+        adicionarItemCompraButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        precoTotalItemTextField = new javax.swing.JTextField();
+        cadastrarAssociadoCompraButton = new javax.swing.JButton();
         venderPanel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        infoVendaTextArea = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        cancelarVendaButton = new javax.swing.JButton();
+        confirmarVendaButton = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
-        jLabel17 = new javax.swing.JLabel();
+        infoVendaTotalAReceberLabel = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        empresasComboBox = new javax.swing.JComboBox<>();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        materialVendaComboBox = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        precoItemVendaTextField = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        quantidadeItemVendaTextField = new javax.swing.JTextField();
+        CadastrarNovoMaterialButton2 = new javax.swing.JButton();
+        adicionarItemVendaButton = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton16 = new javax.swing.JButton();
+        precoTotalItemVendaTextField = new javax.swing.JTextField();
+        cadastrarNovaEmpresaAuxButtonAux = new javax.swing.JButton();
         relatoriosPanel = new javax.swing.JPanel();
         associadosPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -147,6 +163,7 @@ public class principalView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 255));
+        setPreferredSize(new java.awt.Dimension(1300, 600));
 
         infoPanel.setBackground(new java.awt.Color(204, 255, 204));
         infoPanel.setLayout(new java.awt.CardLayout());
@@ -164,13 +181,13 @@ public class principalView extends javax.swing.JFrame {
         pagIniPanel.setLayout(pagIniPanelLayout);
         pagIniPanelLayout.setHorizontalGroup(
             pagIniPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1140, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pagIniPanelLayout.setVerticalGroup(
             pagIniPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pagIniPanelLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2))
         );
@@ -178,324 +195,458 @@ public class principalView extends javax.swing.JFrame {
         infoPanel.add(pagIniPanel, "card2");
 
         comprarPanel.setBackground(new java.awt.Color(204, 204, 204));
-        comprarPanel.setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Informações do Item");
-        comprarPanel.add(jLabel3);
-        jLabel3.setBounds(0, 0, 790, 40);
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("AOSKDADMADPSASDPLASD\nAPSDKMADSM\nlaksdmmnkad\nlkansdkadmçlasmas\n\napçskdmpçkasdmpçasdmkçasd\nasd\nad\nsaçdmklsçkadmsaçkdms\nad\nadslakmnsdklmadskads\nads\nadskasmndsklmads");
-        jScrollPane1.setViewportView(jTextArea1);
-
-        comprarPanel.add(jScrollPane1);
-        jScrollPane1.setBounds(800, 50, 320, 390);
+        infoCompraTextArea.setBackground(new java.awt.Color(255, 255, 255));
+        infoCompraTextArea.setColumns(20);
+        infoCompraTextArea.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        infoCompraTextArea.setRows(5);
+        infoCompraTextArea.setText("AOSKDADMADPSASDPLASD\nAPSDKMADSM\nlaksdmmnkad\nlkansdkadmçlasmas\n\napçskdmpçkasdmpçasdmkçasd\nasd\nad\nsaçdmklsçkadmsaçkdms\nad\nadslakmnsdklmadskads\nads\nadskasmndsklmads");
+        jScrollPane1.setViewportView(infoCompraTextArea);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Informações da Compra");
-        comprarPanel.add(jLabel4);
-        jLabel4.setBounds(791, 0, 350, 40);
 
-        jButton1.setBackground(new java.awt.Color(156, 36, 33));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Cancelar");
-        comprarPanel.add(jButton1);
-        jButton1.setBounds(800, 520, 320, 30);
+        cancelarCompraButton.setBackground(new java.awt.Color(156, 36, 33));
+        cancelarCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cancelarCompraButton.setForeground(new java.awt.Color(51, 51, 51));
+        cancelarCompraButton.setText("Cancelar");
 
-        jButton2.setBackground(new java.awt.Color(1, 103, 204));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Confirmar");
-        comprarPanel.add(jButton2);
-        jButton2.setBounds(800, 480, 320, 30);
-        comprarPanel.add(jSeparator1);
-        jSeparator1.setBounds(0, 40, 1140, 20);
+        confirmarCompraButton.setBackground(new java.awt.Color(1, 103, 204));
+        confirmarCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        confirmarCompraButton.setForeground(new java.awt.Color(51, 51, 51));
+        confirmarCompraButton.setText("Confirmar");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Total a Pagar: R$0000,00");
-        comprarPanel.add(jLabel5);
-        jLabel5.setBounds(800, 440, 320, 40);
+        totalAPagarLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        totalAPagarLabel.setForeground(new java.awt.Color(0, 0, 0));
+        totalAPagarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        totalAPagarLabel.setText("Total a Pagar: R$0000,00");
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Associado:");
-        comprarPanel.add(jLabel6);
-        jLabel6.setBounds(70, 70, 340, 30);
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Raul Seixas dos Santos da Silva", "Flora Guenzburguer Baumann Somogyi", "Item 3", "Item 4" }));
-        comprarPanel.add(jComboBox1);
-        jComboBox1.setBounds(70, 100, 340, 30);
+        associadoComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        associadoComboBox.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        associadoComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        associadoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Raul Seixas dos Santos da Silva", "Flora Guenzburguer Baumann Somogyi", "Item 3", "Item 4" }));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        comprarPanel.add(jSeparator2);
-        jSeparator2.setBounds(790, 0, 70, 610);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Preço Por Kilo (em Reais):");
-        comprarPanel.add(jLabel7);
-        jLabel7.setBounds(70, 310, 300, 30);
 
-        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor de Geladeira", "Item 2", "Item 3", "Item 4" }));
-        comprarPanel.add(jComboBox2);
-        jComboBox2.setBounds(490, 100, 230, 30);
+        materialCompraComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        materialCompraComboBox.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        materialCompraComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        materialCompraComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor de Geladeira", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Material:");
-        comprarPanel.add(jLabel8);
-        jLabel8.setBounds(490, 70, 230, 30);
 
-        jTextField1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("00,00");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        precoItemCompraTextField.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        precoItemCompraTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        precoItemCompraTextField.setText("00,00");
+        precoItemCompraTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                precoItemCompraTextFieldActionPerformed(evt);
             }
         });
-        comprarPanel.add(jTextField1);
-        jTextField1.setBounds(380, 310, 80, 30);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Quantidade (em Kilos):");
-        comprarPanel.add(jLabel9);
-        jLabel9.setBounds(70, 250, 270, 30);
 
-        jTextField2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("00000");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        quantidadeItemCompraTextField.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        quantidadeItemCompraTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        quantidadeItemCompraTextField.setText("00000");
+        quantidadeItemCompraTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                quantidadeItemCompraTextFieldActionPerformed(evt);
             }
         });
-        comprarPanel.add(jTextField2);
-        jTextField2.setBounds(340, 250, 80, 30);
 
-        jButton3.setBackground(new java.awt.Color(51, 153, 0));
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(33, 57, 8));
-        jButton3.setText("Cadastrar Novo Material");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarNovoMaterialButton1.setBackground(new java.awt.Color(51, 153, 0));
+        cadastrarNovoMaterialButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cadastrarNovoMaterialButton1.setForeground(new java.awt.Color(33, 57, 8));
+        cadastrarNovoMaterialButton1.setText("Cadastrar Novo Material");
+        cadastrarNovoMaterialButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                cadastrarNovoMaterialButton1ActionPerformed(evt);
             }
         });
-        comprarPanel.add(jButton3);
-        jButton3.setBounds(480, 140, 250, 40);
 
-        jButton4.setBackground(new java.awt.Color(51, 153, 0));
-        jButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(33, 57, 8));
-        jButton4.setText("Adicionar Item");
-        comprarPanel.add(jButton4);
-        jButton4.setBounds(70, 470, 320, 70);
+        adicionarItemCompraButton.setBackground(new java.awt.Color(51, 153, 0));
+        adicionarItemCompraButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        adicionarItemCompraButton.setForeground(new java.awt.Color(33, 57, 8));
+        adicionarItemCompraButton.setText("Adicionar Item");
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Preço Total (em Reais):");
-        comprarPanel.add(jLabel10);
-        jLabel10.setBounds(70, 370, 270, 30);
 
-        jTextField3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setText("0000,00");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        precoTotalItemTextField.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        precoTotalItemTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        precoTotalItemTextField.setText("0000,00");
+        precoTotalItemTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                precoTotalItemTextFieldActionPerformed(evt);
             }
         });
-        comprarPanel.add(jTextField3);
-        jTextField3.setBounds(350, 370, 110, 30);
 
-        jButton5.setBackground(new java.awt.Color(51, 153, 0));
-        jButton5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(33, 57, 8));
-        jButton5.setText("Cadastrar Novo Associado");
-        comprarPanel.add(jButton5);
-        jButton5.setBounds(70, 140, 340, 40);
+        cadastrarAssociadoCompraButton.setBackground(new java.awt.Color(51, 153, 0));
+        cadastrarAssociadoCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cadastrarAssociadoCompraButton.setForeground(new java.awt.Color(33, 57, 8));
+        cadastrarAssociadoCompraButton.setText("Cadastrar Novo Associado");
+        cadastrarAssociadoCompraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarAssociadoCompraButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout comprarPanelLayout = new javax.swing.GroupLayout(comprarPanel);
+        comprarPanel.setLayout(comprarPanelLayout);
+        comprarPanelLayout.setHorizontalGroup(
+            comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGroup(comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(comprarPanelLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(comprarPanelLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(associadoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(materialCompraComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(comprarPanelLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(cadastrarAssociadoCompraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(cadastrarNovoMaterialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(comprarPanelLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(quantidadeItemCompraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(comprarPanelLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel7)
+                        .addGap(10, 10, 10)
+                        .addComponent(precoItemCompraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(comprarPanelLayout.createSequentialGroup()
+                        .addGap(350, 350, 350)
+                        .addComponent(precoTotalItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(comprarPanelLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(adicionarItemCompraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(comprarPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(totalAPagarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmarCompraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelarCompraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(490, 490, 490)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(800, 800, 800)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(791, 791, 791)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        comprarPanelLayout.setVerticalGroup(
+            comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(associadoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(materialCompraComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cadastrarAssociadoCompraButton)
+                    .addComponent(cadastrarNovoMaterialButton1))
+                .addGap(70, 70, 70)
+                .addGroup(comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quantidadeItemCompraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(precoItemCompraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(precoTotalItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(adicionarItemCompraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(totalAPagarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(480, 480, 480)
+                .addComponent(confirmarCompraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(520, 520, 520)
+                .addComponent(cancelarCompraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(370, 370, 370)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(comprarPanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         infoPanel.add(comprarPanel, "card2");
 
         venderPanel.setBackground(new java.awt.Color(204, 204, 204));
-        venderPanel.setLayout(null);
 
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Informações do Item");
-        venderPanel.add(jLabel15);
-        jLabel15.setBounds(0, 0, 790, 40);
 
-        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jTextArea2.setRows(5);
-        jTextArea2.setText("AOSKDADMADPSASDPLASD\nAPSDKMADSM\nlaksdmmnkad\nlkansdkadmçlasmas\n\napçskdmpçkasdmpçasdmkçasd\nasd\nad\nsaçdmklsçkadmsaçkdms\nad\nadslakmnsdklmadskads\nads\nadskasmndsklmads");
-        jScrollPane4.setViewportView(jTextArea2);
-
-        venderPanel.add(jScrollPane4);
-        jScrollPane4.setBounds(800, 50, 320, 390);
+        infoVendaTextArea.setBackground(new java.awt.Color(255, 255, 255));
+        infoVendaTextArea.setColumns(20);
+        infoVendaTextArea.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        infoVendaTextArea.setRows(5);
+        infoVendaTextArea.setText("AOSKDADMADPSASDPLASD\nAPSDKMADSM\nlaksdmmnkad\nlkansdkadmçlasmas\n\napçskdmpçkasdmpçasdmkçasd\nasd\nad\nsaçdmklsçkadmsaçkdms\nad\nadslakmnsdklmadskads\nads\nadskasmndsklmads");
+        jScrollPane4.setViewportView(infoVendaTextArea);
 
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Informações da Venda");
-        venderPanel.add(jLabel16);
-        jLabel16.setBounds(791, 0, 350, 40);
 
-        jButton12.setBackground(new java.awt.Color(156, 36, 33));
-        jButton12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(51, 51, 51));
-        jButton12.setText("Cancelar");
-        venderPanel.add(jButton12);
-        jButton12.setBounds(800, 520, 320, 30);
+        cancelarVendaButton.setBackground(new java.awt.Color(156, 36, 33));
+        cancelarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cancelarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
+        cancelarVendaButton.setText("Cancelar");
 
-        jButton13.setBackground(new java.awt.Color(1, 103, 204));
-        jButton13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(51, 51, 51));
-        jButton13.setText("Confirmar");
-        venderPanel.add(jButton13);
-        jButton13.setBounds(800, 480, 320, 30);
-        venderPanel.add(jSeparator5);
-        jSeparator5.setBounds(0, 40, 1140, 20);
+        confirmarVendaButton.setBackground(new java.awt.Color(1, 103, 204));
+        confirmarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        confirmarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
+        confirmarVendaButton.setText("Confirmar");
 
-        jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Total a Receber: R$0000,00");
-        venderPanel.add(jLabel17);
-        jLabel17.setBounds(800, 440, 320, 40);
+        infoVendaTotalAReceberLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        infoVendaTotalAReceberLabel.setForeground(new java.awt.Color(0, 0, 0));
+        infoVendaTotalAReceberLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        infoVendaTotalAReceberLabel.setText("Total a Receber: R$0000,00");
 
         jLabel18.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Empresa");
-        venderPanel.add(jLabel18);
-        jLabel18.setBounds(70, 70, 340, 30);
 
-        jComboBox3.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Raul Seixas dos Santos da Silva", "Flora Guenzburguer Baumann Somogyi", "Item 3", "Item 4" }));
-        venderPanel.add(jComboBox3);
-        jComboBox3.setBounds(70, 100, 340, 30);
+        empresasComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        empresasComboBox.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        empresasComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        empresasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Raul Seixas dos Santos da Silva", "Flora Guenzburguer Baumann Somogyi", "Item 3", "Item 4" }));
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        venderPanel.add(jSeparator6);
-        jSeparator6.setBounds(790, 0, 70, 610);
 
         jLabel19.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Preço Por Kilo (em Reais):");
-        venderPanel.add(jLabel19);
-        jLabel19.setBounds(70, 310, 300, 30);
 
-        jComboBox4.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jComboBox4.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor de Geladeira", "Item 2", "Item 3", "Item 4" }));
-        venderPanel.add(jComboBox4);
-        jComboBox4.setBounds(490, 100, 230, 30);
+        materialVendaComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        materialVendaComboBox.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        materialVendaComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        materialVendaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor de Geladeira", "Item 2", "Item 3", "Item 4" }));
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("Material");
-        venderPanel.add(jLabel20);
-        jLabel20.setBounds(490, 70, 230, 30);
 
-        jTextField6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField6.setText("00,00");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        precoItemVendaTextField.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        precoItemVendaTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        precoItemVendaTextField.setText("00,00");
+        precoItemVendaTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                precoItemVendaTextFieldActionPerformed(evt);
             }
         });
-        venderPanel.add(jTextField6);
-        jTextField6.setBounds(380, 310, 80, 30);
 
         jLabel21.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Quantidade (em Kilos):");
-        venderPanel.add(jLabel21);
-        jLabel21.setBounds(70, 250, 270, 30);
 
-        jTextField7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("00000");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        quantidadeItemVendaTextField.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        quantidadeItemVendaTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        quantidadeItemVendaTextField.setText("00000");
+        quantidadeItemVendaTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                quantidadeItemVendaTextFieldActionPerformed(evt);
             }
         });
-        venderPanel.add(jTextField7);
-        jTextField7.setBounds(340, 250, 80, 30);
 
-        jButton14.setBackground(new java.awt.Color(51, 153, 0));
-        jButton14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(33, 57, 8));
-        jButton14.setText("Cadastrar Novo Material");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        CadastrarNovoMaterialButton2.setBackground(new java.awt.Color(51, 153, 0));
+        CadastrarNovoMaterialButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        CadastrarNovoMaterialButton2.setForeground(new java.awt.Color(33, 57, 8));
+        CadastrarNovoMaterialButton2.setText("Cadastrar Novo Material");
+        CadastrarNovoMaterialButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                CadastrarNovoMaterialButton2ActionPerformed(evt);
             }
         });
-        venderPanel.add(jButton14);
-        jButton14.setBounds(480, 140, 250, 40);
 
-        jButton15.setBackground(new java.awt.Color(51, 153, 0));
-        jButton15.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(33, 57, 8));
-        jButton15.setText("Adicionar Item");
-        venderPanel.add(jButton15);
-        jButton15.setBounds(70, 470, 320, 70);
+        adicionarItemVendaButton.setBackground(new java.awt.Color(51, 153, 0));
+        adicionarItemVendaButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        adicionarItemVendaButton.setForeground(new java.awt.Color(33, 57, 8));
+        adicionarItemVendaButton.setText("Adicionar Item");
 
         jLabel22.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Preço Total (em Reais):");
-        venderPanel.add(jLabel22);
-        jLabel22.setBounds(70, 370, 270, 30);
 
-        jTextField8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField8.setText("0000,00");
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        precoTotalItemVendaTextField.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        precoTotalItemVendaTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        precoTotalItemVendaTextField.setText("0000,00");
+        precoTotalItemVendaTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                precoTotalItemVendaTextFieldActionPerformed(evt);
             }
         });
-        venderPanel.add(jTextField8);
-        jTextField8.setBounds(350, 370, 110, 30);
 
-        jButton16.setBackground(new java.awt.Color(51, 153, 0));
-        jButton16.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton16.setForeground(new java.awt.Color(33, 57, 8));
-        jButton16.setText("Cadastrar Nova Empresa");
-        venderPanel.add(jButton16);
-        jButton16.setBounds(70, 140, 340, 40);
+        cadastrarNovaEmpresaAuxButtonAux.setBackground(new java.awt.Color(51, 153, 0));
+        cadastrarNovaEmpresaAuxButtonAux.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cadastrarNovaEmpresaAuxButtonAux.setForeground(new java.awt.Color(33, 57, 8));
+        cadastrarNovaEmpresaAuxButtonAux.setText("Cadastrar Nova Empresa");
+
+        javax.swing.GroupLayout venderPanelLayout = new javax.swing.GroupLayout(venderPanel);
+        venderPanel.setLayout(venderPanelLayout);
+        venderPanelLayout.setHorizontalGroup(
+            venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(empresasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cadastrarNovaEmpresaAuxButtonAux, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addGroup(venderPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(precoTotalItemVendaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(venderPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(materialVendaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CadastrarNovoMaterialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(380, 380, 380)
+                .addComponent(precoItemVendaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(490, 490, 490)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(quantidadeItemVendaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(adicionarItemVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(410, 410, 410)
+                .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(confirmarVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(800, 800, 800)
+                .addComponent(infoVendaTotalAReceberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(790, 790, 790)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        venderPanelLayout.setVerticalGroup(
+            venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(venderPanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(empresasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(cadastrarNovaEmpresaAuxButtonAux)
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precoTotalItemVendaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(venderPanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(materialVendaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(CadastrarNovoMaterialButton2))
+                    .addGroup(venderPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(venderPanelLayout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(precoItemVendaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(venderPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(venderPanelLayout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(quantidadeItemVendaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(adicionarItemVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(venderPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(confirmarVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(cancelarVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(venderPanelLayout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(infoVendaTotalAReceberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         infoPanel.add(venderPanel, "card2");
 
@@ -503,48 +654,37 @@ public class principalView extends javax.swing.JFrame {
         relatoriosPanel.setLayout(relatoriosPanelLayout);
         relatoriosPanelLayout.setHorizontalGroup(
             relatoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1140, Short.MAX_VALUE)
+            .addGap(0, 1141, Short.MAX_VALUE)
         );
         relatoriosPanelLayout.setVerticalGroup(
             relatoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 610, Short.MAX_VALUE)
         );
 
         infoPanel.add(relatoriosPanel, "card2");
 
         associadosPanel.setBackground(new java.awt.Color(204, 204, 204));
-        associadosPanel.setLayout(null);
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Lista de Associados");
-        associadosPanel.add(jLabel11);
-        jLabel11.setBounds(0, 6, 1140, 35);
-        associadosPanel.add(jSeparator3);
-        jSeparator3.setBounds(0, 47, 1140, 19);
 
         jButton6.setBackground(new java.awt.Color(156, 36, 33));
         jButton6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(56, 22, 20));
         jButton6.setText("Excluir Associado");
-        associadosPanel.add(jButton6);
-        jButton6.setBounds(740, 60, 270, 40);
 
         jButton7.setBackground(new java.awt.Color(51, 153, 0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(33, 57, 8));
         jButton7.setText("Cadastrar Novo Associado");
-        associadosPanel.add(jButton7);
-        jButton7.setBounds(120, 60, 270, 40);
 
         jButton8.setBackground(new java.awt.Color(204, 204, 0));
         jButton8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton8.setForeground(new java.awt.Color(51, 51, 0));
         jButton8.setText("Editar Associado");
-        associadosPanel.add(jButton8);
-        jButton8.setBounds(430, 60, 270, 40);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -584,52 +724,82 @@ public class principalView extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(8).setHeaderValue("UF");
         }
 
-        associadosPanel.add(jScrollPane2);
-        jScrollPane2.setBounds(13, 120, 1110, 430);
-        associadosPanel.add(jTextField4);
-        jTextField4.setBounds(190, 570, 410, 30);
-
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Pesquisa por Nome:");
-        associadosPanel.add(jLabel12);
-        jLabel12.setBounds(10, 570, 200, 30);
+
+        javax.swing.GroupLayout associadosPanelLayout = new javax.swing.GroupLayout(associadosPanel);
+        associadosPanel.setLayout(associadosPanelLayout);
+        associadosPanelLayout.setHorizontalGroup(
+            associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(associadosPanelLayout.createSequentialGroup()
+                .addGap(430, 430, 430)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(associadosPanelLayout.createSequentialGroup()
+                .addGap(740, 740, 740)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(associadosPanelLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(associadosPanelLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(associadosPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(associadosPanelLayout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        associadosPanelLayout.setVerticalGroup(
+            associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(associadosPanelLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(associadosPanelLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton8)
+                            .addComponent(jButton6)
+                            .addComponent(jButton7))))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         infoPanel.add(associadosPanel, "card2");
 
         empresasPanel.setBackground(new java.awt.Color(204, 204, 204));
-        empresasPanel.setLayout(null);
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Lista de Empresas");
-        empresasPanel.add(jLabel13);
-        jLabel13.setBounds(0, 6, 1140, 35);
-        empresasPanel.add(jSeparator4);
-        jSeparator4.setBounds(0, 47, 1140, 19);
 
         jButton9.setBackground(new java.awt.Color(156, 36, 33));
         jButton9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton9.setForeground(new java.awt.Color(56, 22, 20));
         jButton9.setText("Excluir Empresa");
-        empresasPanel.add(jButton9);
-        jButton9.setBounds(740, 60, 270, 40);
 
         jButton10.setBackground(new java.awt.Color(51, 153, 0));
         jButton10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton10.setForeground(new java.awt.Color(33, 57, 8));
         jButton10.setText("Cadastrar Nova Empresa");
-        empresasPanel.add(jButton10);
-        jButton10.setBounds(120, 60, 270, 40);
 
         jButton11.setBackground(new java.awt.Color(204, 204, 0));
         jButton11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton11.setForeground(new java.awt.Color(51, 51, 0));
         jButton11.setText("Editar Empresa");
-        empresasPanel.add(jButton11);
-        jButton11.setBounds(430, 60, 270, 40);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -659,16 +829,57 @@ public class principalView extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable2);
 
-        empresasPanel.add(jScrollPane3);
-        jScrollPane3.setBounds(13, 120, 1110, 430);
-        empresasPanel.add(jTextField5);
-        jTextField5.setBounds(190, 570, 410, 30);
-
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Pesquisa por Nome:");
-        empresasPanel.add(jLabel14);
-        jLabel14.setBounds(10, 570, 200, 30);
+
+        javax.swing.GroupLayout empresasPanelLayout = new javax.swing.GroupLayout(empresasPanel);
+        empresasPanel.setLayout(empresasPanelLayout);
+        empresasPanelLayout.setHorizontalGroup(
+            empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(empresasPanelLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(empresasPanelLayout.createSequentialGroup()
+                .addGap(740, 740, 740)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(empresasPanelLayout.createSequentialGroup()
+                .addGap(430, 430, 430)
+                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(empresasPanelLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(empresasPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(empresasPanelLayout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        empresasPanelLayout.setVerticalGroup(
+            empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(empresasPanelLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(empresasPanelLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton10)
+                            .addComponent(jButton9)
+                            .addComponent(jButton11))))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         infoPanel.add(empresasPanel, "card2");
 
@@ -771,12 +982,12 @@ public class principalView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -796,26 +1007,21 @@ public class principalView extends javax.swing.JFrame {
         infoPanel.revalidate();
     }//GEN-LAST:event_pagIniButtonActionPerformed
 
-    private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
-        this.dispose();
-        System.exit(0);
-    }//GEN-LAST:event_sairButtonActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void precoItemCompraTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoItemCompraTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_precoItemCompraTextFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void quantidadeItemCompraTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantidadeItemCompraTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_quantidadeItemCompraTextFieldActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void cadastrarNovoMaterialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovoMaterialButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_cadastrarNovoMaterialButton1ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void precoTotalItemTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoTotalItemTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_precoTotalItemTextFieldActionPerformed
 
     private void associadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associadosButtonActionPerformed
         infoPanel.removeAll();
@@ -831,21 +1037,21 @@ public class principalView extends javax.swing.JFrame {
         infoPanel.revalidate();
     }//GEN-LAST:event_empresasButtonActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void precoItemVendaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoItemVendaTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_precoItemVendaTextFieldActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void quantidadeItemVendaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantidadeItemVendaTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_quantidadeItemVendaTextFieldActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void CadastrarNovoMaterialButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarNovoMaterialButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_CadastrarNovoMaterialButton2ActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void precoTotalItemVendaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoTotalItemVendaTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_precoTotalItemVendaTextFieldActionPerformed
 
     private void venderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderButtonActionPerformed
         infoPanel.removeAll();
@@ -853,6 +1059,16 @@ public class principalView extends javax.swing.JFrame {
         infoPanel.repaint();
         infoPanel.revalidate();
     }//GEN-LAST:event_venderButtonActionPerformed
+
+    private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
+        if (closeWindow()) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_sairButtonActionPerformed
+
+    private void cadastrarAssociadoCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAssociadoCompraButtonActionPerformed
+        new cadastrarAssociadoForm().setVisible(true);
+    }//GEN-LAST:event_cadastrarAssociadoCompraButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -890,33 +1106,34 @@ public class principalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CadastrarNovoMaterialButton2;
+    private javax.swing.JButton adicionarItemCompraButton;
+    private javax.swing.JButton adicionarItemVendaButton;
+    private javax.swing.JComboBox<String> associadoComboBox;
     private javax.swing.JButton associadosButton;
     private javax.swing.JPanel associadosPanel;
+    private javax.swing.JButton cadastrarAssociadoCompraButton;
+    private javax.swing.JButton cadastrarNovaEmpresaAuxButtonAux;
+    private javax.swing.JButton cadastrarNovoMaterialButton1;
+    private javax.swing.JButton cancelarCompraButton;
+    private javax.swing.JButton cancelarVendaButton;
     private javax.swing.JButton comprarButton;
     private javax.swing.JPanel comprarPanel;
+    private javax.swing.JButton confirmarCompraButton;
+    private javax.swing.JButton confirmarVendaButton;
     private javax.swing.JButton empresasButton;
+    private javax.swing.JComboBox<String> empresasComboBox;
     private javax.swing.JPanel empresasPanel;
+    private javax.swing.JTextArea infoCompraTextArea;
     private javax.swing.JPanel infoPanel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextArea infoVendaTextArea;
+    private javax.swing.JLabel infoVendaTotalAReceberLabel;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -925,7 +1142,6 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -934,7 +1150,6 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -951,24 +1166,25 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel logoLabel;
+    private javax.swing.JComboBox<String> materialCompraComboBox;
+    private javax.swing.JComboBox<String> materialVendaComboBox;
     private javax.swing.JPanel menuButtonsPanel;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton pagIniButton;
     private javax.swing.JPanel pagIniPanel;
+    private javax.swing.JTextField precoItemCompraTextField;
+    private javax.swing.JTextField precoItemVendaTextField;
+    private javax.swing.JTextField precoTotalItemTextField;
+    private javax.swing.JTextField precoTotalItemVendaTextField;
+    private javax.swing.JTextField quantidadeItemCompraTextField;
+    private javax.swing.JTextField quantidadeItemVendaTextField;
     private javax.swing.JButton relatoriosButton;
     private javax.swing.JPanel relatoriosPanel;
     private javax.swing.JButton sairButton;
+    private javax.swing.JLabel totalAPagarLabel;
     private javax.swing.JButton venderButton;
     private javax.swing.JPanel venderPanel;
     // End of variables declaration//GEN-END:variables
