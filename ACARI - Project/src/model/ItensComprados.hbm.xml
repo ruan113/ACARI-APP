@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/08/2018 15:24:24 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.ItensComprados" table="itens_comprados" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="model.ItensCompradosId">
+            <key-property name="idMaterial" type="int">
+                <column name="id_material" />
+            </key-property>
+            <key-property name="idCompra" type="long">
+                <column name="id_compra" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="compras" class="model.Compras" update="false" insert="false" fetch="select">
+            <column name="id_compra" not-null="true" />
+        </many-to-one>
+        <many-to-one name="materiais" class="model.Materiais" update="false" insert="false" fetch="select">
+            <column name="id_material" not-null="true" />
+        </many-to-one>
+        <property name="quantidadekg" type="java.lang.Double">
+            <column name="quantidadekg" precision="17" scale="17" />
+        </property>
+        <property name="precokg" type="java.lang.Double">
+            <column name="precokg" precision="17" scale="17" />
+        </property>
+        <property name="precoTotal" type="java.lang.Double">
+            <column name="preco_total" precision="17" scale="17" />
+        </property>
+    </class>
+</hibernate-mapping>

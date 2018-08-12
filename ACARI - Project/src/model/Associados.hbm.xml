@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/08/2018 15:24:24 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Associados" table="associados" schema="public" optimistic-lock="version">
+        <id name="idAssociado" type="int">
+            <column name="id_associado" />
+            <generator class="assigned" />
+        </id>
+        <property name="cpfAssociado" type="string">
+            <column name="cpf_associado" length="15" />
+        </property>
+        <property name="rgAssociado" type="string">
+            <column name="rg_associado" length="13" />
+        </property>
+        <property name="endNum" type="java.lang.Short">
+            <column name="end_num" />
+        </property>
+        <property name="endRua" type="string">
+            <column name="end_rua" length="60" />
+        </property>
+        <property name="endBairro" type="string">
+            <column name="end_bairro" length="50" />
+        </property>
+        <property name="uf" type="string">
+            <column name="uf" length="2" />
+        </property>
+    </class>
+</hibernate-mapping>

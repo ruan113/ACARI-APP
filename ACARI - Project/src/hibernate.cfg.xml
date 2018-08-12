@@ -48,5 +48,15 @@ Contributor(s):
     <property name="hibernate.connection.password">acari2018</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.show_sql">true</property>
+    <mapping resource="model/Materiais.hbm.xml"/>
+    <mapping resource="model/Vendas.hbm.xml"/>
+    <mapping resource="model/TiposDespesas.hbm.xml"/>
+    <mapping resource="model/Compras.hbm.xml"/>
+    <mapping resource="model/Associados.hbm.xml"/>
+    <mapping resource="model/Empresas.hbm.xml"/>
+    <mapping resource="model/Despesas.hbm.xml"/>
+    <mapping resource="model/ItensComprados.hbm.xml"/>
+    <mapping resource="model/Estoque.hbm.xml"/>
+    <mapping resource="model/ItensVendidos.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/08/2018 15:24:24 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Empresas" table="empresas" schema="public" optimistic-lock="version">
+        <id name="idEmpresa" type="int">
+            <column name="id_empresa" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomeEmpresa" type="string">
+            <column name="nome_empresa" length="40" />
+        </property>
+        <property name="cnpj" type="string">
+            <column name="cnpj" length="18" />
+        </property>
+    </class>
+</hibernate-mapping>

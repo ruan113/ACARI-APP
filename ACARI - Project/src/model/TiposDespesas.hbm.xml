@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/08/2018 15:24:24 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.TiposDespesas" table="tipos_despesas" schema="public" optimistic-lock="version">
+        <id name="idTipo" type="int">
+            <column name="id_tipo" />
+            <generator class="assigned" />
+        </id>
+        <property name="tituloTipo" type="string">
+            <column name="titulo_tipo" length="30" />
+        </property>
+        <set name="despesases" table="despesas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_tipo" />
+            </key>
+            <one-to-many class="model.Despesas" />
+        </set>
+    </class>
+</hibernate-mapping>

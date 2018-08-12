@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/08/2018 15:24:24 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Materiais" table="materiais" schema="public" optimistic-lock="version">
+        <id name="idMaterial" type="int">
+            <column name="id_material" />
+            <generator class="assigned" />
+        </id>
+        <property name="materialNome" type="string">
+            <column name="material_nome" length="30" />
+        </property>
+        <property name="tipoMaterial" type="string">
+            <column name="tipo_material" length="20" />
+        </property>
+        <one-to-one name="estoque" class="model.Estoque"></one-to-one>
+        <set name="itensVendidoses" table="itens_vendidos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_material" not-null="true" />
+            </key>
+            <one-to-many class="model.ItensVendidos" />
+        </set>
+        <set name="itensCompradoses" table="itens_comprados" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_material" not-null="true" />
+            </key>
+            <one-to-many class="model.ItensComprados" />
+        </set>
+    </class>
+</hibernate-mapping>
