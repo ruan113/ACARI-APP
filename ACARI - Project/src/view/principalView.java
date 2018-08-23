@@ -5,6 +5,9 @@
  */
 package view;
 
+import acari.modeloTabelaAssociados;
+import acari.modeloTabelaEmpresas;
+import controller.principalController;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -13,22 +16,25 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public class principalView extends javax.swing.JFrame {
 
-    private boolean onFullScreen = false;
-    private int xsizeAux;
-    private int ysizeAux;
+    boolean onFullScreen = false;
+    principalController principalControlador;
 
     public principalView() {
 
+        this.principalControlador = new principalController();//Cria o controlador principal o qual ira inicializar todos os outros
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
+        //inicializa e coloca o logo (imagem) no canto superior esquerdo
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File("logoProject.png"));
@@ -53,8 +59,7 @@ public class principalView extends javax.swing.JFrame {
     }
 
     public boolean closeWindow() {
-        int i = JOptionPane.showConfirmDialog(null, "Tem certeza que quer sair?");
-        if (i == 0) {
+        if (JOptionPane.showConfirmDialog(null, "Tem certeza que quer sair?") == 0) {
             return true;//cierra aplicacion
         }
         return false;
@@ -101,7 +106,7 @@ public class principalView extends javax.swing.JFrame {
         precoItemCompraTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         quantidadeItemCompraTextField = new javax.swing.JTextField();
-        cadastrarNovoMaterialButton1 = new javax.swing.JButton();
+        cadastrarNovoMaterialCompraButton = new javax.swing.JButton();
         adicionarItemCompraButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         precoTotalItemTextField = new javax.swing.JTextField();
@@ -124,7 +129,7 @@ public class principalView extends javax.swing.JFrame {
         precoItemVendaTextField = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         quantidadeItemVendaTextField = new javax.swing.JTextField();
-        CadastrarNovoMaterialButton2 = new javax.swing.JButton();
+        CadastrarNovoMaterialVendaButton = new javax.swing.JButton();
         adicionarItemVendaButton = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         precoTotalItemVendaTextField = new javax.swing.JTextField();
@@ -133,11 +138,11 @@ public class principalView extends javax.swing.JFrame {
         associadosPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        excluirAssociadoListaButton = new javax.swing.JButton();
+        cadastrarNovoAssociadoListaButton = new javax.swing.JButton();
+        editarAssociadoListaButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableAssociados = new javax.swing.JTable();
         jTextField4 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         empresasPanel = new javax.swing.JPanel();
@@ -147,7 +152,7 @@ public class principalView extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableEmpresas = new javax.swing.JTable();
         jTextField5 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
@@ -163,12 +168,14 @@ public class principalView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 255));
-        setPreferredSize(new java.awt.Dimension(1300, 600));
+        setPreferredSize(new java.awt.Dimension(1300, 650));
 
         infoPanel.setBackground(new java.awt.Color(204, 255, 204));
+        infoPanel.setPreferredSize(new java.awt.Dimension(1141, 620));
         infoPanel.setLayout(new java.awt.CardLayout());
 
         pagIniPanel.setBackground(new java.awt.Color(255, 255, 255));
+        pagIniPanel.setPreferredSize(new java.awt.Dimension(1141, 730));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/acariApresentacao.png"))); // NOI18N
@@ -187,7 +194,7 @@ public class principalView extends javax.swing.JFrame {
         pagIniPanelLayout.setVerticalGroup(
             pagIniPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pagIniPanelLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2))
         );
@@ -217,6 +224,11 @@ public class principalView extends javax.swing.JFrame {
         cancelarCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         cancelarCompraButton.setForeground(new java.awt.Color(51, 51, 51));
         cancelarCompraButton.setText("Cancelar");
+        cancelarCompraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarCompraButtonActionPerformed(evt);
+            }
+        });
 
         confirmarCompraButton.setBackground(new java.awt.Color(1, 103, 204));
         confirmarCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -276,13 +288,13 @@ public class principalView extends javax.swing.JFrame {
             }
         });
 
-        cadastrarNovoMaterialButton1.setBackground(new java.awt.Color(51, 153, 0));
-        cadastrarNovoMaterialButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cadastrarNovoMaterialButton1.setForeground(new java.awt.Color(33, 57, 8));
-        cadastrarNovoMaterialButton1.setText("Cadastrar Novo Material");
-        cadastrarNovoMaterialButton1.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarNovoMaterialCompraButton.setBackground(new java.awt.Color(51, 153, 0));
+        cadastrarNovoMaterialCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cadastrarNovoMaterialCompraButton.setForeground(new java.awt.Color(33, 57, 8));
+        cadastrarNovoMaterialCompraButton.setText("Cadastrar Novo Material");
+        cadastrarNovoMaterialCompraButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarNovoMaterialButton1ActionPerformed(evt);
+                cadastrarNovoMaterialCompraButtonActionPerformed(evt);
             }
         });
 
@@ -333,7 +345,7 @@ public class principalView extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addComponent(cadastrarAssociadoCompraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
-                        .addComponent(cadastrarNovoMaterialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cadastrarNovoMaterialCompraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(comprarPanelLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,7 +396,7 @@ public class principalView extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cadastrarAssociadoCompraButton)
-                    .addComponent(cadastrarNovoMaterialButton1))
+                    .addComponent(cadastrarNovoMaterialCompraButton))
                 .addGap(70, 70, 70)
                 .addGroup(comprarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -506,13 +518,13 @@ public class principalView extends javax.swing.JFrame {
             }
         });
 
-        CadastrarNovoMaterialButton2.setBackground(new java.awt.Color(51, 153, 0));
-        CadastrarNovoMaterialButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        CadastrarNovoMaterialButton2.setForeground(new java.awt.Color(33, 57, 8));
-        CadastrarNovoMaterialButton2.setText("Cadastrar Novo Material");
-        CadastrarNovoMaterialButton2.addActionListener(new java.awt.event.ActionListener() {
+        CadastrarNovoMaterialVendaButton.setBackground(new java.awt.Color(51, 153, 0));
+        CadastrarNovoMaterialVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        CadastrarNovoMaterialVendaButton.setForeground(new java.awt.Color(33, 57, 8));
+        CadastrarNovoMaterialVendaButton.setText("Cadastrar Novo Material");
+        CadastrarNovoMaterialVendaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastrarNovoMaterialButton2ActionPerformed(evt);
+                CadastrarNovoMaterialVendaButtonActionPerformed(evt);
             }
         });
 
@@ -538,6 +550,11 @@ public class principalView extends javax.swing.JFrame {
         cadastrarNovaEmpresaAuxButtonAux.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         cadastrarNovaEmpresaAuxButtonAux.setForeground(new java.awt.Color(33, 57, 8));
         cadastrarNovaEmpresaAuxButtonAux.setText("Cadastrar Nova Empresa");
+        cadastrarNovaEmpresaAuxButtonAux.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarNovaEmpresaAuxButtonAuxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout venderPanelLayout = new javax.swing.GroupLayout(venderPanel);
         venderPanel.setLayout(venderPanelLayout);
@@ -563,7 +580,7 @@ public class principalView extends javax.swing.JFrame {
                     .addGroup(venderPanelLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(materialVendaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(CadastrarNovoMaterialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CadastrarNovoMaterialVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(venderPanelLayout.createSequentialGroup()
@@ -617,7 +634,7 @@ public class principalView extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addComponent(materialVendaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(CadastrarNovoMaterialButton2))
+                        .addComponent(CadastrarNovoMaterialVendaButton))
                     .addGroup(venderPanelLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -658,7 +675,7 @@ public class principalView extends javax.swing.JFrame {
         );
         relatoriosPanelLayout.setVerticalGroup(
             relatoriosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
 
         infoPanel.add(relatoriosPanel, "card2");
@@ -671,22 +688,32 @@ public class principalView extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Lista de Associados");
 
-        jButton6.setBackground(new java.awt.Color(156, 36, 33));
-        jButton6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(56, 22, 20));
-        jButton6.setText("Excluir Associado");
+        excluirAssociadoListaButton.setBackground(new java.awt.Color(156, 36, 33));
+        excluirAssociadoListaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        excluirAssociadoListaButton.setForeground(new java.awt.Color(56, 22, 20));
+        excluirAssociadoListaButton.setText("Excluir Associado");
 
-        jButton7.setBackground(new java.awt.Color(51, 153, 0));
-        jButton7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(33, 57, 8));
-        jButton7.setText("Cadastrar Novo Associado");
+        cadastrarNovoAssociadoListaButton.setBackground(new java.awt.Color(51, 153, 0));
+        cadastrarNovoAssociadoListaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cadastrarNovoAssociadoListaButton.setForeground(new java.awt.Color(33, 57, 8));
+        cadastrarNovoAssociadoListaButton.setText("Cadastrar Novo Associado");
+        cadastrarNovoAssociadoListaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarNovoAssociadoListaButtonActionPerformed(evt);
+            }
+        });
 
-        jButton8.setBackground(new java.awt.Color(204, 204, 0));
-        jButton8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(51, 51, 0));
-        jButton8.setText("Editar Associado");
+        editarAssociadoListaButton.setBackground(new java.awt.Color(204, 204, 0));
+        editarAssociadoListaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        editarAssociadoListaButton.setForeground(new java.awt.Color(51, 51, 0));
+        editarAssociadoListaButton.setText("Editar Associado");
+        editarAssociadoListaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarAssociadoListaButtonActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAssociados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -712,16 +739,16 @@ public class principalView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("CPF");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("RG");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Rua");
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Número");
-            jTable1.getColumnModel().getColumn(5).setHeaderValue("Complemento");
-            jTable1.getColumnModel().getColumn(6).setHeaderValue("Bairro");
-            jTable1.getColumnModel().getColumn(7).setHeaderValue("Cidade");
-            jTable1.getColumnModel().getColumn(8).setHeaderValue("UF");
+        jScrollPane2.setViewportView(jTableAssociados);
+        if (jTableAssociados.getColumnModel().getColumnCount() > 0) {
+            jTableAssociados.getColumnModel().getColumn(1).setHeaderValue("CPF");
+            jTableAssociados.getColumnModel().getColumn(2).setHeaderValue("RG");
+            jTableAssociados.getColumnModel().getColumn(3).setHeaderValue("Rua");
+            jTableAssociados.getColumnModel().getColumn(4).setHeaderValue("Número");
+            jTableAssociados.getColumnModel().getColumn(5).setHeaderValue("Complemento");
+            jTableAssociados.getColumnModel().getColumn(6).setHeaderValue("Bairro");
+            jTableAssociados.getColumnModel().getColumn(7).setHeaderValue("Cidade");
+            jTableAssociados.getColumnModel().getColumn(8).setHeaderValue("UF");
         }
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -735,13 +762,13 @@ public class principalView extends javax.swing.JFrame {
             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(associadosPanelLayout.createSequentialGroup()
                 .addGap(430, 430, 430)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(editarAssociadoListaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(associadosPanelLayout.createSequentialGroup()
                 .addGap(740, 740, 740)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(excluirAssociadoListaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(associadosPanelLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cadastrarNovoAssociadoListaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(associadosPanelLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
@@ -765,9 +792,9 @@ public class principalView extends javax.swing.JFrame {
                     .addGroup(associadosPanelLayout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton8)
-                            .addComponent(jButton6)
-                            .addComponent(jButton7))))
+                            .addComponent(editarAssociadoListaButton)
+                            .addComponent(excluirAssociadoListaButton)
+                            .addComponent(cadastrarNovoAssociadoListaButton))))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -801,7 +828,7 @@ public class principalView extends javax.swing.JFrame {
         jButton11.setForeground(new java.awt.Color(51, 51, 0));
         jButton11.setText("Editar Empresa");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEmpresas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -827,7 +854,7 @@ public class principalView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(jTableEmpresas);
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
@@ -972,7 +999,7 @@ public class principalView extends javax.swing.JFrame {
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuButtonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(menuButtonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -987,7 +1014,7 @@ public class principalView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -1015,9 +1042,9 @@ public class principalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_quantidadeItemCompraTextFieldActionPerformed
 
-    private void cadastrarNovoMaterialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovoMaterialButton1ActionPerformed
+    private void cadastrarNovoMaterialCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovoMaterialCompraButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cadastrarNovoMaterialButton1ActionPerformed
+    }//GEN-LAST:event_cadastrarNovoMaterialCompraButtonActionPerformed
 
     private void precoTotalItemTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoTotalItemTextFieldActionPerformed
         // TODO add your handling code here:
@@ -1028,6 +1055,7 @@ public class principalView extends javax.swing.JFrame {
         infoPanel.add(associadosPanel);
         infoPanel.repaint();
         infoPanel.revalidate();
+        preencherTabela("Associados", jTableAssociados);
     }//GEN-LAST:event_associadosButtonActionPerformed
 
     private void empresasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empresasButtonActionPerformed
@@ -1035,6 +1063,7 @@ public class principalView extends javax.swing.JFrame {
         infoPanel.add(empresasPanel);
         infoPanel.repaint();
         infoPanel.revalidate();
+        preencherTabela("Empresas", jTableEmpresas);
     }//GEN-LAST:event_empresasButtonActionPerformed
 
     private void precoItemVendaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoItemVendaTextFieldActionPerformed
@@ -1045,9 +1074,9 @@ public class principalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_quantidadeItemVendaTextFieldActionPerformed
 
-    private void CadastrarNovoMaterialButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarNovoMaterialButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CadastrarNovoMaterialButton2ActionPerformed
+    private void CadastrarNovoMaterialVendaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarNovoMaterialVendaButtonActionPerformed
+        new fichaMaterialForm().setVisible(true);
+    }//GEN-LAST:event_CadastrarNovoMaterialVendaButtonActionPerformed
 
     private void precoTotalItemVendaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoTotalItemVendaTextFieldActionPerformed
         // TODO add your handling code here:
@@ -1067,46 +1096,59 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void cadastrarAssociadoCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAssociadoCompraButtonActionPerformed
-        new cadastrarAssociadoForm().setVisible(true);
+        new fichaAssociadoForm(principalControlador).setVisible(true);
     }//GEN-LAST:event_cadastrarAssociadoCompraButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(principalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(principalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(principalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(principalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void cancelarCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCompraButtonActionPerformed
+        infoPanel.removeAll();
+        infoPanel.add(pagIniPanel);
+        infoPanel.repaint();
+        infoPanel.revalidate();
+    }//GEN-LAST:event_cancelarCompraButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new principalView().setVisible(true);
-            }
-        });
+    private void cadastrarNovaEmpresaAuxButtonAuxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovaEmpresaAuxButtonAuxActionPerformed
+        new fichaEmpresaForm(principalControlador).setVisible(true);
+    }//GEN-LAST:event_cadastrarNovaEmpresaAuxButtonAuxActionPerformed
+
+    private void cadastrarNovoAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovoAssociadoListaButtonActionPerformed
+        new fichaAssociadoForm(principalControlador).setVisible(true);
+    }//GEN-LAST:event_cadastrarNovoAssociadoListaButtonActionPerformed
+
+    private void editarAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAssociadoListaButtonActionPerformed
+        JFrame assForm = new fichaAssociadoForm(principalControlador);
+        assForm.setVisible(true);
+        //Get informações do associado selecionado
+    }//GEN-LAST:event_editarAssociadoListaButtonActionPerformed
+
+    public void preencherTabela(String nome, JTable table) {
+        modeloTabelaAssociados modeloAss = null;
+        modeloTabelaEmpresas modeloEmp = null;
+
+        switch (nome) {
+            case "Associados":
+                modeloAss = new modeloTabelaAssociados(principalControlador.getControladorAssociados().getListaAssociados());
+                if (modeloAss != null) {
+                    table.setModel(modeloAss);
+                    table.getTableHeader().setReorderingAllowed(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro ao procurar a tabela para preenchimento!!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            case "Empresas":
+                modeloEmp = new modeloTabelaEmpresas(principalControlador.getControladorEmpresas().getListaEmpresas());
+                if (modeloEmp != null) {
+                    table.setModel(modeloEmp);
+                    table.getTableHeader().setReorderingAllowed(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro ao procurar a tabela para preenchimento!!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+        }
+        //jTableAssociados.setAutoResizeMode(jTableAssociados.AUTO_RESIZE_OFF);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CadastrarNovoMaterialButton2;
+    private javax.swing.JButton CadastrarNovoMaterialVendaButton;
     private javax.swing.JButton adicionarItemCompraButton;
     private javax.swing.JButton adicionarItemVendaButton;
     private javax.swing.JComboBox<String> associadoComboBox;
@@ -1114,25 +1156,25 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JPanel associadosPanel;
     private javax.swing.JButton cadastrarAssociadoCompraButton;
     private javax.swing.JButton cadastrarNovaEmpresaAuxButtonAux;
-    private javax.swing.JButton cadastrarNovoMaterialButton1;
+    private javax.swing.JButton cadastrarNovoAssociadoListaButton;
+    private javax.swing.JButton cadastrarNovoMaterialCompraButton;
     private javax.swing.JButton cancelarCompraButton;
     private javax.swing.JButton cancelarVendaButton;
     private javax.swing.JButton comprarButton;
     private javax.swing.JPanel comprarPanel;
     private javax.swing.JButton confirmarCompraButton;
     private javax.swing.JButton confirmarVendaButton;
+    private javax.swing.JButton editarAssociadoListaButton;
     private javax.swing.JButton empresasButton;
     private javax.swing.JComboBox<String> empresasComboBox;
     private javax.swing.JPanel empresasPanel;
+    private javax.swing.JButton excluirAssociadoListaButton;
     private javax.swing.JTextArea infoCompraTextArea;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JTextArea infoVendaTextArea;
     private javax.swing.JLabel infoVendaTotalAReceberLabel;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1164,8 +1206,8 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableAssociados;
+    private javax.swing.JTable jTableEmpresas;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel logoLabel;

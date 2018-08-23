@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package acari;
-
-import controller.principalController;
-import view.*;
+package controller;
 
 /**
  *
  * @author Bento
  */
-public class main {
-
+public class vendaController {
     
-    public static void main(String[] args) {
-        new principalView().setVisible(true);
+    principalController controlerPrincipal;
+    
+    public vendaController(principalController principal){
+        this.controlerPrincipal = principal;
     }
     
 }

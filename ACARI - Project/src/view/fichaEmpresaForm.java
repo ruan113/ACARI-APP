@@ -5,16 +5,21 @@
  */
 package view;
 
+import controller.principalController;
+
 /**
  *
  * @author Bento
  */
-public class cadastrarEmpresaForm extends javax.swing.JFrame {
+public class fichaEmpresaForm extends javax.swing.JFrame {
 
+    principalController principalControlador;
+    
     /**
      * Creates new form cadastrarEmpresaForm
      */
-    public cadastrarEmpresaForm() {
+    public fichaEmpresaForm(principalController pc) {
+        this.principalControlador = pc;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -40,7 +45,6 @@ public class cadastrarEmpresaForm extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(488, 270));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -152,20 +156,21 @@ public class cadastrarEmpresaForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(cadastrarEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fichaEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(cadastrarEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fichaEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(cadastrarEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fichaEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(cadastrarEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fichaEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cadastrarEmpresaForm().setVisible(true);
+                //new fichaEmpresaForm().setVisible(true);
             }
         });
     }
