@@ -6,6 +6,7 @@
 package view;
 
 import controller.principalController;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,14 +15,17 @@ import controller.principalController;
 public class fichaAssociadoForm extends javax.swing.JFrame {
 
     principalController controllerPrincipal;
-    
+    boolean isEditing;
+
     /**
      * Creates new form cadastrarAssociadoForm
      */
-    public fichaAssociadoForm(principalController controllerPrincipal) {
-        this.controllerPrincipal = controllerPrincipal; 
+    public fichaAssociadoForm(principalController controllerPrincipal, boolean isEditing) {
+        this.controllerPrincipal = controllerPrincipal;
+        this.isEditing = isEditing;
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -50,7 +54,7 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
         cidadeTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         bairroTextField = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        complementoTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         ufComboBox = new javax.swing.JComboBox<>();
@@ -104,8 +108,8 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
         bairroTextField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         bairroTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        complementoTextField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        complementoTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -195,7 +199,7 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
                             .addGroup(principalPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField8)))
+                                .addComponent(complementoTextField)))
                         .addContainerGap())))
         );
         principalPanelLayout.setVerticalGroup(
@@ -236,7 +240,7 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(complementoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
@@ -267,9 +271,30 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
                 && !numeroTextField.getText().equals("")
                 && !cidadeTextField.getText().equals("")
                 && !bairroTextField.getText().equals("")) {
+            //Cadastra um novo associado
+            controllerPrincipal.getControladorAssociados().adicionarAssociado(nomeTextField.getText(),
+                    cpfTextField.getText(), rgTextField.getText(), cidadeTextField.getText(), Short.parseShort(numeroTextField.getText()),
+                    ruaTextField.getText(), bairroTextField.getText(),
+                    ufComboBox.getSelectedItem().toString(), complementoTextField.getText());
+         
+            //Confirma cadastro
+            JOptionPane.showMessageDialog(null, "Cadastro Concluido com Sucesso!");
             
-            
-            
+            //Pergunta se quer cadastrar mais um
+            if (JOptionPane.showConfirmDialog(null, "Deseja cadastrar outro Associado?") == JOptionPane.YES_OPTION) {
+                nomeTextField.setText("");
+                cpfTextField.setText("");
+                rgTextField.setText("");
+                cidadeTextField.setText("");
+                numeroTextField.setText("");
+                ruaTextField.setText("");
+                bairroTextField.setText("");
+                ufComboBox.setSelectedIndex(0);
+                complementoTextField.setText("");
+            }else this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
+        } else {
+            //Mensagem de erro
+            JOptionPane.showMessageDialog(null, "Preencha todos campos obrigatórios para concluir o cadastro!");
         }
 
     }//GEN-LAST:event_confirmarAssociadoButtonActionPerformed
@@ -317,6 +342,7 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairroTextField;
     private javax.swing.JTextField cidadeTextField;
+    private javax.swing.JTextField complementoTextField;
     private javax.swing.JButton confirmarAssociadoButton;
     private javax.swing.JTextField cpfTextField;
     private javax.swing.JButton jButton1;
@@ -332,7 +358,6 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField nomeTextField;
     private javax.swing.JTextField numeroTextField;
     private javax.swing.JPanel principalPanel;

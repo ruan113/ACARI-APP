@@ -20,19 +20,19 @@ public class associadoController {
     
     public associadoController(principalController principal) {
         this.controlerPrincipal = principal;
-        adicionarAssociado(0, "Nome1", "Cpf1", "Rg1", (short)1, "Rua1", "Bairro1", "MG");
-        adicionarAssociado(1, "Nome2", "Cpf2", "Rg2", (short)2, "Rua2", "Bairro2", "MG");
-        adicionarAssociado(2, "Nome3", "Cpf3", "Rg3", (short)3, "Rua2", "Bairro2", "MG");
-        adicionarAssociado(3, "Nome4", "Cpf4", "Rg4", (short)4, "Rua3", "Bairro3", "MG");
-        adicionarAssociado(4, "Nome5", "Cpf5", "Rg5", (short)5, "Rua1", "Bairro1", "MG");
+        adicionarAssociado("Nome1", "Cpf1", "Rg1", "Cidade1", (short)1, "Rua1", "Bairro1", "MG", "complemento1");
+        adicionarAssociado("Nome2", "Cpf2", "Rg2", "Cidade2",(short)2, "Rua2", "Bairro2", "MG", "complemento2");
+        adicionarAssociado("Nome3", "Cpf3", "Rg3", "Cidade3",(short)3, "Rua2", "Bairro2", "MG", "complemento3");
+        adicionarAssociado("Nome4", "Cpf4", "Rg4", "Cidade4",(short)4, "Rua3", "Bairro3", "MG", "complemento4");
+        adicionarAssociado("Nome5", "Cpf5", "Rg5", "Cidade5",(short)5, "Rua1", "Bairro1", "MG", "complemento5");
     }
 
-    public void adicionarAssociado(int idAssociado, String nomeAssociado, String cpfAssociado, String rgAssociado, Short endNum, String endRua, String endBairro, String uf) {
-        listaAss.add(new Associados(idAssociado, nomeAssociado, cpfAssociado, rgAssociado, endNum, endRua, endBairro, uf));    
+    public void adicionarAssociado(String nomeAssociado, String cpfAssociado, String rgAssociado, String cidadeAssociado, Short endNum, String endRua, String endBairro, String uf, String endComplemento) {
+        listaAss.add(new Associados(nomeAssociado, cpfAssociado, rgAssociado, cidadeAssociado, endNum, endRua, endBairro, uf, endComplemento));    
     }
 
-    public void editarAssociado(int idAssociado, String cpfAssociado, String rgAssociado, Short endNum, String endRua, String endBairro, String uf) {
-
+    public void editarAssociado(String nomeAssociado, String cpfAssociado, String rgAssociado, Short endNum, String endRua, String endBairro, String uf) {
+        
     }
 
     public ArrayList getListaAssociados() {

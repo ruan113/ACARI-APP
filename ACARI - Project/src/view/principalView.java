@@ -50,8 +50,6 @@ public class principalView extends javax.swing.JFrame {
             public void windowClosing(WindowEvent e) {
                 if (JOptionPane.showConfirmDialog(null, "Tem certeza que quer sair?") == JOptionPane.YES_OPTION) {
                     System.exit(0);
-                } else {
-                    repaint();
                 }
             }
         });
@@ -1096,7 +1094,7 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void cadastrarAssociadoCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAssociadoCompraButtonActionPerformed
-        new fichaAssociadoForm(principalControlador).setVisible(true);
+        new fichaAssociadoForm(principalControlador,false);
     }//GEN-LAST:event_cadastrarAssociadoCompraButtonActionPerformed
 
     private void cancelarCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCompraButtonActionPerformed
@@ -1111,13 +1109,11 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarNovaEmpresaAuxButtonAuxActionPerformed
 
     private void cadastrarNovoAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovoAssociadoListaButtonActionPerformed
-        new fichaAssociadoForm(principalControlador).setVisible(true);
+        new fichaAssociadoForm(principalControlador,false);
     }//GEN-LAST:event_cadastrarNovoAssociadoListaButtonActionPerformed
 
     private void editarAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAssociadoListaButtonActionPerformed
-        JFrame assForm = new fichaAssociadoForm(principalControlador);
-        assForm.setVisible(true);
-        //Get informações do associado selecionado
+        JFrame assForm = new fichaAssociadoForm(principalControlador,true);
     }//GEN-LAST:event_editarAssociadoListaButtonActionPerformed
 
     public void preencherTabela(String nome, JTable table) {

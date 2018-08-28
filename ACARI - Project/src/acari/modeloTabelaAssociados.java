@@ -18,7 +18,7 @@ public class modeloTabelaAssociados extends AbstractTableModel {
 
     //MODELO DA TABELA
     private ArrayList<Associados> linhas = null;//Linhas
-    private String[] colunas = {"Nome", "CPF", "RG", "Rua", "Numero", "Bairro", "UF"};//Colunas
+    private String[] colunas = {"Nome", "CPF", "RG", "Cidade", "Rua", "Numero", "Bairro", "UF", "Complemento"};//Colunas
 
     public modeloTabelaAssociados(ArrayList lin) {
         setLinhas(lin);
