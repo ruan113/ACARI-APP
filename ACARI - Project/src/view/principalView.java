@@ -22,6 +22,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import model.Associados;
+import model.Empresas;
 
 public class principalView extends javax.swing.JFrame {
 
@@ -146,9 +148,9 @@ public class principalView extends javax.swing.JFrame {
         empresasPanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        excluirEmpresaListaButton = new javax.swing.JButton();
+        cadastrarEmpresaListaButton = new javax.swing.JButton();
+        editarEmpresaListaButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableEmpresas = new javax.swing.JTable();
         jTextField5 = new javax.swing.JTextField();
@@ -690,6 +692,11 @@ public class principalView extends javax.swing.JFrame {
         excluirAssociadoListaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         excluirAssociadoListaButton.setForeground(new java.awt.Color(56, 22, 20));
         excluirAssociadoListaButton.setText("Excluir Associado");
+        excluirAssociadoListaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirAssociadoListaButtonActionPerformed(evt);
+            }
+        });
 
         cadastrarNovoAssociadoListaButton.setBackground(new java.awt.Color(51, 153, 0));
         cadastrarNovoAssociadoListaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -811,20 +818,35 @@ public class principalView extends javax.swing.JFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Lista de Empresas");
 
-        jButton9.setBackground(new java.awt.Color(156, 36, 33));
-        jButton9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(56, 22, 20));
-        jButton9.setText("Excluir Empresa");
+        excluirEmpresaListaButton.setBackground(new java.awt.Color(156, 36, 33));
+        excluirEmpresaListaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        excluirEmpresaListaButton.setForeground(new java.awt.Color(56, 22, 20));
+        excluirEmpresaListaButton.setText("Excluir Empresa");
+        excluirEmpresaListaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirEmpresaListaButtonActionPerformed(evt);
+            }
+        });
 
-        jButton10.setBackground(new java.awt.Color(51, 153, 0));
-        jButton10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(33, 57, 8));
-        jButton10.setText("Cadastrar Nova Empresa");
+        cadastrarEmpresaListaButton.setBackground(new java.awt.Color(51, 153, 0));
+        cadastrarEmpresaListaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cadastrarEmpresaListaButton.setForeground(new java.awt.Color(33, 57, 8));
+        cadastrarEmpresaListaButton.setText("Cadastrar Nova Empresa");
+        cadastrarEmpresaListaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarEmpresaListaButtonActionPerformed(evt);
+            }
+        });
 
-        jButton11.setBackground(new java.awt.Color(204, 204, 0));
-        jButton11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(51, 51, 0));
-        jButton11.setText("Editar Empresa");
+        editarEmpresaListaButton.setBackground(new java.awt.Color(204, 204, 0));
+        editarEmpresaListaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        editarEmpresaListaButton.setForeground(new java.awt.Color(51, 51, 0));
+        editarEmpresaListaButton.setText("Editar Empresa");
+        editarEmpresaListaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarEmpresaListaButtonActionPerformed(evt);
+            }
+        });
 
         jTableEmpresas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -865,13 +887,13 @@ public class principalView extends javax.swing.JFrame {
             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(empresasPanelLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cadastrarEmpresaListaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(empresasPanelLayout.createSequentialGroup()
                 .addGap(740, 740, 740)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(excluirEmpresaListaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(empresasPanelLayout.createSequentialGroup()
                 .addGap(430, 430, 430)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(editarEmpresaListaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(empresasPanelLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
@@ -895,9 +917,9 @@ public class principalView extends javax.swing.JFrame {
                     .addGroup(empresasPanelLayout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton10)
-                            .addComponent(jButton9)
-                            .addComponent(jButton11))))
+                            .addComponent(cadastrarEmpresaListaButton)
+                            .addComponent(excluirEmpresaListaButton)
+                            .addComponent(editarEmpresaListaButton))))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -1094,7 +1116,7 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void cadastrarAssociadoCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAssociadoCompraButtonActionPerformed
-        new fichaAssociadoForm(principalControlador,false);
+        new fichaAssociadoForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarAssociadoCompraButtonActionPerformed
 
     private void cancelarCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCompraButtonActionPerformed
@@ -1105,21 +1127,80 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarCompraButtonActionPerformed
 
     private void cadastrarNovaEmpresaAuxButtonAuxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovaEmpresaAuxButtonAuxActionPerformed
-        new fichaEmpresaForm(principalControlador).setVisible(true);
+        new fichaEmpresaForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarNovaEmpresaAuxButtonAuxActionPerformed
 
     private void cadastrarNovoAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovoAssociadoListaButtonActionPerformed
-        new fichaAssociadoForm(principalControlador,false);
+        new fichaAssociadoForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarNovoAssociadoListaButtonActionPerformed
 
     private void editarAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAssociadoListaButtonActionPerformed
-        JFrame assForm = new fichaAssociadoForm(principalControlador,true);
+
+        //Pega a tabela e transforma num modelo o qual podemos manipular seu conteudo
+        modeloTabelaAssociados model = (modeloTabelaAssociados) jTableAssociados.getModel();
+        //Validamos o resultado
+        if (jTableAssociados.getSelectedRow() != -1) {
+            //Pegamos os dados selecionados na tabela e encontramos o modelo na lista de associados
+            Associados ass = principalControlador.getControladorAssociados().buscarAssociado((String) model.getValueAt(jTableAssociados.getSelectedRow(), 0));
+            if (ass != null) {
+                new fichaAssociadoForm(principalControlador, ass, this);//iniciamos a tela enviando um modelo
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor selecionar um associado na tabela primeiro!");
+        }
     }//GEN-LAST:event_editarAssociadoListaButtonActionPerformed
 
+    private void excluirAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirAssociadoListaButtonActionPerformed
+        //Pega a tabela e transforma num modelo o qual podemos manipular seu conteudo
+        modeloTabelaAssociados model = (modeloTabelaAssociados) jTableAssociados.getModel();
+        //Validamos o resultado
+        if (jTableAssociados.getSelectedRow() != -1) {
+            //Pegamos os dados selecionados na tabela e encontramos o modelo na lista de associados
+            principalControlador.getControladorAssociados().removeAssociado((String) model.getValueAt(jTableAssociados.getSelectedRow(), 0));
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor selecionar um associado na tabela primeiro!");
+        }
+        preencherTabela("Associados", jTableAssociados);
+    }//GEN-LAST:event_excluirAssociadoListaButtonActionPerformed
+
+    private void cadastrarEmpresaListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarEmpresaListaButtonActionPerformed
+        new fichaEmpresaForm(principalControlador, null, this);
+    }//GEN-LAST:event_cadastrarEmpresaListaButtonActionPerformed
+
+    private void editarEmpresaListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarEmpresaListaButtonActionPerformed
+        //Pega a tabela e transforma num modelo o qual podemos manipular seu conteudo
+        modeloTabelaEmpresas model = (modeloTabelaEmpresas) jTableEmpresas.getModel();
+        //Validamos o resultado
+        if (jTableEmpresas.getSelectedRow() != -1) {
+            //Pegamos os dados selecionados na tabela e encontramos o modelo na lista de associados
+            Empresas emp = principalControlador.getControladorEmpresas().buscarEmpresa((String) model.getValueAt(jTableEmpresas.getSelectedRow(), 0));
+            if (emp != null) {
+                new fichaEmpresaForm(principalControlador, emp, this);//iniciamos a tela enviando um modelo
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma empresa na tabela primeiro!");
+        }
+    }//GEN-LAST:event_editarEmpresaListaButtonActionPerformed
+
+    private void excluirEmpresaListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirEmpresaListaButtonActionPerformed
+        //Pega a tabela e transforma num modelo o qual podemos manipular seu conteudo
+        modeloTabelaEmpresas model = (modeloTabelaEmpresas) jTableEmpresas.getModel();
+        //Validamos o resultado
+        if (jTableEmpresas.getSelectedRow() != -1) {
+            //Pegamos os dados selecionados na tabela e encontramos o modelo na lista de associados
+            principalControlador.getControladorEmpresas().removeEmpresa((String) model.getValueAt(jTableEmpresas.getSelectedRow(), 0));
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma empresa na tabela primeiro!");
+        }
+        preencherTabela("Empresas", jTableEmpresas);
+    }//GEN-LAST:event_excluirEmpresaListaButtonActionPerformed
+
     public void preencherTabela(String nome, JTable table) {
+        //Inicializa os modelos existentes
         modeloTabelaAssociados modeloAss = null;
         modeloTabelaEmpresas modeloEmp = null;
 
+        //Valida o tipo da tabela e preenche
         switch (nome) {
             case "Associados":
                 modeloAss = new modeloTabelaAssociados(principalControlador.getControladorAssociados().getListaAssociados());
@@ -1151,6 +1232,7 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JButton associadosButton;
     private javax.swing.JPanel associadosPanel;
     private javax.swing.JButton cadastrarAssociadoCompraButton;
+    private javax.swing.JButton cadastrarEmpresaListaButton;
     private javax.swing.JButton cadastrarNovaEmpresaAuxButtonAux;
     private javax.swing.JButton cadastrarNovoAssociadoListaButton;
     private javax.swing.JButton cadastrarNovoMaterialCompraButton;
@@ -1161,17 +1243,16 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JButton confirmarCompraButton;
     private javax.swing.JButton confirmarVendaButton;
     private javax.swing.JButton editarAssociadoListaButton;
+    private javax.swing.JButton editarEmpresaListaButton;
     private javax.swing.JButton empresasButton;
     private javax.swing.JComboBox<String> empresasComboBox;
     private javax.swing.JPanel empresasPanel;
     private javax.swing.JButton excluirAssociadoListaButton;
+    private javax.swing.JButton excluirEmpresaListaButton;
     private javax.swing.JTextArea infoCompraTextArea;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JTextArea infoVendaTextArea;
     private javax.swing.JLabel infoVendaTotalAReceberLabel;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1226,4 +1307,13 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JButton venderButton;
     private javax.swing.JPanel venderPanel;
     // End of variables declaration//GEN-END:variables
+
+    //Getters----------------------------------------------------
+    public JTable getjTableAssociados() {
+        return jTableAssociados;
+    }
+
+    public JTable getjTableEmpresas() {
+        return jTableEmpresas;
+    }
 }

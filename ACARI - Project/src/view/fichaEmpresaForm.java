@@ -6,6 +6,8 @@
 package view;
 
 import controller.principalController;
+import javax.swing.JOptionPane;
+import model.Empresas;
 
 /**
  *
@@ -13,15 +15,24 @@ import controller.principalController;
  */
 public class fichaEmpresaForm extends javax.swing.JFrame {
 
-    principalController principalControlador;
-    
+    principalController controllerPrincipal;
+    Empresas empresa;
+    principalView pv;
+
     /**
      * Creates new form cadastrarEmpresaForm
      */
-    public fichaEmpresaForm(principalController pc) {
-        this.principalControlador = pc;
+    public fichaEmpresaForm(principalController pc, Empresas emp, principalView pv) {
+        this.controllerPrincipal = pc;
+        this.empresa = emp;
+        this.pv = pv;
         initComponents();
+        if (emp != null) {
+            nomeTextField.setText(emp.getNomeEmpresa());
+            cnpjTextField.setText(emp.getCnpj());
+        }
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -39,9 +50,9 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         nomeTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        nomeTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        cnpjTextField = new javax.swing.JTextField();
+        confirmarEmpresaButton = new javax.swing.JButton();
+        cancelarEmpresaButton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,15 +72,25 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CNPJ*:");
 
-        jButton2.setBackground(new java.awt.Color(1, 103, 204));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Confirmar");
+        confirmarEmpresaButton.setBackground(new java.awt.Color(1, 103, 204));
+        confirmarEmpresaButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        confirmarEmpresaButton.setForeground(new java.awt.Color(51, 51, 51));
+        confirmarEmpresaButton.setText("Confirmar");
+        confirmarEmpresaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarEmpresaButtonActionPerformed(evt);
+            }
+        });
 
-        jButton1.setBackground(new java.awt.Color(156, 36, 33));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Cancelar");
+        cancelarEmpresaButton.setBackground(new java.awt.Color(156, 36, 33));
+        cancelarEmpresaButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cancelarEmpresaButton.setForeground(new java.awt.Color(51, 51, 51));
+        cancelarEmpresaButton.setText("Cancelar");
+        cancelarEmpresaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarEmpresaButtonActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
@@ -92,14 +113,14 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nomeTextField1)))
+                        .addComponent(cnpjTextField)))
                 .addContainerGap())
             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(148, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confirmarEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(140, 140, 140))
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,13 +136,13 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(nomeTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cnpjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(confirmarEmpresaButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(cancelarEmpresaButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -139,45 +160,58 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void confirmarEmpresaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarEmpresaButtonActionPerformed
+        //Garante que todos os campos necessarios foram preenchidos
+        if (!nomeTextField.getText().equals("")
+                && !cnpjTextField.getText().equals("")) {
+            if (empresa == null) {
+                //Cadastra um novo associado
+                controllerPrincipal.getControladorEmpresas().adicionarEmpresa(nomeTextField.getText(),
+                        cnpjTextField.getText());
+            } else {
+                //Edita um associado, enviando o antigo registro do mesmo e o novo registro para troca
+                controllerPrincipal.getControladorEmpresas().editarEmpresa(empresa, new Empresas(nomeTextField.getText(),
+                        cnpjTextField.getText()));
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(fichaEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(fichaEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(fichaEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(fichaEmpresaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //new fichaEmpresaForm().setVisible(true);
+            if (empresa == null) {
+                //Confirma cadastro
+                JOptionPane.showMessageDialog(null, "Cadastro Concluido com Sucesso!");
+            } else {
+                //Confirma cadastro
+                JOptionPane.showMessageDialog(null, "Edição Concluida com Sucesso!");
             }
-        });
-    }
+
+            //Se for uma edição, o programa fecha a janela
+            if (empresa == null) {
+                //Pergunta se quer cadastrar mais um
+                if (JOptionPane.showConfirmDialog(null, "Deseja cadastrar outra Empresa?") == JOptionPane.YES_OPTION) {
+                    nomeTextField.setText("");
+                    cnpjTextField.setText("");
+                } else {
+                    this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
+                }
+            }else{
+                this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
+            }
+        } else {
+            //Mensagem de erro
+            JOptionPane.showMessageDialog(null, "Preencha todos campos obrigatórios para concluir o cadastro!");
+        }
+
+        //Atualiza tabela na view principal
+        pv.preencherTabela("Empresas", pv.getjTableEmpresas());
+    }//GEN-LAST:event_confirmarEmpresaButtonActionPerformed
+
+    private void cancelarEmpresaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarEmpresaButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelarEmpresaButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancelarEmpresaButton;
+    private javax.swing.JTextField cnpjTextField;
+    private javax.swing.JButton confirmarEmpresaButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -185,6 +219,5 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField nomeTextField;
-    private javax.swing.JTextField nomeTextField1;
     // End of variables declaration//GEN-END:variables
 }

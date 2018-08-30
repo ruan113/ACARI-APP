@@ -49,7 +49,7 @@
                   <EmptySpace pref="146" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="confirmarAssociadoButton" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="cancelarAssociadoButton" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
               </Group>
@@ -160,7 +160,7 @@
                   <EmptySpace pref="19" max="32767" attributes="0"/>
                   <Component id="confirmarAssociadoButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancelarAssociadoButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -358,7 +358,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="cancelarAssociadoButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="21" green="24" red="9c" type="rgb"/>
@@ -372,7 +372,7 @@
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarAssociadoButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="confirmarAssociadoButton">

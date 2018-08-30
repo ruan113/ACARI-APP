@@ -26,6 +26,11 @@ public class Empresas  implements java.io.Serializable {
        this.cnpj = cnpj;
     }
    
+    public Empresas(String nomeEmpresa, String cnpj) {
+       this.nomeEmpresa = nomeEmpresa;
+       this.cnpj = cnpj;
+    }
+    
     public int getIdEmpresa() {
         return this.idEmpresa;
     }

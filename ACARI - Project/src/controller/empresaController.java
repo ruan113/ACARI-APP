@@ -19,17 +19,38 @@ public class empresaController {
 
     public empresaController(principalController principal) {
         this.controlerPrincipal = principal;
-        adicionarEmpresa(1, "Nome1", "0000.000.0000");
-        adicionarEmpresa(2, "Nome2", "0000.000.0000");
-        adicionarEmpresa(3, "Nome3", "0000.000.0000");
-        adicionarEmpresa(4, "Nome4", "0000.000.0000");
-        adicionarEmpresa(5, "Nome5", "0000.000.0000");
+        adicionarEmpresa("Nome1", "0000.000.0000");
+        adicionarEmpresa("Nome2", "0000.000.0000");
+        adicionarEmpresa("Nome3", "0000.000.0000");
+        adicionarEmpresa("Nome4", "0000.000.0000");
+        adicionarEmpresa("Nome5", "0000.000.0000");
+    }
+
+    public void adicionarEmpresa(String nomeEmpresa, String CNPJ) {
+        listaEmp.add(new Empresas(nomeEmpresa, CNPJ));
+    }
+
+    //Busca uma empresa pelo nome
+    public Empresas buscarEmpresa(String nomeEmpresa) {
+        for(int i = 0; i < listaEmp.size(); i++){
+            if(nomeEmpresa.equals(listaEmp.get(i).getNomeEmpresa())){
+                return listaEmp.get(i);
+            }
+        }
+        return null;
     }
     
-    public void adicionarEmpresa(int idEmpresa, String nomeEmpresa, String CNPJ) {
-        listaEmp.add(new Empresas(idEmpresa, nomeEmpresa, CNPJ));    
+    public void editarEmpresa(Empresas antigo, Empresas novo) {
+        //Remove o antigo registro
+        listaEmp.remove(antigo);
+        //Adiciona o novo
+        listaEmp.add(novo);
     }
-    
+
+    public void removeEmpresa(String nomeEmpresa) {
+        listaEmp.remove(buscarEmpresa(nomeEmpresa));
+    }
+
     public ArrayList<Empresas> getListaEmpresas() {
         return listaEmp;
     }

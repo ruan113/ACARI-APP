@@ -6,7 +6,10 @@
 package view;
 
 import controller.principalController;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import model.Associados;
 
 /**
  *
@@ -15,15 +18,28 @@ import javax.swing.JOptionPane;
 public class fichaAssociadoForm extends javax.swing.JFrame {
 
     principalController controllerPrincipal;
-    boolean isEditing;
+    Associados associado;
+    principalView pv;
 
     /**
      * Creates new form cadastrarAssociadoForm
      */
-    public fichaAssociadoForm(principalController controllerPrincipal, boolean isEditing) {
+    public fichaAssociadoForm(principalController controllerPrincipal, Associados ass, principalView pv) {
         this.controllerPrincipal = controllerPrincipal;
-        this.isEditing = isEditing;
+        this.associado = ass;
+        this.pv = pv;
         initComponents();
+        if (ass != null) {
+            nomeTextField.setText(ass.getNomeAssociado());
+            cpfTextField.setText(ass.getCpfAssociado());
+            rgTextField.setText(ass.getRgAssociado());
+            cidadeTextField.setText(ass.getCidadeAssociado());
+            numeroTextField.setText(ass.getEndNum().toString());
+            ruaTextField.setText(ass.getEndRua());
+            bairroTextField.setText(ass.getEndBairro());
+            ufComboBox.setSelectedIndex(findSelectedIndex(ass.getUf()));
+            complementoTextField.setText(ass.getEndComplemento());
+        }
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -58,7 +74,7 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         ufComboBox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        cancelarAssociadoButton = new javax.swing.JButton();
         confirmarAssociadoButton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
@@ -121,13 +137,13 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
 
         ufComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
-        jButton1.setBackground(new java.awt.Color(156, 36, 33));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelarAssociadoButton.setBackground(new java.awt.Color(156, 36, 33));
+        cancelarAssociadoButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cancelarAssociadoButton.setForeground(new java.awt.Color(51, 51, 51));
+        cancelarAssociadoButton.setText("Cancelar");
+        cancelarAssociadoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancelarAssociadoButtonActionPerformed(evt);
             }
         });
 
@@ -156,7 +172,7 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
                 .addContainerGap(146, Short.MAX_VALUE)
                 .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmarAssociadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarAssociadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(142, 142, 142))
             .addGroup(principalPanelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -246,7 +262,7 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(confirmarAssociadoButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(cancelarAssociadoButton)
                 .addContainerGap())
         );
 
@@ -271,81 +287,78 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
                 && !numeroTextField.getText().equals("")
                 && !cidadeTextField.getText().equals("")
                 && !bairroTextField.getText().equals("")) {
-            //Cadastra um novo associado
-            controllerPrincipal.getControladorAssociados().adicionarAssociado(nomeTextField.getText(),
-                    cpfTextField.getText(), rgTextField.getText(), cidadeTextField.getText(), Short.parseShort(numeroTextField.getText()),
-                    ruaTextField.getText(), bairroTextField.getText(),
-                    ufComboBox.getSelectedItem().toString(), complementoTextField.getText());
-         
-            //Confirma cadastro
-            JOptionPane.showMessageDialog(null, "Cadastro Concluido com Sucesso!");
-            
-            //Pergunta se quer cadastrar mais um
-            if (JOptionPane.showConfirmDialog(null, "Deseja cadastrar outro Associado?") == JOptionPane.YES_OPTION) {
-                nomeTextField.setText("");
-                cpfTextField.setText("");
-                rgTextField.setText("");
-                cidadeTextField.setText("");
-                numeroTextField.setText("");
-                ruaTextField.setText("");
-                bairroTextField.setText("");
-                ufComboBox.setSelectedIndex(0);
-                complementoTextField.setText("");
-            }else this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
+            if (associado == null) {
+                //Cadastra um novo associado
+                controllerPrincipal.getControladorAssociados().adicionarAssociado(nomeTextField.getText(),
+                        cpfTextField.getText(), rgTextField.getText(), cidadeTextField.getText(), Short.parseShort(numeroTextField.getText()),
+                        ruaTextField.getText(), bairroTextField.getText(),
+                        ufComboBox.getSelectedItem().toString(), complementoTextField.getText());
+            } else {
+                //Edita um associado, enviando o antigo registro do mesmo e o novo registro para troca
+                controllerPrincipal.getControladorAssociados().editarAssociado(associado, new Associados(nomeTextField.getText(),
+                        cpfTextField.getText(), rgTextField.getText(), cidadeTextField.getText(), Short.parseShort(numeroTextField.getText()),
+                        ruaTextField.getText(), bairroTextField.getText(),
+                        ufComboBox.getSelectedItem().toString(), complementoTextField.getText()));
+            }
+
+            if (associado == null) {
+                //Confirma cadastro
+                JOptionPane.showMessageDialog(null, "Cadastro Concluido com Sucesso!");
+            } else {
+                //Confirma cadastro
+                JOptionPane.showMessageDialog(null, "Edição Concluida com Sucesso!");
+            }
+
+            //Se for uma edição, o programa fecha a janela
+            if (associado == null) {
+                //Pergunta se quer cadastrar mais um
+                if (JOptionPane.showConfirmDialog(null, "Deseja cadastrar outro Associado?") == JOptionPane.YES_OPTION) {
+                    nomeTextField.setText("");
+                    cpfTextField.setText("");
+                    rgTextField.setText("");
+                    cidadeTextField.setText("");
+                    numeroTextField.setText("");
+                    ruaTextField.setText("");
+                    bairroTextField.setText("");
+                    ufComboBox.setSelectedIndex(0);
+                    complementoTextField.setText("");
+                } else {
+                    this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
+                }
+            }else{
+                this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
+            }
         } else {
             //Mensagem de erro
             JOptionPane.showMessageDialog(null, "Preencha todos campos obrigatórios para concluir o cadastro!");
         }
 
+        //Atualiza tabela na view principal
+        pv.preencherTabela("Associados", pv.getjTableAssociados());
     }//GEN-LAST:event_confirmarAssociadoButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    //Fecha a tela ao clicar em cancelar
+    private void cancelarAssociadoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarAssociadoButtonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cancelarAssociadoButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    //Busca o index de um tal elemento da comboBox
+    private int findSelectedIndex(String s) {
+        for (int i = 0; i < ufComboBox.getItemCount(); i++) {
+            if (ufComboBox.getItemAt(i).toString().equals(s)) {
+                return i;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(fichaAssociadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(fichaAssociadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(fichaAssociadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(fichaAssociadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //new fichaAssociadoForm(controllerPrincipal).setVisible(true);
-            }
-        });
+        return -1;//É nula a chance de retorno -1
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairroTextField;
+    private javax.swing.JButton cancelarAssociadoButton;
     private javax.swing.JTextField cidadeTextField;
     private javax.swing.JTextField complementoTextField;
     private javax.swing.JButton confirmarAssociadoButton;
     private javax.swing.JTextField cpfTextField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -365,4 +378,5 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
     private javax.swing.JTextField ruaTextField;
     private javax.swing.JComboBox<String> ufComboBox;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -16,7 +16,7 @@ public class associadoController {
 
     principalController controlerPrincipal;
     
-    ArrayList listaAss = new ArrayList();
+    ArrayList<Associados> listaAss = new ArrayList();
     
     public associadoController(principalController principal) {
         this.controlerPrincipal = principal;
@@ -27,14 +27,32 @@ public class associadoController {
         adicionarAssociado("Nome5", "Cpf5", "Rg5", "Cidade5",(short)5, "Rua1", "Bairro1", "MG", "complemento5");
     }
 
+    //Adiciona associado
     public void adicionarAssociado(String nomeAssociado, String cpfAssociado, String rgAssociado, String cidadeAssociado, Short endNum, String endRua, String endBairro, String uf, String endComplemento) {
         listaAss.add(new Associados(nomeAssociado, cpfAssociado, rgAssociado, cidadeAssociado, endNum, endRua, endBairro, uf, endComplemento));    
     }
 
-    public void editarAssociado(String nomeAssociado, String cpfAssociado, String rgAssociado, Short endNum, String endRua, String endBairro, String uf) {
-        
+    //Busca um associado pelo nome
+    public Associados buscarAssociado(String nomeAssociado) {
+        for(int i = 0; i < listaAss.size(); i++){
+            if(nomeAssociado.equals(listaAss.get(i).getNomeAssociado())){
+                return listaAss.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public void editarAssociado(Associados antigo, Associados novo){
+        //Remove o antigo registro
+        listaAss.remove(antigo);
+        //Adiciona o novo
+        listaAss.add(novo);
     }
 
+    public void removeAssociado(String nomeAssociado){
+        listaAss.remove(buscarAssociado(nomeAssociado));
+    }
+    
     public ArrayList getListaAssociados() {
         return listaAss;
     }
