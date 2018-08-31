@@ -19,12 +19,12 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
 
     principalController controllerPrincipal;
     Associados associado;
-    principalView pv;
+    principalViewVelha pv;
 
     /**
      * Creates new form cadastrarAssociadoForm
      */
-    public fichaAssociadoForm(principalController controllerPrincipal, Associados ass, principalView pv) {
+    public fichaAssociadoForm(principalController controllerPrincipal, Associados ass, principalViewVelha pv) {
         this.controllerPrincipal = controllerPrincipal;
         this.associado = ass;
         this.pv = pv;
