@@ -1,7 +1,6 @@
-
 package acari;
 
-import de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel;
+//import de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel;
 import javax.swing.UIManager;
 import view.*;
 
@@ -11,17 +10,21 @@ import view.*;
  */
 public class main {
 
-    
     public static void main(String[] args) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
-          public void run() {
-                try{
+            public void run() {
+                /*
+                   try{
           UIManager.setLookAndFeel(new SyntheticaWhiteVisionLookAndFeel());}   
                 catch (Exception e){
           e.printStackTrace();}
                     new principalView().setVisible(true);
             }});
-    }
+                 */
+                new principalView().setVisible(true);
+            }
+        });
     
+    }
 }

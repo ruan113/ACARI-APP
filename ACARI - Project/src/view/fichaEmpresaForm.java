@@ -17,12 +17,12 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
 
     principalController controllerPrincipal;
     Empresas empresa;
-    principalViewVelha pv;
+    principalView pv;
 
     /**
      * Creates new form cadastrarEmpresaForm
      */
-    public fichaEmpresaForm(principalController pc, Empresas emp, principalViewVelha pv) {
+    public fichaEmpresaForm(principalController pc, Empresas emp, principalView pv) {
         this.controllerPrincipal = pc;
         this.empresa = emp;
         this.pv = pv;

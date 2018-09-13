@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.TableColumnModel;
 import model.Associados;
 import model.Empresas;
 
@@ -21,20 +22,29 @@ public class principalView extends javax.swing.JFrame {
     principalController principalControlador;
 
     public principalView() {
+        this.principalControlador = new principalController();
+
         initComponents();
 
-        this.addWindowListener(new WindowAdapter() {
+        //Lembrar de ao clicar em sair, verificar se tudo foi salvo no bd
+        
+        /*this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                if (JOptionPane.showConfirmDialog(null, "Tem certeza que quer sair?") == JOptionPane.YES_OPTION) {
-                    System.exit(0);
+                int confirmed = JOptionPane.showConfirmDialog(null,
+                        "Are you sure you want to exit the program?", "Exit Program Message Box",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    dispose();
                 }
             }
-        });
+        });*/
     }
 
     public boolean closeWindow() {
-        if (JOptionPane.showConfirmDialog(null, "Tem certeza que quer sair?") == 0) {
-            return true;//cierra aplicacion
+        if (JOptionPane.showConfirmDialog(null, "Tem certeza que quer sair?", "Alerta!",
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            return true;
         }
         return false;
     }
@@ -1460,7 +1470,7 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_precoTotalItemTextFieldActionPerformed
 
     private void cadastrarAssociadoCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAssociadoCompraButtonActionPerformed
-        
+        new fichaAssociadoForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarAssociadoCompraButtonActionPerformed
 
     private void precoItemVendaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoItemVendaTextFieldActionPerformed
@@ -1480,7 +1490,7 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_precoTotalItemVendaTextFieldActionPerformed
 
     private void cadastrarNovaEmpresaAuxButtonAuxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovaEmpresaAuxButtonAuxActionPerformed
-
+        new fichaEmpresaForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarNovaEmpresaAuxButtonAuxActionPerformed
 
     private void excluirAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirAssociadoListaButtonActionPerformed
@@ -1497,11 +1507,10 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirAssociadoListaButtonActionPerformed
 
     private void cadastrarNovoAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovoAssociadoListaButtonActionPerformed
-
+        new fichaAssociadoForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarNovoAssociadoListaButtonActionPerformed
 
     private void editarAssociadoListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAssociadoListaButtonActionPerformed
-
         //Pega a tabela e transforma num modelo o qual podemos manipular seu conteudo
         modeloTabelaAssociados model = (modeloTabelaAssociados) jTableAssociados.getModel();
         //Validamos o resultado
@@ -1509,7 +1518,7 @@ public class principalView extends javax.swing.JFrame {
             //Pegamos os dados selecionados na tabela e encontramos o modelo na lista de associados
             Associados ass = principalControlador.getControladorAssociados().buscarAssociado((String) model.getValueAt(jTableAssociados.getSelectedRow(), 0));
             if (ass != null) {
-
+                new fichaAssociadoForm(principalControlador, ass, this);//iniciamos a tela enviando um modelo
             }
         } else {
             JOptionPane.showMessageDialog(null, "Favor selecionar um associado na tabela primeiro!");
@@ -1530,7 +1539,7 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirEmpresaListaButtonActionPerformed
 
     private void cadastrarEmpresaListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarEmpresaListaButtonActionPerformed
-
+        new fichaEmpresaForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarEmpresaListaButtonActionPerformed
 
     private void editarEmpresaListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarEmpresaListaButtonActionPerformed
@@ -1541,7 +1550,7 @@ public class principalView extends javax.swing.JFrame {
             //Pegamos os dados selecionados na tabela e encontramos o modelo na lista de associados
             Empresas emp = principalControlador.getControladorEmpresas().buscarEmpresa((String) model.getValueAt(jTableEmpresas.getSelectedRow(), 0));
             if (emp != null) {
-
+                new fichaEmpresaForm(principalControlador, emp, this);//iniciamos a tela enviando um modelo
             }
         } else {
             JOptionPane.showMessageDialog(null, "Favor selecionar uma empresa na tabela primeiro!");

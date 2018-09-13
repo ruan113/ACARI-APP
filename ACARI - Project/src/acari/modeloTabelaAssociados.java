@@ -56,13 +56,17 @@ public class modeloTabelaAssociados extends AbstractTableModel {
             case 2:
                 return linhas.get(linha).getRgAssociado();
             case 3:
-                return linhas.get(linha).getEndRua();
+                return linhas.get(linha).getCidadeAssociado();
             case 4:
-                return linhas.get(linha).getEndNum();
+                return linhas.get(linha).getEndRua();
             case 5:
-                return linhas.get(linha).getEndBairro();
+                return linhas.get(linha).getEndNum();
             case 6:
+                return linhas.get(linha).getEndBairro();
+            case 7:
                 return linhas.get(linha).getUf();
+            case 8:
+                return linhas.get(linha).getEndComplemento();
         }
         return null;
     }

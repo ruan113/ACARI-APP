@@ -40,6 +40,7 @@ public class empresaController {
         return null;
     }
     
+    //Edita uma empresa 
     public void editarEmpresa(Empresas antigo, Empresas novo) {
         //Remove o antigo registro
         listaEmp.remove(antigo);
