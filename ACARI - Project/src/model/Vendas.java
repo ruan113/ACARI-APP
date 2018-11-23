@@ -13,7 +13,14 @@ public class Vendas  implements java.io.Serializable {
 
      private long idVenda;
      private Integer idEmpresa;
+
      private Boolean notaFiscal;
+     
+     private Integer idMaterial;
+     private float QuantidadeKG;
+     private float precoPorKilo;
+     private float precoTotal;
+     
      private Set itensVendidoses = new HashSet(0);
 
     public Vendas() {
@@ -28,6 +35,38 @@ public class Vendas  implements java.io.Serializable {
        this.idEmpresa = idEmpresa;
        this.notaFiscal = notaFiscal;
        this.itensVendidoses = itensVendidoses;
+    }
+    
+      public Integer getIdMaterial() {
+        return idMaterial;
+    }
+
+    public void setIdMaterial(Integer idMaterial) {
+        this.idMaterial = idMaterial;
+    }
+
+    public float getQuantidadeKG() {
+        return QuantidadeKG;
+    }
+
+    public void setQuantidadeKG(float QuantidadeKG) {
+        this.QuantidadeKG = QuantidadeKG;
+    }
+
+    public float getPrecoPorKilo() {
+        return precoPorKilo;
+    }
+
+    public void setPrecoPorKilo(float precoPorKilo) {
+        this.precoPorKilo = precoPorKilo;
+    }
+
+    public float getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(float precoTotal) {
+        this.precoTotal = precoTotal;
     }
    
     public long getIdVenda() {

@@ -1,6 +1,7 @@
 package acari;
 
 //import de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel;
+import BD.DatabaseConnection;
 import javax.swing.UIManager;
 import view.*;
 
@@ -22,6 +23,8 @@ public class main {
                     new principalView().setVisible(true);
             }});
                  */
+                DatabaseConnection db = new DatabaseConnection();
+                db.dbConnection();
                 new principalView().setVisible(true);
             }
         });

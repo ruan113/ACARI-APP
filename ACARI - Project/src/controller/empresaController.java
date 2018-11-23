@@ -5,7 +5,10 @@
  */
 package controller;
 
+import BD.DatabaseConnection;
+import java.sql.Connection;
 import java.util.ArrayList;
+import model.Vendas;
 import model.Empresas;
 
 /**
@@ -16,9 +19,15 @@ public class empresaController {
 
     principalController controlerPrincipal;
     ArrayList<Empresas> listaEmp = new ArrayList();
+    
+    Connection db = null;
 
     public empresaController(principalController principal) {
         this.controlerPrincipal = principal;
+
+        DatabaseConnection dbConnection = new DatabaseConnection();
+        this.db = dbConnection.dbConnection();
+
         adicionarEmpresa("Nome1", "0000.000.0000");
         adicionarEmpresa("Nome2", "0000.000.0000");
         adicionarEmpresa("Nome3", "0000.000.0000");
@@ -32,14 +41,19 @@ public class empresaController {
 
     //Busca uma empresa pelo nome
     public Empresas buscarEmpresa(String nomeEmpresa) {
-        for(int i = 0; i < listaEmp.size(); i++){
-            if(nomeEmpresa.equals(listaEmp.get(i).getNomeEmpresa())){
+        for (int i = 0; i < listaEmp.size(); i++) {
+            if (nomeEmpresa.equals(listaEmp.get(i).getNomeEmpresa())) {
                 return listaEmp.get(i);
             }
         }
         return null;
     }
     
+    //Busca um associado pelo ID
+    public Empresas buscaEmpresaID(int id) {
+        return listaEmp.get(id);
+    }
+
     //Edita uma empresa 
     public void editarEmpresa(Empresas antigo, Empresas novo) {
         //Remove o antigo registro
@@ -59,4 +73,5 @@ public class empresaController {
     public void setListaEmpresas(ArrayList<Empresas> listaEmp) {
         this.listaEmp = listaEmp;
     }
+    
 }
