@@ -208,7 +208,6 @@ public class principalViewVelha extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Informações do Item");
 
-        infoCompraTextArea.setBackground(new java.awt.Color(255, 255, 255));
         infoCompraTextArea.setColumns(20);
         infoCompraTextArea.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         infoCompraTextArea.setRows(5);
@@ -222,7 +221,6 @@ public class principalViewVelha extends javax.swing.JFrame {
 
         cancelarCompraButton.setBackground(new java.awt.Color(156, 36, 33));
         cancelarCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cancelarCompraButton.setForeground(new java.awt.Color(51, 51, 51));
         cancelarCompraButton.setText("Cancelar");
         cancelarCompraButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,7 +230,6 @@ public class principalViewVelha extends javax.swing.JFrame {
 
         confirmarCompraButton.setBackground(new java.awt.Color(1, 103, 204));
         confirmarCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        confirmarCompraButton.setForeground(new java.awt.Color(51, 51, 51));
         confirmarCompraButton.setText("Confirmar");
 
         totalAPagarLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -443,7 +440,6 @@ public class principalViewVelha extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Informações do Item");
 
-        infoVendaTextArea.setBackground(new java.awt.Color(255, 255, 255));
         infoVendaTextArea.setColumns(20);
         infoVendaTextArea.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         infoVendaTextArea.setRows(5);
@@ -457,12 +453,10 @@ public class principalViewVelha extends javax.swing.JFrame {
 
         cancelarVendaButton.setBackground(new java.awt.Color(156, 36, 33));
         cancelarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cancelarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
         cancelarVendaButton.setText("Cancelar");
 
         confirmarVendaButton.setBackground(new java.awt.Color(1, 103, 204));
         confirmarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        confirmarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
         confirmarVendaButton.setText("Confirmar");
 
         infoVendaTotalAReceberLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
