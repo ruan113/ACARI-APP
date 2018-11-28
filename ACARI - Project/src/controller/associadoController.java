@@ -9,6 +9,7 @@ import BD.DatabaseConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 import model.*;
+import modelDAO.AssociadosDAO;
 
 /**
  *
@@ -17,62 +18,39 @@ import model.*;
 public class associadoController {
 
     principalController controlerPrincipal;
-    Connection db = null;
-    
-    ArrayList<Associados> listaAss = new ArrayList();
-    
+    AssociadosDAO assDAO = new AssociadosDAO();
+
     public associadoController(principalController principal) {
         this.controlerPrincipal = principal;
-        
-        DatabaseConnection dbConnection = new DatabaseConnection();
-        this.db = dbConnection.dbConnection();
-        
-        adicionarAssociado("Nome1", "Cpf1", "Rg1", "Cidade1", (short)1, "Rua1", "Bairro1", "MG", "complemento1");
-        adicionarAssociado("Nome2", "Cpf2", "Rg2", "Cidade2",(short)2, "Rua2", "Bairro2", "MG", "complemento2");
-        adicionarAssociado("Nome3", "Cpf3", "Rg3", "Cidade3",(short)3, "Rua2", "Bairro2", "MG", "complemento3");
-        adicionarAssociado("Nome4", "Cpf4", "Rg4", "Cidade4",(short)4, "Rua3", "Bairro3", "MG", "complemento4");
-        adicionarAssociado("Nome5", "Cpf5", "Rg5", "Cidade5",(short)5, "Rua1", "Bairro1", "MG", "complemento5");
     }
 
     //Adiciona associado
-    public void adicionarAssociado(String nomeAssociado, String cpfAssociado, String rgAssociado, String cidadeAssociado, Short endNum, String endRua, String endBairro, String uf, String endComplemento) {
-        listaAss.add(new Associados(nomeAssociado, cpfAssociado, rgAssociado, cidadeAssociado, endNum, endRua, endBairro, uf, endComplemento));    
-    
-           
+    public void adicionarAssociado(String nomeAssociado, String cpfAssociado, String rgAssociado, String dataNascimento,
+            String cep, String uf, String endCidade, String endBairro, String endRua, short endNum, String telefone) {
+        assDAO.add(new Associados(
+                nomeAssociado, cpfAssociado, rgAssociado, dataNascimento, cep, uf, endCidade, endBairro, endRua, endNum, telefone)
+        );
     }
 
     //Busca um associado pelo nome
     public Associados buscarAssociado(String nomeAssociado) {
-        for(int i = 0; i < listaAss.size(); i++){
-            if(nomeAssociado.equals(listaAss.get(i).getNomeAssociado())){
-                return listaAss.get(i);
-            }
-        }
-        return null;
+        return assDAO.showNome(nomeAssociado);
     }
-    
+
     //Busca um associado pelo ID
-    public Associados buscaAssociadoID(int id) {
-        return listaAss.get(id);
-    }
-    
-    public void editarAssociado(Associados antigo, Associados novo){
-        //Remove o antigo registro
-        listaAss.remove(antigo);
-        //Adiciona o novo
-        listaAss.add(novo);
+    public Associados buscaAssociadoID(long id) {
+        return assDAO.showID(id);
     }
 
-    public void removeAssociado(String nomeAssociado){
-        listaAss.remove(buscarAssociado(nomeAssociado));
+    public void editarAssociado(Associados antigo, Associados novo) {
+        assDAO.edit(antigo, novo);
     }
-    
+
+    public void removeAssociado(String nomeAssociado) {
+        assDAO.delete(buscarAssociado(nomeAssociado));
+    }
+
     public ArrayList getListaAssociados() {
-        return listaAss;
+        return assDAO.showAll();
     }
-
-    public void setListaAssociados(ArrayList listaAssociados) {
-        this.listaAss = listaAssociados;
-    }
-    
 }

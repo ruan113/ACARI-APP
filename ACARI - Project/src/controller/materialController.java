@@ -7,6 +7,7 @@ package controller;
 
 import java.util.ArrayList;
 import model.Materiais;
+import modelDAO.MateriaisDAO;
 
 /**
  *
@@ -15,49 +16,36 @@ import model.Materiais;
 public class materialController {
 
     principalController controlerPrincipal;
-    ArrayList<Materiais> listaMat = new ArrayList();
+    MateriaisDAO matDAO = new MateriaisDAO();
 
     public materialController(principalController principal) {
         this.controlerPrincipal = principal;
     }
     
     public void adicionarMaterial(String nomeMaterial, String tipo) {
-        listaMat.add(new Materiais(nomeMaterial, tipo));
+        matDAO.add(new Materiais(nomeMaterial, tipo));
     }
 
-    //Busca uma empresa pelo nome
+    //Busca uma Empresa pelo nome
     public Materiais buscarMaterial(String nomeMaterial) {
-        for (int i = 0; i < listaMat.size(); i++) {
-            if (nomeMaterial.equals(listaMat.get(i).getMaterialNome())) {
-                return listaMat.get(i);
-            }
-        }
-        return null;
+        return matDAO.showNome(nomeMaterial);
     }
     
-    //Busca um associado pelo ID
-    public Materiais buscaMaterialID(int id) {
-        return listaMat.get(id);
+    //Busca uma Empresa pelo ID
+    public Materiais buscaMaterialID(long id) {
+        return matDAO.showID(id);
     }
 
     //Edita uma empresa 
     public void editarMaterial(Materiais antigo, Materiais novo) {
-        //Remove o antigo registro
-        listaMat.remove(antigo);
-        //Adiciona o novo
-        listaMat.add(novo);
+        matDAO.edit(antigo,novo);
     }
 
     public void removeMaterial(String nomeMaterial) {
-        listaMat.remove(buscarMaterial(nomeMaterial));
+        matDAO.delete(buscarMaterial(nomeMaterial));
     }
 
     public ArrayList<Materiais> getListaMateriais() {
-        return listaMat;
-    }
-
-    public void setListaMateriais(ArrayList<Materiais> listaMat) {
-        this.listaMat = listaMat;
-    }
-    
+        return matDAO.showAll();
+    }    
 }

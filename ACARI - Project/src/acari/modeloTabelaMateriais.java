@@ -46,6 +46,11 @@ public class modeloTabelaMateriais extends AbstractTableModel {
     }
 
     @Override
+    public String getColumnName(int index) {
+        return colunas[index];
+    }
+
+    @Override
     public Object getValueAt(int linha, int coluna) {
         switch (coluna) {
             case 0:

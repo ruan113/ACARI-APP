@@ -33,13 +33,14 @@ public class DatabaseConnection {
         }
 
         try {
-            DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, user, password);
             System.out.println("Connected");//Teste
+            return connection;
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseConnection.class.getName()).log(Logger.Level.FATAL, null, ex);
             System.out.println("Falha ao connectar no banco de dados!");//Teste
         }
 
-        return connection;
+        return null;
     }
 }

@@ -1,8 +1,6 @@
 package model;
 // Generated 08/08/2018 15:24:22 by Hibernate Tools 4.3.1
 
-
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -10,82 +8,50 @@ import java.util.Set;
  */
 public class Materiais implements java.io.Serializable {
 
-
-     private int idMaterial;
-     private String materialNome;
-     private String tipoMaterial;
-     private Estoque estoque;
-     private Set itensVendidoses = new HashSet(0);
-     private Set itensCompradoses = new HashSet(0);
+    private long idMaterial;
+    private String materialNome;
+    private String tipoMaterial;
 
     public Materiais() {
     }
 
-	
-    public Materiais(int idMaterial) {
+    public Materiais(long idMaterial) {
         this.idMaterial = idMaterial;
     }
-    
+
+    public Materiais(long idMaterial, String materialNome, String tipoMaterial) {
+        this.idMaterial = idMaterial;
+        this.materialNome = materialNome;
+        this.tipoMaterial = tipoMaterial;
+    }
+
     public Materiais(String nome, String tipo) {
         this.materialNome = nome;
         this.tipoMaterial = tipo;
     }
-    
-    public Materiais(int idMaterial, String materialNome, String tipoMaterial, Estoque estoque, Set itensVendidoses, Set itensCompradoses) {
-       this.idMaterial = idMaterial;
-       this.materialNome = materialNome;
-       this.tipoMaterial = tipoMaterial;
-       this.estoque = estoque;
-       this.itensVendidoses = itensVendidoses;
-       this.itensCompradoses = itensCompradoses;
-    }
-   
-    public int getIdMaterial() {
+
+    public long getIdMaterial() {
         return this.idMaterial;
     }
-    
-    public void setIdMaterial(int idMaterial) {
+
+    public void setIdMaterial(long idMaterial) {
         this.idMaterial = idMaterial;
     }
+
     public String getMaterialNome() {
         return this.materialNome;
     }
-    
+
     public void setMaterialNome(String materialNome) {
         this.materialNome = materialNome;
     }
+
     public String getTipoMaterial() {
         return this.tipoMaterial;
     }
-    
+
     public void setTipoMaterial(String tipoMaterial) {
         this.tipoMaterial = tipoMaterial;
     }
-    public Estoque getEstoque() {
-        return this.estoque;
-    }
-    
-    public void setEstoque(Estoque estoque) {
-        this.estoque = estoque;
-    }
-    public Set getItensVendidoses() {
-        return this.itensVendidoses;
-    }
-    
-    public void setItensVendidoses(Set itensVendidoses) {
-        this.itensVendidoses = itensVendidoses;
-    }
-    public Set getItensCompradoses() {
-        return this.itensCompradoses;
-    }
-    
-    public void setItensCompradoses(Set itensCompradoses) {
-        this.itensCompradoses = itensCompradoses;
-    }
-
-
-
 
 }
-
-

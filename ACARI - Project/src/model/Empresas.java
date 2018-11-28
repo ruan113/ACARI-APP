@@ -9,7 +9,7 @@ package model;
 public class Empresas  implements java.io.Serializable {
 
 
-     private int idEmpresa;
+     private long idEmpresa;
      private String nomeEmpresa;
      private String cnpj;
 
@@ -17,10 +17,10 @@ public class Empresas  implements java.io.Serializable {
     }
 
 	
-    public Empresas(int idEmpresa) {
+    public Empresas(long idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
-    public Empresas(int idEmpresa, String nomeEmpresa, String cnpj) {
+    public Empresas(long idEmpresa, String nomeEmpresa, String cnpj) {
        this.idEmpresa = idEmpresa;
        this.nomeEmpresa = nomeEmpresa;
        this.cnpj = cnpj;
@@ -31,11 +31,11 @@ public class Empresas  implements java.io.Serializable {
        this.cnpj = cnpj;
     }
     
-    public int getIdEmpresa() {
+    public long getIdEmpresa() {
         return this.idEmpresa;
     }
     
-    public void setIdEmpresa(int idEmpresa) {
+    public void setIdEmpresa(long idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
     public String getNomeEmpresa() {

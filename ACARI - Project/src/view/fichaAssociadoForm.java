@@ -20,6 +20,8 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
     principalController controllerPrincipal;
     Associados associado;
     principalView pv;
+    boolean hasErrors = false;
+    String error = "";
 
     /**
      * Creates new form cadastrarAssociadoForm
@@ -31,14 +33,16 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
         initComponents();
         if (ass != null) {
             nomeTextField.setText(ass.getNomeAssociado());
-            cpfTextField.setText(ass.getCpfAssociado());
-            rgTextField.setText(ass.getRgAssociado());
-            cidadeTextField.setText(ass.getCidadeAssociado());
-            numeroTextField.setText(ass.getEndNum().toString());
-            ruaTextField.setText(ass.getEndRua());
-            bairroTextField.setText(ass.getEndBairro());
+            cpfTextField.setText(ass.getCpfAssociado().equals("-") ? "" : ass.getCpfAssociado());
+            rgTextField.setText(ass.getRgAssociado().equals("-")  ? "" : ass.getRgAssociado());
+            dataTextField.setText(ass.getDataNascimento());
+            cepTextField.setText(ass.getCep().equals("-")  ? "" : ass.getCep());
             ufComboBox.setSelectedIndex(findSelectedIndex(ass.getUf()));
-            complementoTextField.setText(ass.getEndComplemento());
+            cidadeTextField.setText(ass.getCidadeAssociado());
+            bairroTextField.setText(ass.getEndBairro());
+            ruaTextField.setText(ass.getEndRua());
+            numeroTextField.setText(ass.getEndNum().toString());
+            telefoneTextField.setText(ass.getTelefone());
         }
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -60,9 +64,7 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         nomeTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        cpfTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        rgTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         ruaTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -71,13 +73,19 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
         cidadeTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         bairroTextField = new javax.swing.JTextField();
-        complementoTextField = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         ufComboBox = new javax.swing.JComboBox<>();
         cancelarAssociadoButton = new javax.swing.JButton();
         confirmarAssociadoButton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        cepTextField = new javax.swing.JFormattedTextField();
+        dataTextField = new javax.swing.JFormattedTextField();
+        cpfTextField = new javax.swing.JFormattedTextField();
+        rgTextField = new javax.swing.JFormattedTextField();
+        telefoneTextField = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +100,8 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nome*:");
 
+        nomeTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CPF:");
@@ -104,33 +114,28 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Rua*:");
 
+        ruaTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Numero*:");
 
-        numeroTextField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        numeroTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         numeroTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Cidade*:");
 
-        cidadeTextField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cidadeTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         cidadeTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Bairro*:");
 
-        bairroTextField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        bairroTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         bairroTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        complementoTextField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        complementoTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Complemento:");
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -163,6 +168,53 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Os campos marcados com * são obrigatórios! ");
 
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Cep:");
+
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Data Nascimento*:");
+
+        try {
+            cepTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cepTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cepTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        try {
+            dataTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        dataTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dataTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        try {
+            cpfTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cpfTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cpfTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        try {
+            rgTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        rgTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        rgTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        telefoneTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        telefoneTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Telefone*:");
+
         javax.swing.GroupLayout principalPanelLayout = new javax.swing.GroupLayout(principalPanel);
         principalPanel.setLayout(principalPanelLayout);
         principalPanelLayout.setHorizontalGroup(
@@ -170,7 +222,7 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalPanelLayout.createSequentialGroup()
-                .addContainerGap(146, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmarAssociadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarAssociadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,41 +234,52 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
                     .addGroup(principalPanelLayout.createSequentialGroup()
                         .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(principalPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nomeTextField))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cpfTextField))
-                            .addGroup(principalPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rgTextField))
-                            .addGroup(principalPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ruaTextField))
-                            .addGroup(principalPanelLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(numeroTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cidadeTextField))
-                            .addGroup(principalPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bairroTextField)
+                                .addComponent(cidadeTextField)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ufComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(principalPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nomeTextField))
+                            .addGroup(principalPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dataTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(complementoTextField)))
+                                .addComponent(telefoneTextField))
+                            .addGroup(principalPanelLayout.createSequentialGroup()
+                                .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(principalPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bairroTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cepTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(principalPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cpfTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rgTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         principalPanelLayout.setVerticalGroup(
@@ -233,11 +296,17 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cpfTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(rgTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cpfTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rgTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(telefoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9))
+                    .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(dataTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -247,20 +316,19 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(numeroTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(cidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(bairroTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(ufComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(complementoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(bairroTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12))
+                    .addComponent(cepTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(confirmarAssociadoButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelarAssociadoButton)
@@ -283,55 +351,98 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
 
     private void confirmarAssociadoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarAssociadoButtonActionPerformed
         //Garante que todos os campos necessarios foram preenchidos
-        if (!nomeTextField.getText().equals("")
-                && !ruaTextField.getText().equals("")
-                && !numeroTextField.getText().equals("")
-                && !cidadeTextField.getText().equals("")
-                && !bairroTextField.getText().equals("")) {
+        if (nomeTextField.getText().equals("")
+                || dataTextField.getText().equals("")
+                || ruaTextField.getText().equals("")
+                || numeroTextField.getText().equals("")
+                || cidadeTextField.getText().equals("")
+                || bairroTextField.getText().equals("")) {
+            hasErrors = true;
+            error += "Preencha todos campos obrigatórios para concluir o cadastro!\n";
+        } else {
+            if (nomeTextField.getText().length() > 50) {
+                hasErrors = true;
+                error += "->O nome digitado é muito grande!\n";
+            }
+            if (cpfTextField.getText().replace(".","").replace("-", "").length() < 11) {
+                hasErrors = true;
+                error += "->CPF invalido!\n";
+            }
+            if (dataTextField.getText().replace("/","").replace(" ","").length() < 8) {
+                hasErrors = true;
+                error += "->Data invalida!\n";
+            }
+            if (ruaTextField.getText().length() > 60) {
+                hasErrors = true;
+                error += "->O nome da rua digitada é muito grande!\n";
+            }
+            if (cidadeTextField.getText().length() > 50) {
+                hasErrors = true;
+                error += "->O nome da cidade digitado é muito grande!\n";
+            }
+            if (bairroTextField.getText().length() > 50) {
+                hasErrors = true;
+                error += "->O nome do bairro digitado é muito grande!\n";
+            }
+            if (telefoneTextField.getText().length() > 30) {
+                hasErrors = true;
+                error += "O telefone digitado é muito grande!\n";
+            }
+            if (cepTextField.getText().replace("-","").length() < 8) {
+                hasErrors = true;
+                error += "->CEP invalido!\n";
+            }
+            if (Integer.parseInt(numeroTextField.getText()) < 0 || Integer.parseInt(numeroTextField.getText()) > 32768) {
+                hasErrors = true;
+                error += "->Numero invalido!\n";
+            }
+        }
+
+        if (!hasErrors) {
             if (associado == null) {
                 //Cadastra um novo associado
-                controllerPrincipal.getControladorAssociados().adicionarAssociado(nomeTextField.getText(),
-                        cpfTextField.getText(), rgTextField.getText(), cidadeTextField.getText(), Short.parseShort(numeroTextField.getText()),
-                        ruaTextField.getText(), bairroTextField.getText(),
-                        ufComboBox.getSelectedItem().toString(), complementoTextField.getText());
-            } else {
-                //Edita um associado, enviando o antigo registro do mesmo e o novo registro para troca
-                controllerPrincipal.getControladorAssociados().editarAssociado(associado, new Associados(nomeTextField.getText(),
-                        cpfTextField.getText(), rgTextField.getText(), cidadeTextField.getText(), Short.parseShort(numeroTextField.getText()),
-                        ruaTextField.getText(), bairroTextField.getText(),
-                        ufComboBox.getSelectedItem().toString(), complementoTextField.getText()));
-            }
+                controllerPrincipal.getControladorAssociados().adicionarAssociado(
+                        nomeTextField.getText(), (cpfTextField.getText().replace(" ", "").length() == 3 ? "-" : cpfTextField.getText()),
+                        (rgTextField.getText().replace(" ", "").length() == 3 ? "-" : rgTextField.getText()), dataTextField.getText(),
+                        (cepTextField.getText().replace(" ", "").length() == 1 ? "-" : cepTextField.getText()), ufComboBox.getSelectedItem().toString(), 
+                        cidadeTextField.getText(), bairroTextField.getText(), ruaTextField.getText(), Short.parseShort(numeroTextField.getText()), 
+                        telefoneTextField.getText()
+                );
 
-            if (associado == null) {
                 //Confirma cadastro
                 JOptionPane.showMessageDialog(null, "Cadastro Concluido com Sucesso!");
-            } else {
-                //Confirma cadastro
-                JOptionPane.showMessageDialog(null, "Edição Concluida com Sucesso!");
-            }
-
-            //Se for uma edição, o programa fecha a janela
-            if (associado == null) {
                 //Pergunta se quer cadastrar mais um
                 if (JOptionPane.showConfirmDialog(null, "Deseja cadastrar outro Associado?") == JOptionPane.YES_OPTION) {
                     nomeTextField.setText("");
                     cpfTextField.setText("");
                     rgTextField.setText("");
-                    cidadeTextField.setText("");
-                    numeroTextField.setText("");
-                    ruaTextField.setText("");
-                    bairroTextField.setText("");
+                    dataTextField.setText("");
+                    cepTextField.setText("");
                     ufComboBox.setSelectedIndex(0);
-                    complementoTextField.setText("");
+                    cidadeTextField.setText("");
+                    bairroTextField.setText("");
+                    ruaTextField.setText("");
+                    numeroTextField.setText("");
+                    telefoneTextField.setText("");
                 } else {
                     this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
                 }
-            }else{
+            } else {
+                //Edita um associado, enviando o antigo registro do mesmo e o novo registro para troca
+                controllerPrincipal.getControladorAssociados().editarAssociado(associado,
+                        new Associados(
+                                nomeTextField.getText(), cpfTextField.getText(), rgTextField.getText(), dataTextField.getText(), cepTextField.getText(),
+                                ufComboBox.getSelectedItem().toString(), cidadeTextField.getText(), bairroTextField.getText(), ruaTextField.getText(),
+                                Short.parseShort(numeroTextField.getText()), telefoneTextField.getText()
+                        )
+                );
+                //Confirma cadastro
+                JOptionPane.showMessageDialog(null, "Edição Concluida com Sucesso!");
                 this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
             }
-        } else {
-            //Mensagem de erro
-            JOptionPane.showMessageDialog(null, "Preencha todos campos obrigatórios para concluir o cadastro!");
+        }else{
+            JOptionPane.showMessageDialog(null,error);
+            error = "";
         }
 
         //Atualiza tabela na view principal
@@ -356,13 +467,16 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairroTextField;
     private javax.swing.JButton cancelarAssociadoButton;
+    private javax.swing.JFormattedTextField cepTextField;
     private javax.swing.JTextField cidadeTextField;
-    private javax.swing.JTextField complementoTextField;
     private javax.swing.JButton confirmarAssociadoButton;
-    private javax.swing.JTextField cpfTextField;
+    private javax.swing.JFormattedTextField cpfTextField;
+    private javax.swing.JFormattedTextField dataTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -375,8 +489,9 @@ public class fichaAssociadoForm extends javax.swing.JFrame {
     private javax.swing.JTextField nomeTextField;
     private javax.swing.JTextField numeroTextField;
     private javax.swing.JPanel principalPanel;
-    private javax.swing.JTextField rgTextField;
+    private javax.swing.JFormattedTextField rgTextField;
     private javax.swing.JTextField ruaTextField;
+    private javax.swing.JTextField telefoneTextField;
     private javax.swing.JComboBox<String> ufComboBox;
     // End of variables declaration//GEN-END:variables
 

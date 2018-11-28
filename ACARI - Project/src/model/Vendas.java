@@ -12,11 +12,11 @@ public class Vendas  implements java.io.Serializable {
 
 
      private long idVenda;
-     private Integer idEmpresa;
+     private long idEmpresa;
 
      private Boolean notaFiscal;
      
-     private Integer idMaterial;
+     private long idMaterial;
      private float QuantidadeKG;
      private float precoPorKilo;
      private float precoTotal;
@@ -37,7 +37,7 @@ public class Vendas  implements java.io.Serializable {
        this.itensVendidoses = itensVendidoses;
     }
     
-      public Integer getIdMaterial() {
+      public long getIdMaterial() {
         return idMaterial;
     }
 
@@ -76,11 +76,11 @@ public class Vendas  implements java.io.Serializable {
     public void setIdVenda(long idVenda) {
         this.idVenda = idVenda;
     }
-    public Integer getIdEmpresa() {
+    public long getIdEmpresa() {
         return this.idEmpresa;
     }
     
-    public void setIdEmpresa(Integer idEmpresa) {
+    public void setIdEmpresa(long idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
     public Boolean getNotaFiscal() {

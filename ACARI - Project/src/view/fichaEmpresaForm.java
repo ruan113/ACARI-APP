@@ -19,6 +19,9 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
     Empresas empresa;
     principalView pv;
 
+    boolean hasErrors = false;
+    String error = "";
+
     /**
      * Creates new form cadastrarEmpresaForm
      */
@@ -33,6 +36,7 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
         }
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -161,29 +165,31 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmarEmpresaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarEmpresaButtonActionPerformed
-        //Garante que todos os campos necessarios foram preenchidos
-        if (!nomeTextField.getText().equals("")
-                && !cnpjTextField.getText().equals("")) {
+        //Garante que todos os campos necessarios foram preenchidos e validados
+        if (nomeTextField.getText().equals("")
+                && cnpjTextField.getText().equals("")) {
+            hasErrors = true;
+            error += "->Preencha todos campos obrigatórios para concluir o cadastro!\n";
+        } else {
+            if (nomeTextField.getText().length() > 50) {
+                hasErrors = true;
+                error += "->O nome digitado é muito grande!\n";
+            }
+
+            if (cnpjTextField.getText().length() > 18) {
+                hasErrors = true;
+                error += "->CNPJ invalido!\n";
+            }
+        }
+
+        //Se nao possuir erros o programa procede com o planejado
+        if (!hasErrors) {
             if (empresa == null) {
                 //Cadastra um novo associado
                 controllerPrincipal.getControladorEmpresas().adicionarEmpresa(nomeTextField.getText(),
                         cnpjTextField.getText());
-            } else {
-                //Edita um associado, enviando o antigo registro do mesmo e o novo registro para troca
-                controllerPrincipal.getControladorEmpresas().editarEmpresa(empresa, new Empresas(nomeTextField.getText(),
-                        cnpjTextField.getText()));
-            }
-
-            if (empresa == null) {
                 //Confirma cadastro
                 JOptionPane.showMessageDialog(null, "Cadastro Concluido com Sucesso!");
-            } else {
-                //Confirma cadastro
-                JOptionPane.showMessageDialog(null, "Edição Concluida com Sucesso!");
-            }
-
-            //Se for uma edição, o programa fecha a janela
-            if (empresa == null) {
                 //Pergunta se quer cadastrar mais um
                 if (JOptionPane.showConfirmDialog(null, "Deseja cadastrar outra Empresa?") == JOptionPane.YES_OPTION) {
                     nomeTextField.setText("");
@@ -191,16 +197,21 @@ public class fichaEmpresaForm extends javax.swing.JFrame {
                 } else {
                     this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
                 }
-            }else{
+            } else {
+                //Edita um associado, enviando o antigo registro do mesmo e o novo registro para troca
+                controllerPrincipal.getControladorEmpresas().editarEmpresa(empresa, new Empresas(nomeTextField.getText(),
+                        cnpjTextField.getText()));
+                //Confirma cadastro
+                JOptionPane.showMessageDialog(null, "Edição Concluida com Sucesso!");
                 this.dispose();//Fecha a tela caso não queira fazer mais nenhum cadastro
             }
-        } else {
-            //Mensagem de erro
-            JOptionPane.showMessageDialog(null, "Preencha todos campos obrigatórios para concluir o cadastro!");
-        }
 
-        //Atualiza tabela na view principal
-        pv.preencherTabela("Empresas", pv.getjTableEmpresas());
+            //Atualiza tabela na view principal
+            pv.preencherTabela("Empresas", pv.getjTableEmpresas());
+        } else {
+            //Mostra erros
+            JOptionPane.showMessageDialog(null, error);
+        }
     }//GEN-LAST:event_confirmarEmpresaButtonActionPerformed
 
     private void cancelarEmpresaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarEmpresaButtonActionPerformed

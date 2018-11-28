@@ -18,15 +18,12 @@ import model.ItensComprados;
 public class compraController {
 
     principalController controlerPrincipal;
-    Connection db = null;
 
     ArrayList<Compras> carrinho = new ArrayList<>();
     ArrayList<ItensComprados> compras = new ArrayList<>();
     
     public compraController(principalController principal) {
         this.controlerPrincipal = principal;
-        DatabaseConnection dbConnection = new DatabaseConnection();
-        this.db = dbConnection.dbConnection();
     }
 
     public ArrayList<ItensComprados> getCompras() {
@@ -70,10 +67,6 @@ public class compraController {
 
     public float getPrecoTotalCarrinho(){
         float pt = 0;
-        
-        for(Compras c : carrinho){
-            pt += c.getPrecoTotal();
-        }
         
         return pt;
     }

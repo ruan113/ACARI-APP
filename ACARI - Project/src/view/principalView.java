@@ -170,6 +170,7 @@ public class principalView extends javax.swing.JFrame {
         jTableAssociados = new javax.swing.JTable();
         jTextField4 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        pesquisarAssButton = new javax.swing.JButton();
         empresasPanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
@@ -180,6 +181,7 @@ public class principalView extends javax.swing.JFrame {
         jTableEmpresas = new javax.swing.JTable();
         jTextField5 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        pesquisarEmpButton = new javax.swing.JButton();
         vendasPanel = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
@@ -210,6 +212,7 @@ public class principalView extends javax.swing.JFrame {
         jTableMateriais = new javax.swing.JTable();
         jTextField8 = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
+        pesquisarMatButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ACARI - Associação de Catadores Autônomos de Reciclagem Itajubense");
@@ -1381,20 +1384,20 @@ public class principalView extends javax.swing.JFrame {
 
         jTableAssociados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "CPF", "RG", "Rua", "Número", "Complemento", "Bairro", "Cidade", "UF"
+                "Nome", "CPF", "RG", "Cidade", "Número", "Complemento", "Rua", "Bairro", "UF", "Complemento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, false, false
+                false, false, false, false, false, false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1410,6 +1413,13 @@ public class principalView extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Pesquisa por Nome:");
+
+        pesquisarAssButton.setText("Pesquisar");
+        pesquisarAssButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarAssButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout associadosPanelLayout = new javax.swing.GroupLayout(associadosPanel);
         associadosPanel.setLayout(associadosPanelLayout);
@@ -1435,7 +1445,9 @@ public class principalView extends javax.swing.JFrame {
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(associadosPanelLayout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pesquisarAssButton))
         );
         associadosPanelLayout.setVerticalGroup(
             associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1453,10 +1465,12 @@ public class principalView extends javax.swing.JFrame {
                             .addComponent(cadastrarNovoAssociadoListaButton))))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addGroup(associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(associadosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pesquisarAssButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         formPane.add(associadosPanel, "card2");
@@ -1531,6 +1545,8 @@ public class principalView extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Pesquisa por Nome:");
 
+        pesquisarEmpButton.setText("Pesquisar");
+
         javax.swing.GroupLayout empresasPanelLayout = new javax.swing.GroupLayout(empresasPanel);
         empresasPanel.setLayout(empresasPanelLayout);
         empresasPanelLayout.setHorizontalGroup(
@@ -1555,7 +1571,9 @@ public class principalView extends javax.swing.JFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(empresasPanelLayout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pesquisarEmpButton))
         );
         empresasPanelLayout.setVerticalGroup(
             empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1573,10 +1591,12 @@ public class principalView extends javax.swing.JFrame {
                             .addComponent(editarEmpresaListaButton))))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addGroup(empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(empresasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pesquisarEmpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         formPane.add(empresasPanel, "card2");
@@ -1891,6 +1911,8 @@ public class principalView extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Pesquisa por Nome:");
 
+        pesquisarMatButton.setText("Pesquisar");
+
         javax.swing.GroupLayout materialPanelLayout = new javax.swing.GroupLayout(materialPanel);
         materialPanel.setLayout(materialPanelLayout);
         materialPanelLayout.setHorizontalGroup(
@@ -1915,7 +1937,9 @@ public class principalView extends javax.swing.JFrame {
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(materialPanelLayout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pesquisarMatButton))
         );
         materialPanelLayout.setVerticalGroup(
             materialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1933,10 +1957,12 @@ public class principalView extends javax.swing.JFrame {
                             .addComponent(cadastrarNovoMaterialListaButton))))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addGroup(materialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(materialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pesquisarMatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         formPane.add(materialPanel, "card2");
@@ -2158,7 +2184,7 @@ public class principalView extends javax.swing.JFrame {
 
     private void adicionarItemComprasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarItemComprasButtonActionPerformed
         Compras compra = new Compras();
-
+        /*
         //Seta um objeto compra com as informações da compra
         if (principalControlador.getControladorCompras().getCarrinho().size() == 0) {
             compra.setIdCompra(0);
@@ -2176,7 +2202,7 @@ public class principalView extends javax.swing.JFrame {
         compra.setPrecoTotal(
                 Float.parseFloat(quantidadeItemComprasTextField.getText()) * Float.parseFloat(precoItemComprasTextField.getText())
         );
-
+        */
         //Reseta os campos
         associadosComprasComboBox.setSelectedIndex(0);
         materialComprasComboBox.setSelectedIndex(0);
@@ -2310,9 +2336,9 @@ public class principalView extends javax.swing.JFrame {
         }
         venda.setIdMaterial(materialVendasComboBox.getSelectedIndex());
         venda.setIdEmpresa(
-                principalControlador.getControladorAssociados().buscarAssociado(
+                principalControlador.getControladorEmpresas().buscarEmpresa(
                         empresasVendasComboBox.getSelectedItem().toString()
-                ).getIdAssociado()
+                ).getIdEmpresa()
         );
         venda.setQuantidadeKG(Float.parseFloat(quantidadeItemVendasTextField.getText()));
         venda.setPrecoPorKilo(Float.parseFloat(precoItemVendasTextField.getText()));
@@ -2541,9 +2567,13 @@ public class principalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_relatoriosOption2MouseExited
 
+    private void pesquisarAssButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarAssButtonActionPerformed
+
+    }//GEN-LAST:event_pesquisarAssButtonActionPerformed
+
     public void atualizaDescricaoCompra() {
         String texto = "";
-        for (Compras c : principalControlador.getControladorCompras().getCarrinho()) {
+        /*for (Compras c : principalControlador.getControladorCompras().getCarrinho()) {
             //Gera um registro em string sobre a compra
             texto += "--------------Item " + (c.getIdCompra() + 1) + "--------------\n"
                     + "Associado: " + principalControlador.getControladorAssociados().buscaAssociadoID(c.getIdAssociado()).getNomeAssociado() + "\n"
@@ -2552,7 +2582,7 @@ public class principalView extends javax.swing.JFrame {
                     + "Preco Por Kilo: R$" + c.getPrecoPorKilo() + "\n"
                     + "Preco Total: R$" + c.getPrecoTotal()
                     + "\n\n";
-        }
+        }*/
         //Seta o registro na tela de registro
         infoComprasTextArea.setText(texto);
 
@@ -2613,6 +2643,18 @@ public class principalView extends javax.swing.JFrame {
                 }
                 break;
         }
+    }
+
+    public JTable getjTableAssociados() {
+        return jTableAssociados;
+    }
+
+    public JTable getjTableEmpresas() {
+        return jTableEmpresas;
+    }
+
+    public JTable getjTableMateriais() {
+        return jTableMateriais;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2738,6 +2780,9 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> materialComprasComboBox;
     private javax.swing.JPanel materialPanel;
     private javax.swing.JComboBox<String> materialVendasComboBox;
+    private javax.swing.JButton pesquisarAssButton;
+    private javax.swing.JButton pesquisarEmpButton;
+    private javax.swing.JButton pesquisarMatButton;
     private javax.swing.JTextField precoItemComprasTextField;
     private javax.swing.JTextField precoItemVendasTextField;
     private javax.swing.JTextField precoTotalItemComprasTextField;
@@ -2754,15 +2799,5 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JPanel vendasPanel;
     private javax.swing.JPanel venderPanel;
     // End of variables declaration//GEN-END:variables
-    public JTable getjTableAssociados() {
-        return jTableAssociados;
-    }
 
-    public JTable getjTableEmpresas() {
-        return jTableEmpresas;
-    }
-
-    public JTable getjTableMateriais() {
-        return jTableMateriais;
-    }
 }

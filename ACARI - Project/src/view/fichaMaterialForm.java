@@ -33,6 +33,7 @@ public class fichaMaterialForm extends javax.swing.JFrame {
         }
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
       
     /**

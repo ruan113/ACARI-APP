@@ -18,7 +18,7 @@ public class modeloTabelaAssociados extends AbstractTableModel {
 
     //MODELO DA TABELA
     private ArrayList<Associados> linhas = null;//Linhas
-    private String[] colunas = {"Nome", "CPF", "RG", "Cidade", "Rua", "Numero", "Bairro", "UF", "Complemento"};//Colunas
+    private String[] colunas = {"Nome", "Cidade", "Estado"};//Colunas
 
     public modeloTabelaAssociados(ArrayList lin) {
         setLinhas(lin);
@@ -47,26 +47,19 @@ public class modeloTabelaAssociados extends AbstractTableModel {
     }
 
     @Override
+    public String getColumnName(int index) {
+        return colunas[index];
+    }
+
+    @Override
     public Object getValueAt(int linha, int coluna) {
         switch (coluna) {
             case 0:
                 return linhas.get(linha).getNomeAssociado();
             case 1:
-                return linhas.get(linha).getCpfAssociado();
-            case 2:
-                return linhas.get(linha).getRgAssociado();
-            case 3:
                 return linhas.get(linha).getCidadeAssociado();
-            case 4:
-                return linhas.get(linha).getEndRua();
-            case 5:
-                return linhas.get(linha).getEndNum();
-            case 6:
-                return linhas.get(linha).getEndBairro();
-            case 7:
+            case 2:
                 return linhas.get(linha).getUf();
-            case 8:
-                return linhas.get(linha).getEndComplemento();
         }
         return null;
     }

@@ -6,49 +6,51 @@ package model;
  */
 public class Associados implements java.io.Serializable {
 
-    private int idAssociado;
+    private long idAssociado;
     private String nomeAssociado;
     private String cpfAssociado;
     private String rgAssociado;
-    private String cidadeAssociado;
-    private Short endNum;
-    private String endRua;
-    private String endBairro;
+    private String dataNascimento;
+    private String cep;
     private String uf;
-    private String endComplemento;
+    private String cidadeAssociado;
+    private String endBairro;
+    private String endRua;
+    private Short endNum;
+    private String telefone;
 
     public Associados() {
     }
 
-    public Associados(int idAssociado) {
-        this.idAssociado = idAssociado;
-    }
-
-    public Associados(int idAssociado, String nomeAssociado, String cpfAssociado, String rgAssociado, String cidadeAssociado, Short endNum, String endRua, String endBairro, String uf, String endComplemento) {
+    public Associados(long idAssociado, String nomeAssociado, String cpfAssociado, String rgAssociado, String dataNascimento, String cep, String uf, String cidadeAssociado, String endBairro, String endRua, Short endNum, String telefone) {
         this.idAssociado = idAssociado;
         this.nomeAssociado = nomeAssociado;
         this.cpfAssociado = cpfAssociado;
         this.rgAssociado = rgAssociado;
-        this.cidadeAssociado = cidadeAssociado;
-        this.endNum = endNum;
-        this.endRua = endRua;
-        this.endBairro = endBairro;
+        this.dataNascimento = dataNascimento;
+        this.cep = cep;
         this.uf = uf;
-        this.endComplemento = endComplemento;
+        this.cidadeAssociado = cidadeAssociado;
+        this.endBairro = endBairro;
+        this.endRua = endRua;
+        this.endNum = endNum;
+        this.telefone = telefone;
     }
 
-    public Associados(String nomeAssociado, String cpfAssociado, String rgAssociado, String cidadeAssociado, Short endNum, String endRua, String endBairro, String uf, String endComplemento) {
+    public Associados(String nomeAssociado, String cpfAssociado, String rgAssociado, String dataNascimento, String cep, String uf, String cidadeAssociado, String endBairro, String endRua, Short endNum, String telefone) {
         this.nomeAssociado = nomeAssociado;
         this.cpfAssociado = cpfAssociado;
         this.rgAssociado = rgAssociado;
-        this.cidadeAssociado = cidadeAssociado;
-        this.endNum = endNum;
-        this.endRua = endRua;
-        this.endBairro = endBairro;
+        this.dataNascimento = dataNascimento;
+        this.cep = cep;
         this.uf = uf;
-        this.endComplemento = endComplemento;
+        this.cidadeAssociado = cidadeAssociado;
+        this.endBairro = endBairro;
+        this.endRua = endRua;
+        this.endNum = endNum;
+        this.telefone = telefone;
     }
-
+    
     public String getNomeAssociado() {
         return nomeAssociado;
     }
@@ -57,11 +59,11 @@ public class Associados implements java.io.Serializable {
         this.nomeAssociado = nomeAssociado;
     }
 
-    public int getIdAssociado() {
+    public long getIdAssociado() {
         return this.idAssociado;
     }
 
-    public void setIdAssociado(int idAssociado) {
+    public void setIdAssociado(long idAssociado) {
         this.idAssociado = idAssociado;
     }
 
@@ -81,6 +83,14 @@ public class Associados implements java.io.Serializable {
         this.rgAssociado = rgAssociado;
     }
 
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+    
     public Short getEndNum() {
         return this.endNum;
     }
@@ -121,12 +131,20 @@ public class Associados implements java.io.Serializable {
         this.cidadeAssociado = cidadeAssociado;
     }
 
-    public String getEndComplemento() {
-        return endComplemento;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setEndComplemento(String endComplemento) {
-        this.endComplemento = endComplemento;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
 }
