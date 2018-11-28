@@ -89,6 +89,9 @@ public class principalView extends javax.swing.JFrame {
         exitOption = new javax.swing.JPanel();
         exitLabel = new javax.swing.JLabel();
         exitIcon = new javax.swing.JLabel();
+        gerenciarOption = new javax.swing.JPanel();
+        relatoriosLabel1 = new javax.swing.JLabel();
+        relatoriosIcon1 = new javax.swing.JLabel();
         formPane = new javax.swing.JPanel();
         homePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -161,6 +164,11 @@ public class principalView extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         tipoMaterialPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        gerenciarPanel = new javax.swing.JPanel();
+        associadosButton = new javax.swing.JButton();
+        empresasButton = new javax.swing.JButton();
+        materiaisButton = new javax.swing.JButton();
+        usuariosButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ACARI - Associação de Catadores Autônomos de Reciclagem Itajubense");
@@ -438,7 +446,7 @@ public class principalView extends javax.swing.JFrame {
                 .addComponent(relatoriosIcon)
                 .addGap(18, 18, 18)
                 .addComponent(relatoriosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         relatoriosOptionLayout.setVerticalGroup(
             relatoriosOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,6 +509,57 @@ public class principalView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        gerenciarOption.setBackground(new java.awt.Color(44, 43, 43));
+        gerenciarOption.setPreferredSize(new java.awt.Dimension(0, 40));
+        gerenciarOption.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                gerenciarOptionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                gerenciarOptionMouseExited(evt);
+            }
+        });
+
+        relatoriosLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        relatoriosLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        relatoriosLabel1.setText("Gerenciar");
+        relatoriosLabel1.setToolTipText("");
+        relatoriosLabel1.setPreferredSize(new java.awt.Dimension(70, 25));
+        relatoriosLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                relatoriosLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                relatoriosLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                relatoriosLabel1MouseExited(evt);
+            }
+        });
+
+        relatoriosIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/graph.png"))); // NOI18N
+
+        javax.swing.GroupLayout gerenciarOptionLayout = new javax.swing.GroupLayout(gerenciarOption);
+        gerenciarOption.setLayout(gerenciarOptionLayout);
+        gerenciarOptionLayout.setHorizontalGroup(
+            gerenciarOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gerenciarOptionLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(relatoriosIcon1)
+                .addGap(18, 18, 18)
+                .addComponent(relatoriosLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        gerenciarOptionLayout.setVerticalGroup(
+            gerenciarOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gerenciarOptionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gerenciarOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(relatoriosLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(relatoriosIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout SidebarLayout = new javax.swing.GroupLayout(Sidebar);
         Sidebar.setLayout(SidebarLayout);
         SidebarLayout.setHorizontalGroup(
@@ -512,6 +571,7 @@ public class principalView extends javax.swing.JFrame {
             .addComponent(materialOption, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
             .addComponent(relatoriosOption, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
             .addComponent(exitOption, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+            .addComponent(gerenciarOption, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
         );
         SidebarLayout.setVerticalGroup(
             SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,7 +587,9 @@ public class principalView extends javax.swing.JFrame {
                 .addComponent(materialOption, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(relatoriosOption, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gerenciarOption, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(exitOption, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
@@ -567,7 +629,6 @@ public class principalView extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Informações do Item");
 
-        infoCompraTextArea.setBackground(new java.awt.Color(255, 255, 255));
         infoCompraTextArea.setColumns(20);
         infoCompraTextArea.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         infoCompraTextArea.setForeground(new java.awt.Color(102, 102, 102));
@@ -582,7 +643,6 @@ public class principalView extends javax.swing.JFrame {
 
         cancelarCompraButton.setBackground(new java.awt.Color(156, 36, 33));
         cancelarCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cancelarCompraButton.setForeground(new java.awt.Color(51, 51, 51));
         cancelarCompraButton.setText("Cancelar");
         cancelarCompraButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -592,7 +652,6 @@ public class principalView extends javax.swing.JFrame {
 
         confirmarCompraButton.setBackground(new java.awt.Color(1, 103, 204));
         confirmarCompraButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        confirmarCompraButton.setForeground(new java.awt.Color(51, 51, 51));
         confirmarCompraButton.setText("Confirmar");
 
         totalAPagarLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -803,7 +862,6 @@ public class principalView extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Informações do Item");
 
-        infoVendaTextArea.setBackground(new java.awt.Color(255, 255, 255));
         infoVendaTextArea.setColumns(20);
         infoVendaTextArea.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         infoVendaTextArea.setForeground(new java.awt.Color(102, 102, 102));
@@ -818,12 +876,10 @@ public class principalView extends javax.swing.JFrame {
 
         cancelarVendaButton.setBackground(new java.awt.Color(156, 36, 33));
         cancelarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cancelarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
         cancelarVendaButton.setText("Cancelar");
 
         confirmarVendaButton.setBackground(new java.awt.Color(1, 103, 204));
         confirmarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        confirmarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
         confirmarVendaButton.setText("Confirmar");
 
         infoVendaTotalAReceberLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -1308,6 +1364,50 @@ public class principalView extends javax.swing.JFrame {
 
         formPane.add(tipoMaterialPanel, "card8");
 
+        gerenciarPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        associadosButton.setText("Gerenciar Associados");
+        associadosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                associadosButtonActionPerformed(evt);
+            }
+        });
+
+        empresasButton.setText("Gerenciar Empresas");
+
+        materiaisButton.setText("Gerenciar Materiais");
+
+        usuariosButton.setText("Gerenciar Usuários");
+
+        javax.swing.GroupLayout gerenciarPanelLayout = new javax.swing.GroupLayout(gerenciarPanel);
+        gerenciarPanel.setLayout(gerenciarPanelLayout);
+        gerenciarPanelLayout.setHorizontalGroup(
+            gerenciarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gerenciarPanelLayout.createSequentialGroup()
+                .addGap(461, 461, 461)
+                .addGroup(gerenciarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(associadosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(empresasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(materiaisButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(usuariosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(509, Short.MAX_VALUE))
+        );
+        gerenciarPanelLayout.setVerticalGroup(
+            gerenciarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gerenciarPanelLayout.createSequentialGroup()
+                .addGap(184, 184, 184)
+                .addComponent(associadosButton)
+                .addGap(18, 18, 18)
+                .addComponent(empresasButton)
+                .addGap(18, 18, 18)
+                .addComponent(materiaisButton)
+                .addGap(18, 18, 18)
+                .addComponent(usuariosButton)
+                .addContainerGap(308, Short.MAX_VALUE))
+        );
+
+        formPane.add(gerenciarPanel, "card2");
+
         getContentPane().add(formPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1130, 650));
 
         pack();
@@ -1563,6 +1663,30 @@ public class principalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitLabelMouseClicked
 
+    private void relatoriosLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relatoriosLabel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_relatoriosLabel1MouseClicked
+
+    private void relatoriosLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relatoriosLabel1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_relatoriosLabel1MouseEntered
+
+    private void relatoriosLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relatoriosLabel1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_relatoriosLabel1MouseExited
+
+    private void gerenciarOptionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gerenciarOptionMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gerenciarOptionMouseEntered
+
+    private void gerenciarOptionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gerenciarOptionMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gerenciarOptionMouseExited
+
+    private void associadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associadosButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_associadosButtonActionPerformed
+
     public void preencherTabela(String nome, JTable table) {
         //Inicializa os modelos existentes
         modeloTabelaAssociados modeloAss = null;
@@ -1597,6 +1721,7 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JButton adicionarItemCompraButton;
     private javax.swing.JButton adicionarItemVendaButton;
     private javax.swing.JComboBox<String> associadoComboBox;
+    private javax.swing.JButton associadosButton;
     private javax.swing.JLabel associadosIcon;
     private javax.swing.JLabel associadosLabel;
     private javax.swing.JPanel associadosOption;
@@ -1616,6 +1741,7 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JLabel empresaIcon;
     private javax.swing.JLabel empresaLabel;
     private javax.swing.JPanel empresaOption;
+    private javax.swing.JButton empresasButton;
     private javax.swing.JComboBox<String> empresasComboBox;
     private javax.swing.JPanel empresasPanel;
     private javax.swing.JButton excluirAssociadoListaButton;
@@ -1624,6 +1750,8 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JLabel exitLabel;
     private javax.swing.JPanel exitOption;
     private javax.swing.JPanel formPane;
+    private javax.swing.JPanel gerenciarOption;
+    private javax.swing.JPanel gerenciarPanel;
     private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JPanel homeOption;
@@ -1667,6 +1795,7 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JPanel logoPanel;
+    private javax.swing.JButton materiaisButton;
     private javax.swing.JComboBox<String> materialCompraComboBox;
     private javax.swing.JLabel materialIcon;
     private javax.swing.JLabel materialLabel;
@@ -1679,11 +1808,14 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JTextField quantidadeItemCompraTextField;
     private javax.swing.JTextField quantidadeItemVendaTextField;
     private javax.swing.JLabel relatoriosIcon;
+    private javax.swing.JLabel relatoriosIcon1;
     private javax.swing.JLabel relatoriosLabel;
+    private javax.swing.JLabel relatoriosLabel1;
     private javax.swing.JPanel relatoriosOption;
     private javax.swing.JPanel relatoriosPanel;
     private javax.swing.JPanel tipoMaterialPanel;
     private javax.swing.JLabel totalAPagarLabel;
+    private javax.swing.JButton usuariosButton;
     private javax.swing.JPanel venderPanel;
     // End of variables declaration//GEN-END:variables
     public JTable getjTableAssociados() {
