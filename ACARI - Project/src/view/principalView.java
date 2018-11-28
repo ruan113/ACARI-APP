@@ -655,57 +655,6 @@ public class principalView extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        gerenciarOption.setBackground(new java.awt.Color(44, 43, 43));
-        gerenciarOption.setPreferredSize(new java.awt.Dimension(0, 40));
-        gerenciarOption.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                gerenciarOptionMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                gerenciarOptionMouseExited(evt);
-            }
-        });
-
-        relatoriosLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        relatoriosLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        relatoriosLabel1.setText("Gerenciar");
-        relatoriosLabel1.setToolTipText("");
-        relatoriosLabel1.setPreferredSize(new java.awt.Dimension(70, 25));
-        relatoriosLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                relatoriosLabel1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                relatoriosLabel1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                relatoriosLabel1MouseExited(evt);
-            }
-        });
-
-        relatoriosIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/graph.png"))); // NOI18N
-
-        javax.swing.GroupLayout gerenciarOptionLayout = new javax.swing.GroupLayout(gerenciarOption);
-        gerenciarOption.setLayout(gerenciarOptionLayout);
-        gerenciarOptionLayout.setHorizontalGroup(
-            gerenciarOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gerenciarOptionLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(relatoriosIcon1)
-                .addGap(18, 18, 18)
-                .addComponent(relatoriosLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        gerenciarOptionLayout.setVerticalGroup(
-            gerenciarOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gerenciarOptionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(gerenciarOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(relatoriosLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(relatoriosIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout SidebarLayout = new javax.swing.GroupLayout(Sidebar);
         Sidebar.setLayout(SidebarLayout);
         SidebarLayout.setHorizontalGroup(
@@ -1087,6 +1036,7 @@ public class principalView extends javax.swing.JFrame {
 
         cancelarVendaButton.setBackground(new java.awt.Color(156, 36, 33));
         cancelarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cancelarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
         cancelarVendaButton.setText("Cancelar");
         cancelarVendaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1096,6 +1046,7 @@ public class principalView extends javax.swing.JFrame {
 
         confirmarVendaButton.setBackground(new java.awt.Color(1, 103, 204));
         confirmarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        confirmarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
         confirmarVendaButton.setText("Confirmar");
         confirmarVendaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2773,8 +2724,6 @@ public class principalView extends javax.swing.JFrame {
     private javax.swing.JLabel exitLabel;
     private javax.swing.JPanel exitOption;
     private javax.swing.JPanel formPane;
-    private javax.swing.JPanel gerenciarOption;
-    private javax.swing.JPanel gerenciarPanel;
     private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JPanel homeOption;
