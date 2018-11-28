@@ -8,27 +8,68 @@ import java.util.ArrayList;
  */
 public class ItemVendido implements java.io.Serializable {
 
-    private int id;
-    private ArrayList<Vendas> vendas;
+    private long id_material;
+    private long id_venda;
+    private double quantidade;
+    private double preco_kg;
+    private double preco_total;
 
-    public ItemVendido(int id, ArrayList<Vendas> carrinho) {
-        this.id = id;
-        this.vendas = carrinho;
+    public ItemVendido(long id_material, long id_venda, double quantidade, double preco_kg, double preco_total) {
+        this.id_material = id_material;
+        this.id_venda = id_venda;
+        this.quantidade = quantidade;
+        this.preco_kg = preco_kg;
+        this.preco_total = preco_total;
     }
 
-    public int getId() {
-        return id;
+    public ItemVendido() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public ItemVendido(long id_material, double quantidade, double preco_kg, double preco_total) {
+        this.id_material = id_material;
+        this.quantidade = quantidade;
+        this.preco_kg = preco_kg;
+        this.preco_total = preco_total;
     }
 
-    public ArrayList<Vendas> getVendas() {
-        return vendas;
+    public long getId_material() {
+        return id_material;
     }
 
-    public void setVendas(ArrayList<Vendas> vendas) {
-        this.vendas = vendas;
+    public void setId_material(long id_material) {
+        this.id_material = id_material;
     }
+
+    public long getId_venda() {
+        return id_venda;
+    }
+
+    public void setId_venda(long id_venda) {
+        this.id_venda = id_venda;
+    }
+
+    public double getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(double quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getPreco_kg() {
+        return preco_kg;
+    }
+
+    public void setPreco_kg(double preco_kg) {
+        this.preco_kg = preco_kg;
+    }
+
+    public double getPreco_total() {
+        return preco_total;
+    }
+
+    public void setPreco_total(double preco_total) {
+        this.preco_total = preco_total;
+    }
+
 }

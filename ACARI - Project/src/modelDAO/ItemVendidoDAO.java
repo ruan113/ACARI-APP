@@ -11,37 +11,35 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
-import model.Compras;
-import model.ItemComprado;
+import model.ItemVendido;
 
 /**
  *
  * @author Bento
  */
-public class ItemCompradoDAO {
+public class ItemVendidoDAO {
 
     Connection db;
 
-    public ItemCompradoDAO() {
+    public ItemVendidoDAO() {
         this.db = new DatabaseConnection().dbConnection();
     }
 
-    public void add(ItemComprado itemComprado) {
+    public void add(ItemVendido itemVendido) {
 
         String sql
-                = "INSERT INTO itens_comprados (id_material, id_compra, quantidade, preco_kg, preco_total)"
+                = "INSERT INTO itens_vendidos (id_material, id_venda, quantidade, preco_kg, preco_total)"
                 + "VALUES"
                 + "(?,?,?,?,?);";
 
         try {
             PreparedStatement statement = db.prepareStatement(sql);
-            statement.setLong(1, itemComprado.getId_material());
-            statement.setLong(2, itemComprado.getId_compra());
-            statement.setDouble(3, itemComprado.getQuantidade());
-            statement.setDouble(4, itemComprado.getPreco_kg());
-            statement.setDouble(5, itemComprado.getPreco_total());
+            statement.setLong(1, itemVendido.getId_material());
+            statement.setLong(2, itemVendido.getId_venda());
+            statement.setDouble(3, itemVendido.getQuantidade());
+            statement.setDouble(4, itemVendido.getPreco_kg());
+            statement.setDouble(5, itemVendido.getPreco_total());
 
             statement.execute();
             statement.close();
@@ -50,19 +48,19 @@ public class ItemCompradoDAO {
         }
     }
 
-    public void edit(ItemComprado compraVelha, ItemComprado compraNova) {
+   public void edit(ItemVendido vendaVelha, ItemVendido vendaNova) {
         String sql
-                = "UPDATE Compras set id_material = ?, quantidade = ?, preco_kg = ?, preco_total=? "
-                + "where id_compra = ? AND id_material = ?;";
+                = "UPDATE itens_vendidos set id_material = ?, quantidade = ?, preco_kg = ?, preco_total=? "
+                + "where id_venda = ? AND id_material = ?;";
 
         try {
             PreparedStatement statement = db.prepareStatement(sql);
-            statement.setLong(1, compraNova.getId_material());
-            statement.setDouble(2, compraNova.getQuantidade());
-            statement.setDouble(3, compraNova.getPreco_kg());
-            statement.setDouble(4, compraNova.getPreco_total());
-            statement.setLong(5, compraVelha.getId_compra());
-            statement.setLong(6, compraVelha.getId_material());
+            statement.setLong(1, vendaNova.getId_material());
+            statement.setDouble(2, vendaNova.getQuantidade());
+            statement.setDouble(3, vendaNova.getPreco_kg());
+            statement.setDouble(4, vendaNova.getPreco_total());
+            statement.setLong(5, vendaVelha.getId_venda());
+            statement.setLong(6, vendaVelha.getId_material());
 
             statement.execute();
             statement.close();
@@ -71,14 +69,14 @@ public class ItemCompradoDAO {
         }
     }
 
-    public void delete(ItemComprado compra) {
+    public void delete(ItemVendido venda) {
         String sql
-                = "DELETE FROM Itens_comprados where id_material = ? AND id_compra = ?;";
+                = "DELETE FROM itens_vendidos where id_material = ? AND id_venda = ?;";
 
         try {
             PreparedStatement statement = db.prepareStatement(sql);
-            statement.setLong(1, compra.getId_material());
-            statement.setLong(2, compra.getId_compra());
+            statement.setLong(1, venda.getId_material());
+            statement.setLong(2, venda.getId_venda());
 
             statement.execute();
             statement.close();
@@ -86,10 +84,9 @@ public class ItemCompradoDAO {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
-    public ItemComprado showID(long id_material, long id_compra) {
+    public ItemVendido showID(long id_material, long id_compra) {
         String sql
-                = "Select * FROM itens_comprados where id_material = ? AND id_compra = ?";
+                = "Select * FROM itens_vendidos where id_material = ? AND id_venda = ?";
         ResultSet rs = null;
 
         try {
@@ -99,7 +96,7 @@ public class ItemCompradoDAO {
             rs = statement.executeQuery();
             rs.next();
 
-            ItemComprado item = new ItemComprado(rs.getLong("id_material"), rs.getLong("id_compra"), rs.getDouble("quantidade"),
+            ItemVendido item = new ItemVendido(rs.getLong("id_material"), rs.getLong("id_venda"), rs.getDouble("quantidade"),
                     rs.getDouble("preco_kg"), rs.getDouble("preco_total"));
 
             statement.close();
@@ -111,18 +108,18 @@ public class ItemCompradoDAO {
         return null;
     }
 
-    public ArrayList<ItemComprado> showAll() {
+    public ArrayList<ItemVendido> showAll() {
         String sql
-                = "Select * FROM itens_comprados";
+                = "Select * FROM itens_vendidos";
         ResultSet rs = null;
-        ArrayList<ItemComprado> itens = new ArrayList<ItemComprado>();
+        ArrayList<ItemVendido> itens = new ArrayList<ItemVendido>();
 
         try {
             PreparedStatement statement = db.prepareStatement(sql);
             rs = statement.executeQuery();
 
             while (rs.next()) {
-                ItemComprado item = new ItemComprado(rs.getLong("id_material"), rs.getLong("id_compra"), rs.getDouble("quantidade"),
+                ItemVendido item = new ItemVendido(rs.getLong("id_material"), rs.getLong("id_venda"), rs.getDouble("quantidade"),
                         rs.getDouble("preco_kg"), rs.getDouble("preco_total"));
                 itens.add(item);
             }

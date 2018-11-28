@@ -24,6 +24,11 @@ public class Vendas  implements java.io.Serializable {
         this.nota_fiscal = nota_fiscal;
     }
 
+    public Vendas(long id_empresa, Boolean nota_fiscal) {
+        this.id_empresa = id_empresa;
+        this.nota_fiscal = nota_fiscal;
+    }
+    
     public Vendas(String data, Boolean nota_fiscal) {
         this.data = data;
         this.nota_fiscal = nota_fiscal;

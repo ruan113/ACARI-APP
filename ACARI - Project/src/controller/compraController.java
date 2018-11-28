@@ -36,7 +36,6 @@ public class compraController {
 
     public void finalizarCompra(long id_associado) {
         
-
         long id_compra = comprasDAO.add(id_associado);
 
         //Relaciona cada item com o registro de compra criado

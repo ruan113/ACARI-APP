@@ -802,11 +802,6 @@ public class principalView extends javax.swing.JFrame {
                 precoItemComprasTextFieldFocusLost(evt);
             }
         });
-        precoItemComprasTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                precoItemComprasTextFieldActionPerformed(evt);
-            }
-        });
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -818,11 +813,6 @@ public class principalView extends javax.swing.JFrame {
         quantidadeItemComprasTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 quantidadeItemComprasTextFieldFocusLost(evt);
-            }
-        });
-        quantidadeItemComprasTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantidadeItemComprasTextFieldActionPerformed(evt);
             }
         });
 
@@ -853,11 +843,6 @@ public class principalView extends javax.swing.JFrame {
         precoTotalItemComprasTextField.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         precoTotalItemComprasTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         precoTotalItemComprasTextField.setText("0.0");
-        precoTotalItemComprasTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                precoTotalItemComprasTextFieldActionPerformed(evt);
-            }
-        });
 
         cadastrarAssociadoComprasButton.setBackground(new java.awt.Color(51, 153, 0));
         cadastrarAssociadoComprasButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -1053,11 +1038,21 @@ public class principalView extends javax.swing.JFrame {
         cancelarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         cancelarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
         cancelarVendaButton.setText("Cancelar");
+        cancelarVendaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarVendaButtonActionPerformed(evt);
+            }
+        });
 
         confirmarVendaButton.setBackground(new java.awt.Color(1, 103, 204));
         confirmarVendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         confirmarVendaButton.setForeground(new java.awt.Color(51, 51, 51));
         confirmarVendaButton.setText("Confirmar");
+        confirmarVendaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarVendaButtonActionPerformed(evt);
+            }
+        });
 
         infoVendaTotalAReceberLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         infoVendaTotalAReceberLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -1072,7 +1067,6 @@ public class principalView extends javax.swing.JFrame {
         empresasVendasComboBox.setBackground(new java.awt.Color(255, 255, 255));
         empresasVendasComboBox.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         empresasVendasComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        empresasVendasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Raul Seixas dos Santos da Silva", "Flora Guenzburguer Baumann Somogyi", "Item 3", "Item 4" }));
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -1083,7 +1077,6 @@ public class principalView extends javax.swing.JFrame {
         materialVendasComboBox.setBackground(new java.awt.Color(255, 255, 255));
         materialVendasComboBox.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         materialVendasComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        materialVendasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor de Geladeira", "Item 2", "Item 3", "Item 4" }));
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
@@ -1098,11 +1091,6 @@ public class principalView extends javax.swing.JFrame {
                 precoItemVendasTextFieldFocusLost(evt);
             }
         });
-        precoItemVendasTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                precoItemVendasTextFieldActionPerformed(evt);
-            }
-        });
 
         jLabel21.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
@@ -1114,11 +1102,6 @@ public class principalView extends javax.swing.JFrame {
         quantidadeItemVendasTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 quantidadeItemVendasTextFieldFocusLost(evt);
-            }
-        });
-        quantidadeItemVendasTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantidadeItemVendasTextFieldActionPerformed(evt);
             }
         });
 
@@ -1149,11 +1132,6 @@ public class principalView extends javax.swing.JFrame {
         precoTotalItemVendasTextField.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         precoTotalItemVendasTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         precoTotalItemVendasTextField.setText("0000,00");
-        precoTotalItemVendasTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                precoTotalItemVendasTextFieldActionPerformed(evt);
-            }
-        });
 
         cadastrarNovaEmpresaAuxButtonAux.setBackground(new java.awt.Color(51, 153, 0));
         cadastrarNovaEmpresaAuxButtonAux.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -1209,25 +1187,18 @@ public class principalView extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(venderPanelLayout.createSequentialGroup()
                         .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(empresasVendasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cadastrarNovaEmpresaAuxButtonAux, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(venderPanelLayout.createSequentialGroup()
-                                .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(empresasVendasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cadastrarNovaEmpresaAuxButtonAux, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
-                                .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(venderPanelLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(materialVendasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(CadastrarNovoMaterialVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(venderPanelLayout.createSequentialGroup()
-                                .addGap(420, 420, 420)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(venderPanelLayout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(venderPanelLayout.createSequentialGroup()
-                                .addGap(720, 720, 720)
-                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(materialVendasComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                                .addGap(100, 100, 100)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CadastrarNovoMaterialVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1270,9 +1241,13 @@ public class principalView extends javax.swing.JFrame {
                 .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(venderPanelLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(empresasVendasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(empresasVendasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(materialVendasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
-                        .addComponent(cadastrarNovaEmpresaAuxButtonAux)
+                        .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cadastrarNovaEmpresaAuxButtonAux)
+                            .addComponent(CadastrarNovoMaterialVendaButton))
                         .addGap(70, 70, 70)
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
@@ -1282,16 +1257,13 @@ public class principalView extends javax.swing.JFrame {
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(precoTotalItemVendasTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(venderPanelLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(materialVendasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(CadastrarNovoMaterialVendaButton))
-                    .addGroup(venderPanelLayout.createSequentialGroup()
                         .addGap(270, 270, 270)
                         .addComponent(precoItemVendasTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(venderPanelLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(venderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(venderPanelLayout.createSequentialGroup()
                         .addGap(210, 210, 210)
                         .addComponent(quantidadeItemVendasTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1317,9 +1289,6 @@ public class principalView extends javax.swing.JFrame {
                         .addComponent(confirmarVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(cancelarVendaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(venderPanelLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(venderPanelLayout.createSequentialGroup()
                 .addGap(440, 440, 440)
                 .addComponent(infoVendaTotalAReceberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2079,6 +2048,7 @@ public class principalView extends javax.swing.JFrame {
         formPane.add(venderPanel);
 
         ArrayList<Empresas> listaEmpresas = principalControlador.getControladorEmpresas().getListaEmpresas();
+        ArrayList<Materiais> listaMateriais = principalControlador.getControladorMateriais().getListaMateriais();
 
         //-----------Atualiza lista de associados na combobox-----------
         //Limpa a lista
@@ -2089,8 +2059,13 @@ public class principalView extends javax.swing.JFrame {
             empresasVendasComboBox.addItem(emp.getNomeEmpresa());
         }
 
+        //Adiciona materiais na combobox
+        for (Materiais mat : listaMateriais) {
+            materialVendasComboBox.addItem(mat.getMaterialNome());
+        }
+
         dmlVendas.removeAllElements();
-        principalControlador.getControladorVendas().setCarrinho(new ArrayList<Vendas>());
+        principalControlador.getControladorVendas().limparCarrinho();
 
         infoVendaTextArea.setText("");
         empresasVendasComboBox.setSelectedIndex(0);
@@ -2177,10 +2152,6 @@ public class principalView extends javax.swing.JFrame {
         new fichaAssociadoForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarAssociadoComprasButtonActionPerformed
 
-    private void precoTotalItemComprasTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoTotalItemComprasTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_precoTotalItemComprasTextFieldActionPerformed
-
     private void adicionarItemComprasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarItemComprasButtonActionPerformed
         ItemComprado item = new ItemComprado();
 
@@ -2215,7 +2186,7 @@ public class principalView extends javax.swing.JFrame {
                 carrinhojList.setModel(dmlCompras);
                 dmlCompras.add((int) item.getId_compra(), "Item " + (item.getId_compra() + 1));
             }
-            
+
             //Impede o usuario de trocar de associado após ja ter começado o registro das compras de um associado em especifico
             associadosComprasComboBox.setEnabled(false);//Se há um item no carrinho, não pode mais mudar o associado 
             cadastrarAssociadoComprasButton.setEnabled(false);//Se há um item no carrinho, não pode mais cadastrar um novo associado 
@@ -2227,10 +2198,6 @@ public class principalView extends javax.swing.JFrame {
     private void cadastrarNovoMaterialComprasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNovoMaterialComprasButtonActionPerformed
         new fichaMaterialForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarNovoMaterialComprasButtonActionPerformed
-
-    private void quantidadeItemComprasTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantidadeItemComprasTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quantidadeItemComprasTextFieldActionPerformed
 
     private void quantidadeItemComprasTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quantidadeItemComprasTextFieldFocusLost
         //Verifica se os campos não estao vazios, caso esteja, o programa insere um 0
@@ -2248,10 +2215,6 @@ public class principalView extends javax.swing.JFrame {
         System.out.println(pt);
         precoTotalItemComprasTextField.setText(String.valueOf(pt));
     }//GEN-LAST:event_quantidadeItemComprasTextFieldFocusLost
-
-    private void precoItemComprasTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoItemComprasTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_precoItemComprasTextFieldActionPerformed
 
     private void precoItemComprasTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_precoItemComprasTextFieldFocusLost
         if (quantidadeItemComprasTextField.getText().equals("")) {
@@ -2307,6 +2270,8 @@ public class principalView extends javax.swing.JFrame {
             dmlCompras.removeAllElements();
             principalControlador.getControladorCompras().limparCarrinho();
             atualizaDescricaoCompra();
+
+            JOptionPane.showMessageDialog(null, "Compra confirmada com sucesso!");
         }
     }//GEN-LAST:event_confirmarComprasButtonActionPerformed
 
@@ -2314,21 +2279,9 @@ public class principalView extends javax.swing.JFrame {
         new fichaEmpresaForm(principalControlador, null, this);
     }//GEN-LAST:event_cadastrarNovaEmpresaAuxButtonAuxActionPerformed
 
-    private void precoTotalItemVendasTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoTotalItemVendasTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_precoTotalItemVendasTextFieldActionPerformed
-
     private void CadastrarNovoMaterialVendaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarNovoMaterialVendaButtonActionPerformed
         new fichaMaterialForm(principalControlador, null, this);
     }//GEN-LAST:event_CadastrarNovoMaterialVendaButtonActionPerformed
-
-    private void quantidadeItemVendasTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantidadeItemVendasTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quantidadeItemVendasTextFieldActionPerformed
-
-    private void precoItemVendasTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoItemVendasTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_precoItemVendasTextFieldActionPerformed
 
     private void excluirVendasjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirVendasjButtonActionPerformed
         if (carrinhoVendajList.getSelectedIndex() != -1) {
@@ -2339,41 +2292,45 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirVendasjButtonActionPerformed
 
     private void adicionarItemVendasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarItemVendasButtonActionPerformed
-        /*Vendas venda = new Vendas();
+        ItemVendido item = new ItemVendido();
 
-        //Seta um objeto compra com as informações da compra
+        //Seta um id temporario para o item dentro do carrinho
         if (principalControlador.getControladorVendas().getCarrinho().size() == 0) {
-            venda.setIdVenda(0);
+            item.setId_venda(0);
         } else {
-            venda.setIdVenda(((Long) principalControlador.getControladorVendas().getMaiorId()) + 1);
+            item.setId_venda(((Long) principalControlador.getControladorVendas().getMaiorId()) + 1);
         }
-        venda.setIdMaterial(materialVendasComboBox.getSelectedIndex());
-        venda.setIdEmpresa(
-                principalControlador.getControladorEmpresas().buscarEmpresa(
-                        empresasVendasComboBox.getSelectedItem().toString()
-                ).getIdEmpresa()
+        item.setId_material(
+                principalControlador.getControladorMateriais().buscarMaterial(
+                        materialVendasComboBox.getItemAt(materialVendasComboBox.getSelectedIndex())
+                ).getIdMaterial()
         );
-        venda.setQuantidadeKG(Float.parseFloat(quantidadeItemVendasTextField.getText()));
-        venda.setPrecoPorKilo(Float.parseFloat(precoItemVendasTextField.getText()));
-        venda.setPrecoTotal(
+        item.setQuantidade(Float.parseFloat(quantidadeItemVendasTextField.getText()));
+        item.setPreco_kg(Float.parseFloat(precoItemVendasTextField.getText()));
+        item.setPreco_total(
                 Float.parseFloat(quantidadeItemVendasTextField.getText()) * Float.parseFloat(precoItemVendasTextField.getText())
         );
 
-        //Reseta os campos
-        empresasVendasComboBox.setSelectedIndex(0);
-        materialVendasComboBox.setSelectedIndex(0);
-        quantidadeItemVendasTextField.setText("0.0");
-        precoItemVendasTextField.setText("0.0");
-        precoTotalItemVendasTextField.setText("0.0");
+        //Adiciona a compra no carrinho, se retornar true quer dizer que o item foi adicionado com sucesso
+        if (principalControlador.getControladorVendas().addVendaCarrinho(item, (int) item.getId_venda())) {
+            //Reseta os campos
+            materialVendasComboBox.setSelectedIndex(0);
+            quantidadeItemVendasTextField.setText("0.0");
+            precoItemVendasTextField.setText("0.0");
+            precoTotalItemVendasTextField.setText("0.0");
 
-        //Adiciona a compra na lista
-        carrinhoVendajList.setModel(dmlVendas);
-        dmlVendas.add((int) venda.getIdVenda(), "Item " + (venda.getIdVenda() + 1));
+            //Adiciona a compra na lista se não for um item ja existente que foi mesclado com outro (indicado por id_compra = -1)
+            if (item.getId_venda() != -1) {
+                carrinhoVendajList.setModel(dmlVendas);
+                dmlVendas.add((int) item.getId_venda(), "Item " + (item.getId_venda() + 1));
+            }
 
-        //Adiciona a compra no carrinho
-        principalControlador.getControladorVendas().addVendaCarrinho(venda, (int) venda.getIdVenda());
+            //Impede o usuario de trocar de associado após ja ter começado o registro das compras de um associado em especifico
+            empresasVendasComboBox.setEnabled(false);//Se há um item no carrinho, não pode mais mudar o associado 
+            cadastrarNovaEmpresaAuxButtonAux.setEnabled(false);//Se há um item no carrinho, não pode mais cadastrar um novo associado 
+        }
 
-        atualizaDescricaoVenda();*/
+        atualizaDescricaoVenda();
     }//GEN-LAST:event_adicionarItemVendasButtonActionPerformed
 
     private void precoItemVendasTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_precoItemVendasTextFieldFocusLost
@@ -2446,7 +2403,7 @@ public class principalView extends javax.swing.JFrame {
         //Limpa a lista
         materialComprasComboBox.removeAllItems();
 
-        //Adiciona associados
+        //Adiciona materiais na combobox
         for (Materiais mat : listaMateriais) {
             materialComprasComboBox.addItem(mat.getMaterialNome());
         }
@@ -2509,7 +2466,7 @@ public class principalView extends javax.swing.JFrame {
         }
 
         dmlVendas.removeAllElements();
-        principalControlador.getControladorVendas().setCarrinho(new ArrayList<Vendas>());
+        principalControlador.getControladorVendas().limparCarrinho();
 
         infoVendaTextArea.setText("");
         empresasVendasComboBox.setSelectedIndex(0);
@@ -2594,13 +2551,48 @@ public class principalView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_pesquisarAssButtonActionPerformed
 
+    private void confirmarVendaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarVendaButtonActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Deseja confirmar a venda?", "Confirmação!", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            //Seta o id do empresa escolhido no objeto item e o cadastra no banco de dados
+            principalControlador.getControladorVendas().finalizarVenda(
+                    principalControlador.getControladorEmpresas().buscarEmpresa(
+                            empresasVendasComboBox.getItemAt(
+                                    empresasVendasComboBox.getSelectedIndex()
+                            )
+                    ).getIdEmpresa(),
+                    (JOptionPane.showConfirmDialog(
+                            null, "Deseja emitir Nota Fiscal?", "Emitir Nota Fiscal!", JOptionPane.YES_NO_OPTION
+                    ) == JOptionPane.YES_OPTION ? true : false)
+            );
+
+            //Reseta os campos
+            empresasVendasComboBox.setSelectedIndex(0);
+            materialVendasComboBox.setSelectedIndex(0);
+            quantidadeItemVendasTextField.setText("0.0");
+            precoItemVendasTextField.setText("0.0");
+            precoTotalItemVendasTextField.setText("0.0");
+
+            dmlVendas.removeAllElements();
+            principalControlador.getControladorVendas().limparCarrinho();
+            atualizaDescricaoVenda();
+            JOptionPane.showMessageDialog(null, "Venda confirmada com sucesso!");
+        }
+    }//GEN-LAST:event_confirmarVendaButtonActionPerformed
+
+    private void cancelarVendaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarVendaButtonActionPerformed
+        formPane.removeAll();
+        formPane.add(homePanel);
+        formPane.repaint();
+        formPane.revalidate();
+    }//GEN-LAST:event_cancelarVendaButtonActionPerformed
+
     public void atualizaDescricaoCompra() {
         String texto = "";
         for (ItemComprado c : principalControlador.getControladorCompras().getCarrinho()) {
             //Gera um registro em string sobre a compra
             texto += "--------------Item " + (c.getId_compra() + 1) + "--------------\n"
                     + "Associado: " + associadosComprasComboBox.getItemAt(associadosComprasComboBox.getSelectedIndex()) + "\n"
-                    + "Material: " + c.getId_material() + "\n"
+                    + "Material: " + materialComprasComboBox.getItemAt(materialComprasComboBox.getSelectedIndex()) + "\n"
                     + "Quantidade: " + c.getQuantidade() + " Kg\n"
                     + "Preco Por Kilo: R$" + c.getPreco_kg() + "\n"
                     + "Preco Total: R$" + c.getPreco_total()
@@ -2614,20 +2606,20 @@ public class principalView extends javax.swing.JFrame {
 
     public void atualizaDescricaoVenda() {
         String texto = "";
-        /*for (Vendas c : principalControlador.getControladorVendas().getCarrinho()) {
+        for (ItemVendido v : principalControlador.getControladorVendas().getCarrinho()) {
             //Gera um registro em string sobre a venda
-            texto += "--------------Item " + (c.getIdVenda() + 1) + "--------------\n"
-                    + "Associado: " + principalControlador.getControladorEmpresas().buscaEmpresaID(c.getIdEmpresa()).getNomeEmpresa() + "\n"
-                    + "Material: " + c.getIdMaterial() + "\n"
-                    + "Quantidade: " + c.getQuantidadeKG() + " Kg\n"
-                    + "Preco Por Kilo: R$" + c.getPrecoPorKilo() + "\n"
-                    + "Preco Total: R$" + c.getPrecoTotal()
+            texto += "--------------Item " + (v.getId_venda() + 1) + "--------------\n"
+                    + "Empresa: " + empresasVendasComboBox.getItemAt(empresasVendasComboBox.getSelectedIndex()) + "\n"
+                    + "Material: " + materialVendasComboBox.getItemAt(materialVendasComboBox.getSelectedIndex()) + "\n"
+                    + "Quantidade: " + v.getQuantidade() + " Kg\n"
+                    + "Preco Por Kilo: R$" + v.getPreco_kg() + "\n"
+                    + "Preco Total: R$" + v.getPreco_total()
                     + "\n\n";
         }
         //Seta o registro na tela de registro
         infoVendaTextArea.setText(texto);
 
-        totalAPagarLabel.setText("Total a Pagar: R$" + principalControlador.getControladorVendas().getPrecoTotalCarrinho());*/
+        infoVendaTotalAReceberLabel.setText("Total a Pagar: R$" + principalControlador.getControladorVendas().getPrecoTotalCarrinho());
     }
 
     public void preencherTabela(String nome, JTable table) {
