@@ -21,6 +21,10 @@ public class Compras implements java.io.Serializable {
         this.data = data;
     }
 
+    public Compras(long idAssociado) {
+        this.idAssociado = idAssociado;
+    }
+    
     public Compras(long idCompra, long idAssociado, String data) {
         this.idCompra = idCompra;
         this.idAssociado = idAssociado;

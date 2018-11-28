@@ -11,96 +11,56 @@ import java.util.Set;
 public class Vendas  implements java.io.Serializable {
 
 
-     private long idVenda;
-     private long idEmpresa;
+     private long id_venda;
+     private long id_empresa;
 
-     private Boolean notaFiscal;
+     String data;
+     private Boolean nota_fiscal;
+
+    public Vendas(long id_venda, long id_empresa, String data, Boolean nota_fiscal) {
+        this.id_venda = id_venda;
+        this.id_empresa = id_empresa;
+        this.data = data;
+        this.nota_fiscal = nota_fiscal;
+    }
+
+    public Vendas(String data, Boolean nota_fiscal) {
+        this.data = data;
+        this.nota_fiscal = nota_fiscal;
+    }
+
+    public long getId_venda() {
+        return id_venda;
+    }
+
+    public void setId_venda(long id_venda) {
+        this.id_venda = id_venda;
+    }
+
+    public long getId_empresa() {
+        return id_empresa;
+    }
+
+    public void setId_empresa(long id_empresa) {
+        this.id_empresa = id_empresa;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public Boolean getNota_fiscal() {
+        return nota_fiscal;
+    }
+
+    public void setNota_fiscal(Boolean nota_fiscal) {
+        this.nota_fiscal = nota_fiscal;
+    }
      
-     private long idMaterial;
-     private float QuantidadeKG;
-     private float precoPorKilo;
-     private float precoTotal;
-     
-     private Set itensVendidoses = new HashSet(0);
-
-    public Vendas() {
-    }
-
-	
-    public Vendas(long idVenda) {
-        this.idVenda = idVenda;
-    }
-    public Vendas(long idVenda, Integer idEmpresa, Boolean notaFiscal, Set itensVendidoses) {
-       this.idVenda = idVenda;
-       this.idEmpresa = idEmpresa;
-       this.notaFiscal = notaFiscal;
-       this.itensVendidoses = itensVendidoses;
-    }
-    
-      public long getIdMaterial() {
-        return idMaterial;
-    }
-
-    public void setIdMaterial(Integer idMaterial) {
-        this.idMaterial = idMaterial;
-    }
-
-    public float getQuantidadeKG() {
-        return QuantidadeKG;
-    }
-
-    public void setQuantidadeKG(float QuantidadeKG) {
-        this.QuantidadeKG = QuantidadeKG;
-    }
-
-    public float getPrecoPorKilo() {
-        return precoPorKilo;
-    }
-
-    public void setPrecoPorKilo(float precoPorKilo) {
-        this.precoPorKilo = precoPorKilo;
-    }
-
-    public float getPrecoTotal() {
-        return precoTotal;
-    }
-
-    public void setPrecoTotal(float precoTotal) {
-        this.precoTotal = precoTotal;
-    }
-   
-    public long getIdVenda() {
-        return this.idVenda;
-    }
-    
-    public void setIdVenda(long idVenda) {
-        this.idVenda = idVenda;
-    }
-    public long getIdEmpresa() {
-        return this.idEmpresa;
-    }
-    
-    public void setIdEmpresa(long idEmpresa) {
-        this.idEmpresa = idEmpresa;
-    }
-    public Boolean getNotaFiscal() {
-        return this.notaFiscal;
-    }
-    
-    public void setNotaFiscal(Boolean notaFiscal) {
-        this.notaFiscal = notaFiscal;
-    }
-    public Set getItensVendidoses() {
-        return this.itensVendidoses;
-    }
-    
-    public void setItensVendidoses(Set itensVendidoses) {
-        this.itensVendidoses = itensVendidoses;
-    }
-
-
-
-
 }
 
 

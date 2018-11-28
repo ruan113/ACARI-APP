@@ -788,7 +788,6 @@ public class principalView extends javax.swing.JFrame {
         materialComprasComboBox.setBackground(new java.awt.Color(255, 255, 255));
         materialComprasComboBox.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         materialComprasComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        materialComprasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor de Geladeira", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -2183,39 +2182,44 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_precoTotalItemComprasTextFieldActionPerformed
 
     private void adicionarItemComprasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarItemComprasButtonActionPerformed
-        Compras compra = new Compras();
-        /*
-        //Seta um objeto compra com as informações da compra
+        ItemComprado item = new ItemComprado();
+
+        //Seta um id temporario para o item dentro do carrinho
         if (principalControlador.getControladorCompras().getCarrinho().size() == 0) {
-            compra.setIdCompra(0);
+            item.setId_compra(0);
         } else {
-            compra.setIdCompra(((Long) principalControlador.getControladorCompras().getMaiorId()) + 1);
+            item.setId_compra(((Long) principalControlador.getControladorCompras().getMaiorId()) + 1);
         }
-        compra.setIdMaterial(materialComprasComboBox.getSelectedIndex());
-        compra.setIdAssociado(
-                principalControlador.getControladorAssociados().buscarAssociado(
-                        associadosComprasComboBox.getSelectedItem().toString()
-                ).getIdAssociado()
+        item.setId_material(
+                principalControlador.getControladorMateriais().buscarMaterial(
+                        materialComprasComboBox.getItemAt(materialComprasComboBox.getSelectedIndex())
+                ).getIdMaterial()
         );
-        compra.setQuantidadeKG(Float.parseFloat(quantidadeItemComprasTextField.getText()));
-        compra.setPrecoPorKilo(Float.parseFloat(precoItemComprasTextField.getText()));
-        compra.setPrecoTotal(
+        item.setQuantidade(Float.parseFloat(quantidadeItemComprasTextField.getText()));
+        item.setPreco_kg(Float.parseFloat(precoItemComprasTextField.getText()));
+        item.setPreco_total(
                 Float.parseFloat(quantidadeItemComprasTextField.getText()) * Float.parseFloat(precoItemComprasTextField.getText())
         );
-        */
-        //Reseta os campos
-        associadosComprasComboBox.setSelectedIndex(0);
-        materialComprasComboBox.setSelectedIndex(0);
-        quantidadeItemComprasTextField.setText("0.0");
-        precoItemComprasTextField.setText("0.0");
-        precoTotalItemComprasTextField.setText("0.0");
 
-        //Adiciona a compra na lista
-        carrinhojList.setModel(dmlCompras);
-        dmlCompras.add((int) compra.getIdCompra(), "Item " + (compra.getIdCompra() + 1));
+        //Adiciona a compra no carrinho, se retornar true quer dizer que o item foi adicionado com sucesso
+        if (principalControlador.getControladorCompras().addCompraCarrinho(item, (int) item.getId_compra())) {
+            //Reseta os campos
+            associadosComprasComboBox.setSelectedIndex(0);
+            materialComprasComboBox.setSelectedIndex(0);
+            quantidadeItemComprasTextField.setText("0.0");
+            precoItemComprasTextField.setText("0.0");
+            precoTotalItemComprasTextField.setText("0.0");
 
-        //Adiciona a compra no carrinho
-        principalControlador.getControladorCompras().addCompraCarrinho(compra, (int) compra.getIdCompra());
+            //Adiciona a compra na lista se não for um item ja existente que foi mesclado com outro (indicado por id_compra = -1)
+            if (item.getId_compra() != -1) {
+                carrinhojList.setModel(dmlCompras);
+                dmlCompras.add((int) item.getId_compra(), "Item " + (item.getId_compra() + 1));
+            }
+            
+            //Impede o usuario de trocar de associado após ja ter começado o registro das compras de um associado em especifico
+            associadosComprasComboBox.setEnabled(false);//Se há um item no carrinho, não pode mais mudar o associado 
+            cadastrarAssociadoComprasButton.setEnabled(false);//Se há um item no carrinho, não pode mais cadastrar um novo associado 
+        }
 
         atualizaDescricaoCompra();
     }//GEN-LAST:event_adicionarItemComprasButtonActionPerformed
@@ -2277,12 +2281,21 @@ public class principalView extends javax.swing.JFrame {
             principalControlador.getControladorCompras().getCarrinho().remove(principalControlador.getControladorCompras().getItem(Integer.parseInt(carrinhojList.getSelectedValue().replaceAll("Item ", "")) - 1));
             dmlCompras.remove(carrinhojList.getSelectedIndex());
             atualizaDescricaoCompra();
+        } else {
+            JOptionPane.showMessageDialog(null, "Escolha um item no carrinho!");
         }
     }//GEN-LAST:event_excluirCompraActionPerformed
 
     private void confirmarComprasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarComprasButtonActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Deseja confirmar a compra?", "Confirmação!", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            principalControlador.getControladorCompras().addCompras();
+            //Seta o id do associado escolhido no objeto item e o cadastra no banco de dados
+            principalControlador.getControladorCompras().finalizarCompra(
+                    principalControlador.getControladorAssociados().buscarAssociado(
+                            associadosComprasComboBox.getItemAt(
+                                    associadosComprasComboBox.getSelectedIndex()
+                            )
+                    ).getIdAssociado()
+            );
 
             //Reseta os campos
             associadosComprasComboBox.setSelectedIndex(0);
@@ -2292,7 +2305,7 @@ public class principalView extends javax.swing.JFrame {
             precoTotalItemComprasTextField.setText("0.0");
 
             dmlCompras.removeAllElements();
-            principalControlador.getControladorCompras().setCarrinho(new ArrayList<>());
+            principalControlador.getControladorCompras().limparCarrinho();
             atualizaDescricaoCompra();
         }
     }//GEN-LAST:event_confirmarComprasButtonActionPerformed
@@ -2326,7 +2339,7 @@ public class principalView extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirVendasjButtonActionPerformed
 
     private void adicionarItemVendasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarItemVendasButtonActionPerformed
-        Vendas venda = new Vendas();
+        /*Vendas venda = new Vendas();
 
         //Seta um objeto compra com as informações da compra
         if (principalControlador.getControladorVendas().getCarrinho().size() == 0) {
@@ -2360,7 +2373,7 @@ public class principalView extends javax.swing.JFrame {
         //Adiciona a compra no carrinho
         principalControlador.getControladorVendas().addVendaCarrinho(venda, (int) venda.getIdVenda());
 
-        atualizaDescricaoVenda();
+        atualizaDescricaoVenda();*/
     }//GEN-LAST:event_adicionarItemVendasButtonActionPerformed
 
     private void precoItemVendasTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_precoItemVendasTextFieldFocusLost
@@ -2418,6 +2431,7 @@ public class principalView extends javax.swing.JFrame {
         formPane.add(comprarPanel);
 
         ArrayList<Associados> listaAssociados = principalControlador.getControladorAssociados().getListaAssociados();
+        ArrayList<Materiais> listaMateriais = principalControlador.getControladorMateriais().getListaMateriais();
 
         //-----------Atualiza lista de associados na combobox-----------
         //Limpa a lista
@@ -2428,8 +2442,17 @@ public class principalView extends javax.swing.JFrame {
             associadosComprasComboBox.addItem(ass.getNomeAssociado());
         }
 
+        //-----------Atualiza lista de materiais na combobox-----------
+        //Limpa a lista
+        materialComprasComboBox.removeAllItems();
+
+        //Adiciona associados
+        for (Materiais mat : listaMateriais) {
+            materialComprasComboBox.addItem(mat.getMaterialNome());
+        }
+
         dmlCompras.removeAllElements();
-        principalControlador.getControladorCompras().setCarrinho(new ArrayList<Compras>());
+        principalControlador.getControladorCompras().limparCarrinho();
 
         infoComprasTextArea.setText("");
         associadosComprasComboBox.setSelectedIndex(0);
@@ -2573,16 +2596,16 @@ public class principalView extends javax.swing.JFrame {
 
     public void atualizaDescricaoCompra() {
         String texto = "";
-        /*for (Compras c : principalControlador.getControladorCompras().getCarrinho()) {
+        for (ItemComprado c : principalControlador.getControladorCompras().getCarrinho()) {
             //Gera um registro em string sobre a compra
-            texto += "--------------Item " + (c.getIdCompra() + 1) + "--------------\n"
-                    + "Associado: " + principalControlador.getControladorAssociados().buscaAssociadoID(c.getIdAssociado()).getNomeAssociado() + "\n"
-                    + "Material: " + c.getIdMaterial() + "\n"
-                    + "Quantidade: " + c.getQuantidadeKG() + " Kg\n"
-                    + "Preco Por Kilo: R$" + c.getPrecoPorKilo() + "\n"
-                    + "Preco Total: R$" + c.getPrecoTotal()
+            texto += "--------------Item " + (c.getId_compra() + 1) + "--------------\n"
+                    + "Associado: " + associadosComprasComboBox.getItemAt(associadosComprasComboBox.getSelectedIndex()) + "\n"
+                    + "Material: " + c.getId_material() + "\n"
+                    + "Quantidade: " + c.getQuantidade() + " Kg\n"
+                    + "Preco Por Kilo: R$" + c.getPreco_kg() + "\n"
+                    + "Preco Total: R$" + c.getPreco_total()
                     + "\n\n";
-        }*/
+        }
         //Seta o registro na tela de registro
         infoComprasTextArea.setText(texto);
 
@@ -2591,7 +2614,7 @@ public class principalView extends javax.swing.JFrame {
 
     public void atualizaDescricaoVenda() {
         String texto = "";
-        for (Vendas c : principalControlador.getControladorVendas().getCarrinho()) {
+        /*for (Vendas c : principalControlador.getControladorVendas().getCarrinho()) {
             //Gera um registro em string sobre a venda
             texto += "--------------Item " + (c.getIdVenda() + 1) + "--------------\n"
                     + "Associado: " + principalControlador.getControladorEmpresas().buscaEmpresaID(c.getIdEmpresa()).getNomeEmpresa() + "\n"
@@ -2604,7 +2627,7 @@ public class principalView extends javax.swing.JFrame {
         //Seta o registro na tela de registro
         infoVendaTextArea.setText(texto);
 
-        totalAPagarLabel.setText("Total a Pagar: R$" + principalControlador.getControladorVendas().getPrecoTotalCarrinho());
+        totalAPagarLabel.setText("Total a Pagar: R$" + principalControlador.getControladorVendas().getPrecoTotalCarrinho());*/
     }
 
     public void preencherTabela(String nome, JTable table) {

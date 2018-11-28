@@ -7,7 +7,7 @@ package controller;
 
 import java.util.ArrayList;
 import model.Vendas;
-import model.ItensVendidos;
+import model.ItemVendido;
 
 /**
  *
@@ -16,16 +16,16 @@ import model.ItensVendidos;
 public class vendaController {
 
     principalController controlerPrincipal;
-
+    
+    
     ArrayList<Vendas> carrinho = new ArrayList<>();
-    ArrayList<ItensVendidos> vendas = new ArrayList<>();
-
+    
     public vendaController(principalController principal) {
         this.controlerPrincipal = principal;
     }
 
     public void addVendas() {
-        vendas.add(new ItensVendidos(vendas.size(), carrinho));
+        //vendas.add(new ItemVendido(vendas.size(), carrinho));
     }
 
     public ArrayList<Vendas> getCarrinho() {
@@ -58,9 +58,6 @@ public class vendaController {
     public float getPrecoTotalCarrinho() {
         float pt = 0;
 
-        for (Vendas c : carrinho) {
-            pt += c.getPrecoTotal();
-        }
 
         return pt;
     }
@@ -68,22 +65,13 @@ public class vendaController {
     public long getMaiorId() {
         long id = 0;
 
-        for (Vendas c : carrinho) {
-            if (c.getIdVenda() > id) {
-                id = c.getIdVenda();
-            }
-        }
 
         return id;
     }
 
     public Vendas getItem(long id) {
 
-        for (Vendas c : carrinho) {
-            if (c.getIdVenda() == id) {
-                return c;
-            }
-        }
+        
 
         return null;
     }
