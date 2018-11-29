@@ -120,4 +120,43 @@ public class compraController {
         }
         return null;
     }
+    
+    public ItemComprado getEspecificItem(long id_comp, long id_mat){
+        return itensCompradosDAO.showEspecific(id_comp, id_mat);
+    }
+    
+    public double getPrecoTotalCompraID(long id){
+        ArrayList<ItemComprado> lista = itensCompradosDAO.showID(id);
+        double pTotal = 0;
+        
+        for(ItemComprado item : lista){
+            pTotal += item.getPreco_total();
+        }
+        
+        return pTotal;
+    }
+    
+    public ArrayList<ItemComprado> getItensFromCompraID(long id){
+        return itensCompradosDAO.showID(id);
+    }
+    
+    public Compras getCompra(long id){
+        return comprasDAO.showID(id);
+    }
+    
+    public void adicionarItemACompra(ItemComprado item){
+        itensCompradosDAO.add(item);
+    }
+    
+    public void editarItem(ItemComprado antigo, ItemComprado novo){
+        itensCompradosDAO.edit(antigo, novo);
+    }
+    
+    public void removeItem(long id_compra, long id_material){
+        itensCompradosDAO.delete(id_compra,id_material);
+    }
+    
+    public void removeCompra(long id){
+        comprasDAO.delete(id);
+    }
 }

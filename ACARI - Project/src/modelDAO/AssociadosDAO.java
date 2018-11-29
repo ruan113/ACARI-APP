@@ -82,7 +82,7 @@ public class AssociadosDAO {
                 + "where nome = ? AND id = ?;";
 
         try {
-            
+
             String[] auxData = associadoNovo.getDataNascimento().split("/");
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.YEAR, Integer.parseInt(auxData[2]));
@@ -140,8 +140,8 @@ public class AssociadosDAO {
             rs.next();
 
             String[] auxDate = rs.getDate("data_nasc").toString().split("-");
-            String data = auxDate[2]+"/"+auxDate[1]+"/"+auxDate[0];
-            
+            String data = auxDate[2] + "/" + auxDate[1] + "/" + auxDate[0];
+
             Associados ass = new Associados(
                     rs.getLong("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("rg"), data,
                     rs.getString("cep"), rs.getString("uf"), rs.getString("end_cidade"), rs.getString("end_bairro"),
@@ -168,7 +168,8 @@ public class AssociadosDAO {
             rs = statement.executeQuery();
             rs.next();
 
-            String date = rs.getDate("data_nasc").getDay() + "/" + rs.getDate("data_nasc").getMonth() + "/" + rs.getDate("data_nasc").getYear();
+            String[] auxDate = rs.getDate("data_nasc").toString().split("-");
+            String date = auxDate[2] + "/" + auxDate[1] + "/" + auxDate[0];
 
             Associados ass = new Associados(
                     rs.getLong("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("rg"), date,
@@ -196,8 +197,9 @@ public class AssociadosDAO {
             rs = statement.executeQuery();
 
             while (rs.next()) {
-                String date = rs.getDate("data_nasc").getDay() + "/" + rs.getDate("data_nasc").getMonth() + "/" + rs.getDate("data_nasc").getYear();
-
+                String[] auxDate = rs.getDate("data_nasc").toString().split("-");
+                String date = auxDate[2] + "/" + auxDate[1] + "/" + auxDate[0];
+                
                 Associados ass = new Associados(
                         rs.getLong("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("rg"), date,
                         rs.getString("cep"), rs.getString("uf"), rs.getString("end_cidade"), rs.getString("end_bairro"),

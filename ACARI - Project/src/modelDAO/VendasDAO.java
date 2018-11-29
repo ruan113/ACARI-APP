@@ -99,7 +99,8 @@ public class VendasDAO {
             rs = statement.executeQuery();
             rs.next();
 
-            String date = rs.getDate("data_vendas").getDay() + "/" + rs.getDate("data_vendas").getMonth() + "/" + rs.getDate("data_vendas").getYear();
+            String[] auxDate = rs.getDate("data_vendas").toString().split("-");
+            String date = auxDate[2] + "/" + auxDate[1] + "/" + auxDate[0];
 
             Vendas venda = new Vendas(rs.getLong("id"), rs.getLong("id_empresa"), date, rs.getBoolean("nota_fiscal"));
 
@@ -124,7 +125,8 @@ public class VendasDAO {
 
             while (rs.next()) {
 
-                String date = rs.getDate("data_vendas").getDay() + "/" + rs.getDate("data_vendas").getMonth() + "/" + rs.getDate("data_vendas").getYear();
+                String[] auxDate = rs.getDate("data_vendas").toString().split("-");
+                String date = auxDate[2] + "/" + auxDate[1] + "/" + auxDate[0];
 
                 Vendas venda = new Vendas(rs.getLong("id"), rs.getLong("id_empresa"), date, rs.getBoolean("nota_fiscal"));
                 vendas.add(venda);

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
-import model.Compras;
+import model.ItemComprado;
 import model.ItemComprado;
 
 /**
@@ -52,7 +52,7 @@ public class ItemCompradoDAO {
 
     public void edit(ItemComprado compraVelha, ItemComprado compraNova) {
         String sql
-                = "UPDATE Compras set id_material = ?, quantidade = ?, preco_kg = ?, preco_total=? "
+                = "UPDATE Itens_comprados set id_material = ?, quantidade = ?, preco_kg = ?, preco_total=? "
                 + "where id_compra = ? AND id_material = ?;";
 
         try {
@@ -71,14 +71,14 @@ public class ItemCompradoDAO {
         }
     }
 
-    public void delete(ItemComprado compra) {
+    public void delete(long id_compra, long id_material) {
         String sql
-                = "DELETE FROM Itens_comprados where id_material = ? AND id_compra = ?;";
-
+                = "DELETE FROM itens_comprados where id_material = ? AND id_compra = ?;";
+        System.out.println(id_material);
         try {
             PreparedStatement statement = db.prepareStatement(sql);
-            statement.setLong(1, compra.getId_material());
-            statement.setLong(2, compra.getId_compra());
+            statement.setLong(1, id_material);
+            statement.setLong(2, id_compra);
 
             statement.execute();
             statement.close();
@@ -86,10 +86,37 @@ public class ItemCompradoDAO {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
-    public ItemComprado showID(long id_material, long id_compra) {
+
+    public ArrayList<ItemComprado> showID(long id_compra) {
         String sql
-                = "Select * FROM itens_comprados where id_material = ? AND id_compra = ?";
+                = "Select * FROM itens_comprados where id_compra = ?";
+        ResultSet rs = null;
+
+        try {
+            PreparedStatement statement = db.prepareStatement(sql);
+            statement.setLong(1, id_compra);
+            rs = statement.executeQuery();
+            
+            ArrayList<ItemComprado> listaItens = new ArrayList();
+
+            while (rs.next()) {
+                ItemComprado item = new ItemComprado(rs.getLong("id_material"), rs.getLong("id_compra"), rs.getDouble("quantidade"),
+                        rs.getDouble("preco_kg"), rs.getDouble("preco_total"));
+                listaItens.add(item);
+            }
+
+            statement.close();
+
+            return listaItens;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return null;
+    }
+
+    public ItemComprado showEspecific(long id_compra, long id_material) {
+        String sql
+                = "Select * FROM Itens_comprados where id_material = ? AND id_compra = ?";
         ResultSet rs = null;
 
         try {
@@ -101,7 +128,6 @@ public class ItemCompradoDAO {
 
             ItemComprado item = new ItemComprado(rs.getLong("id_material"), rs.getLong("id_compra"), rs.getDouble("quantidade"),
                     rs.getDouble("preco_kg"), rs.getDouble("preco_total"));
-
             statement.close();
 
             return item;

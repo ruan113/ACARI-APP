@@ -16,7 +16,8 @@ public class principalController {
     private empresaController controladorEmpresas;
     private materialController controladorMateriais;
     private vendaController controladorVendas;
-
+    private despesaController controladorDespesas;
+    
     public principalController() {
         //Inicialização dos controladores
         controladorAssociados = new associadoController(this);
@@ -24,6 +25,7 @@ public class principalController {
         controladorEmpresas = new empresaController(this);
         controladorMateriais = new materialController(this);
         controladorVendas = new vendaController(this);
+        controladorDespesas = new despesaController(this);
     }
 
     public associadoController getControladorAssociados() {
@@ -46,4 +48,8 @@ public class principalController {
         return controladorVendas;
     }
 
+    public despesaController getControladorDespesas() {
+        return controladorDespesas;
+    }
+ 
 }

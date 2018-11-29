@@ -106,7 +106,7 @@ public class EmpresasDAO {
 
     public Empresas showID(long id) {
         String sql
-                = "Select * FROM Associados where id = ?;";
+                = "Select * FROM Empresas where id = ?;";
         ResultSet rs = null;
 
         try {

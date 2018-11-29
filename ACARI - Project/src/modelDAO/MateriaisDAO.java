@@ -107,7 +107,7 @@ public class MateriaisDAO {
     
     public Materiais showID(long id) {
         String sql
-                = "Select * FROM Associados where id = ? ";
+                = "Select * FROM Materiais where id = ? ";
         ResultSet rs = null;
 
         try {
@@ -116,7 +116,7 @@ public class MateriaisDAO {
             rs = statement.executeQuery();
             rs.next();
 
-            Materiais mat = new Materiais(rs.getLong("id"), rs.getString("nome"), rs.getString("cnpj"));
+            Materiais mat = new Materiais(rs.getLong("id"), rs.getString("nome"), rs.getString("tipo"));
 
             statement.close();
 

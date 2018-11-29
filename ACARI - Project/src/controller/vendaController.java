@@ -118,4 +118,15 @@ public class vendaController {
         }
         return null;
     }
+    
+    public double getPrecoTotalVendaID(long id){
+        ArrayList<ItemVendido> lista = itensVendidosDAO.showID(id);
+        double pTotal = 0;
+        
+        for(ItemVendido item : lista){
+            pTotal += item.getPreco_total();
+        }
+        
+        return pTotal;
+    }
 }

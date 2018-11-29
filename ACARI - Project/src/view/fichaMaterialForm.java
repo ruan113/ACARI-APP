@@ -168,7 +168,7 @@ public class fichaMaterialForm extends javax.swing.JFrame {
     private void confirmarMaterialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMaterialButtonActionPerformed
          //Garante que todos os campos necessarios foram preenchidos
         if (!nomeTextField.getText().equals("")
-                && !tipoTextField.getText().equals("")) {
+                || !tipoTextField.getText().equals("")) {
             if (material == null) {
                 //Cadastra um novo associado
                 controllerPrincipal.getControladorMateriais().adicionarMaterial(nomeTextField.getText(),

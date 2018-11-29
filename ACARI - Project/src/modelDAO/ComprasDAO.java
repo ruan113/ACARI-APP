@@ -48,7 +48,7 @@ public class ComprasDAO {
             rs.next();
             long id = rs.getLong("id");
             statement.close();
-            
+
             return id;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -64,14 +64,14 @@ public class ComprasDAO {
             PreparedStatement statement = db.prepareStatement(sql);
             statement.setLong(1, id_associado);
             statement.setLong(2, id);
-            
+
             statement.execute();
             statement.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
+
     public void delete(long id) {
         String sql
                 = "DELETE FROM Compras where id = ?;";
@@ -86,6 +86,7 @@ public class ComprasDAO {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
     public Compras showID(long id) {
         String sql
                 = "Select * FROM Compras where id = ? ";
@@ -97,7 +98,8 @@ public class ComprasDAO {
             rs = statement.executeQuery();
             rs.next();
 
-            String date = rs.getDate("data_compras").getDay() + "/" + rs.getDate("data_compras").getMonth() + "/" + rs.getDate("data_compras").getYear();
+            String[] auxDate = rs.getDate("data_compras").toString().split("-");
+            String date = auxDate[2] + "/" + auxDate[1] + "/" + auxDate[0];
 
             Compras comp = new Compras(rs.getLong("id"), rs.getLong("id_associado"), date);
 
@@ -122,7 +124,8 @@ public class ComprasDAO {
 
             while (rs.next()) {
 
-                String date = rs.getDate("data_compras").getDay() + "/" + rs.getDate("data_compras").getMonth() + "/" + rs.getDate("data_compras").getYear();
+                String[] auxDate = rs.getDate("data_compras").toString().split("-");
+                String date = auxDate[2] + "/" + auxDate[1] + "/" + auxDate[0];
 
                 Compras comp = new Compras(rs.getLong("id"), rs.getLong("id_associado"), date);
                 compras.add(comp);

@@ -5,30 +5,32 @@
  */
 package acari;
 
+import controller.principalController;
 import java.util.ArrayList;
-import javax.swing.event.EventListenerList;
 import javax.swing.table.AbstractTableModel;
-import model.Associados;
+import model.ItemComprado;
 
 /**
  *
  * @author Bento
  */
-public class modeloTabelaAssociados extends AbstractTableModel {
+public class modeloTabelaItensComprados extends AbstractTableModel {
 
     //MODELO DA TABELA
-    private ArrayList<Associados> linhas = null;//Linhas
-    private String[] colunas = {"Nome", "Cidade", "Estado"};//Colunas
+    private ArrayList<ItemComprado> linhas = null;//Linhas
+    private String[] colunas = {"Material", "Quantidade","Preco/KG", "Preco_Total"};//Colunas
+    private principalController principalControlador;
 
-    public modeloTabelaAssociados(ArrayList lin) {
+    public modeloTabelaItensComprados(ArrayList lin, principalController principalControlador) {
         setLinhas(lin);
+        this.principalControlador = principalControlador; 
     }
 
-    public ArrayList<Associados> getLinhas() {
+    public ArrayList<ItemComprado> getLinhas() {
         return linhas;
     }
 
-    public void setLinhas(ArrayList<Associados> linhas) {
+    public void setLinhas(ArrayList<ItemComprado> linhas) {
         this.linhas = linhas;
     }
 
@@ -55,11 +57,13 @@ public class modeloTabelaAssociados extends AbstractTableModel {
     public Object getValueAt(int linha, int coluna) {
         switch (coluna) {
             case 0:
-                return linhas.get(linha).getNomeAssociado();
+                return principalControlador.getControladorMateriais().buscaMaterialID(linhas.get(linha).getId_material()).getMaterialNome();
             case 1:
-                return linhas.get(linha).getCidadeAssociado();
+                return linhas.get(linha).getQuantidade();
             case 2:
-                return linhas.get(linha).getUf();
+                return linhas.get(linha).getPreco_kg();
+            case 3:
+                return linhas.get(linha).getPreco_total();
         }
         return null;
     }

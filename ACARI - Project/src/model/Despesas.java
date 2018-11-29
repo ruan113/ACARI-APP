@@ -9,43 +9,69 @@ package model;
 public class Despesas  implements java.io.Serializable {
 
 
-     private long idDespesa;
+     private long id_despesa;
      private String titulo;
-     private Integer valor;
+     private double valor;
+     private String tipo;
+     private String data;
 
     public Despesas() {
     }
 
-	
-    public Despesas(int idDespesa) {
-        this.idDespesa = idDespesa;
+    public Despesas(String titulo, double valor, String tipo, String data) {
+        this.titulo = titulo;
+        this.valor = valor;
+        this.tipo = tipo;
+        this.data = data;
     }
-   
-    public long getIdDespesa() {
-        return this.idDespesa;
+
+    public Despesas(long id_despesa, String titulo, double valor, String tipo, String data) {
+        this.id_despesa = id_despesa;
+        this.titulo = titulo;
+        this.valor = valor;
+        this.tipo = tipo;
+        this.data = data;
     }
-    
-    public void setIdDespesa(long idDespesa) {
-        this.idDespesa = idDespesa;
+
+    public long getId_despesa() {
+        return id_despesa;
     }
+
+    public void setId_despesa(long id_despesa) {
+        this.id_despesa = id_despesa;
+    }
+
     public String getTitulo() {
-        return this.titulo;
+        return titulo;
     }
-    
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-    public Integer getValor() {
-        return this.valor;
+
+    public double getValor() {
+        return valor;
     }
-    
-    public void setValor(Integer valor) {
+
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
+    public String getData() {
+        return data;
+    }
 
+    public void setData(String data) {
+        this.data = data;
+    }
 }
 
 

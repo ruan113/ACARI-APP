@@ -6,29 +6,28 @@
 package acari;
 
 import java.util.ArrayList;
-import javax.swing.event.EventListenerList;
 import javax.swing.table.AbstractTableModel;
-import model.Associados;
+import model.Despesas;
 
 /**
  *
  * @author Bento
  */
-public class modeloTabelaAssociados extends AbstractTableModel {
+public class modeloTabelaDespesas extends AbstractTableModel {
 
     //MODELO DA TABELA
-    private ArrayList<Associados> linhas = null;//Linhas
-    private String[] colunas = {"Nome", "Cidade", "Estado"};//Colunas
+    private ArrayList<Despesas> linhas = null;//Linhas
+    private String[] colunas = {"Titulo", "Tipo","Valor", "Data"};//Colunas
 
-    public modeloTabelaAssociados(ArrayList lin) {
+    public modeloTabelaDespesas(ArrayList lin) {
         setLinhas(lin);
     }
 
-    public ArrayList<Associados> getLinhas() {
+    public ArrayList<Despesas> getLinhas() {
         return linhas;
     }
 
-    public void setLinhas(ArrayList<Associados> linhas) {
+    public void setLinhas(ArrayList<Despesas> linhas) {
         this.linhas = linhas;
     }
 
@@ -55,11 +54,13 @@ public class modeloTabelaAssociados extends AbstractTableModel {
     public Object getValueAt(int linha, int coluna) {
         switch (coluna) {
             case 0:
-                return linhas.get(linha).getNomeAssociado();
+                return linhas.get(linha).getTitulo();
             case 1:
-                return linhas.get(linha).getCidadeAssociado();
+                return linhas.get(linha).getTipo();
             case 2:
-                return linhas.get(linha).getUf();
+                return linhas.get(linha).getValor();
+            case 3:
+                return linhas.get(linha).getData();
         }
         return null;
     }

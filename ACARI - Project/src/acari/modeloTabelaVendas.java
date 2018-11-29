@@ -5,30 +5,32 @@
  */
 package acari;
 
+import controller.principalController;
 import java.util.ArrayList;
-import javax.swing.event.EventListenerList;
 import javax.swing.table.AbstractTableModel;
-import model.Associados;
+import model.Vendas;
 
 /**
  *
  * @author Bento
  */
-public class modeloTabelaAssociados extends AbstractTableModel {
+public class modeloTabelaVendas extends AbstractTableModel {
 
     //MODELO DA TABELA
-    private ArrayList<Associados> linhas = null;//Linhas
-    private String[] colunas = {"Nome", "Cidade", "Estado"};//Colunas
+    private ArrayList<Vendas> linhas = null;//Linhas
+    private String[] colunas = {"Empresa", "Data","Valor Total", "Nota Fiscal"};//Colunas
+    private principalController principalControlador;
 
-    public modeloTabelaAssociados(ArrayList lin) {
+    public modeloTabelaVendas(ArrayList lin, principalController principalControlador) {
         setLinhas(lin);
+        this.principalControlador = principalControlador; 
     }
 
-    public ArrayList<Associados> getLinhas() {
+    public ArrayList<Vendas> getLinhas() {
         return linhas;
     }
 
-    public void setLinhas(ArrayList<Associados> linhas) {
+    public void setLinhas(ArrayList<Vendas> linhas) {
         this.linhas = linhas;
     }
 
@@ -55,11 +57,13 @@ public class modeloTabelaAssociados extends AbstractTableModel {
     public Object getValueAt(int linha, int coluna) {
         switch (coluna) {
             case 0:
-                return linhas.get(linha).getNomeAssociado();
+                return principalControlador.getControladorEmpresas().buscaEmpresaID(linhas.get(linha).getId_empresa()).getNomeEmpresa();
             case 1:
-                return linhas.get(linha).getCidadeAssociado();
+                return linhas.get(linha).getData();
             case 2:
-                return linhas.get(linha).getUf();
+                return principalControlador.getControladorVendas().getPrecoTotalVendaID(linhas.get(linha).getId_venda());
+            case 3:
+                return (linhas.get(linha).getNota_fiscal() ? "X" : "");
         }
         return null;
     }
